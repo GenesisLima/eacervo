@@ -6,16 +6,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {
-   
+    
 	@RequestMapping("/")
 	public String index(){
-		System.out.println("Página principal!");		
+		System.out.println("Página principal.");		
 		return "index";		
 	}
-	@RequestMapping("/servidor")
-	public String getEmployeeRegisterPage(){
-		return "servidores/form_servidor";		
-	}
+//	@RequestMapping("/servidor")
+//	public String getEmployeeRegisterPage(){
+//		return "servidores/form_servidor";		
+//	}
+	
 	@RequestMapping("/produto")
 	public String getProductRegisterPage(){
 		return "produtos/form_produto";
