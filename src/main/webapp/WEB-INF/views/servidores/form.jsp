@@ -91,15 +91,15 @@
         <form role="form" method="post" action="/eacervo/servidores">
            <div class="form-group">
     <label for="matricula">Matricula:</label>
-    <input type="text" class="form-control" id="matricula">
+    <input type="text" name="code" class="form-control" id="matricula">
   </div>
            <div class="form-group">
               <label for="nome">Nome:</label>
-              <input type="text" class="form-control" id="nome">
+              <input type="text" name="name" class="form-control" id="nome">
            </div>
            <div class="form-group">
               <label for="vinculo">Vinculo:</label>
-              <input type="text" class="form-control" id="vinculo">
+              <input type="text" name="bound" class="form-control" id="vinculo">
            </div>
            <div class="form-group">
             <label for="funcao">Fun&ccedil;&atilde;o:</label>
@@ -121,18 +121,18 @@
            </div>
            <div class="form-group">
               <label for="ramal">Ramal:</label>
-              <input type="number" class="form-control" id="ramal">
+              <input type="number" name="branchLine" class="form-control" id="ramal">
            </div>
            <div class="form-group">
               <label for="email">Email:</label>
-              <input type="email" class="form-control" id="email">
+              <input type="email" name="email" class="form-control" id="email">
            </div>
            <div class="form-group">
               <label for="responsavel">Respons&aacute;vel:</label>
              <div class="input-group">                            
               <input type="text" class="form-control" id="funcao">
               <span class="input-group-btn">
-              <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>&nbsp;</button>
+              <button type="button" name="responsible" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>&nbsp;</button>
             </span>
            </div> 
   

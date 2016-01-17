@@ -1,6 +1,7 @@
 package org.ntvru.eacervo.conf;
 
 import org.ntvru.eacervo.controller.HomeController;
+import org.ntvru.eacervo.dao.EmployeeDAO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -8,7 +9,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses={HomeController.class})
+@ComponentScan(basePackageClasses={HomeController.class,EmployeeDAO.class})
 public class AppWebConfiguration {
 
 	@Bean

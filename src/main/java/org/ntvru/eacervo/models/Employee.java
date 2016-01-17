@@ -10,14 +10,16 @@ import javax.persistence.Id;
  * */
 @Entity
 public class Employee {
+   
+   private int code;
    @Id
    @GeneratedValue(strategy=GenerationType.IDENTITY)
-   private int code;   
+   private int employee_id;
    private String name;
    private String bound;
    private String branchLine;
    private String email;
-   private Employee responsible;
+  // private Employee responsible;
    
    /** Método para retorno da matrícula do funcionário.
     * 
@@ -55,13 +57,21 @@ public String getEmail() {
 public void setEmail(String email) {
 	this.email = email;
 }
+public int getEmployee_id() {
+	return employee_id;
+}
+public void setEmployee_id(int employee_id) {
+	this.employee_id = employee_id;
+}
 
-public Employee getResponsible() {
-	return responsible;
-}
-public void setResponsible(Employee responsible) {
-	this.responsible = responsible;
-}
+
+
+//public Employee getResponsible() {
+//	return responsible;
+//}
+//public void setResponsible(Employee responsible) {
+//	this.responsible = responsible;
+//}
    
    
 }

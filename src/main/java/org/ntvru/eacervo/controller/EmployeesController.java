@@ -1,5 +1,8 @@
 package org.ntvru.eacervo.controller;
 
+import javax.transaction.Transactional;
+
+import org.ntvru.eacervo.dao.EmployeeDAO;
 import org.ntvru.eacervo.models.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 //Classe que representa os Servidores da instituição
 @Controller
+@Transactional
 public class EmployeesController {
     @Autowired
 	private EmployeeDAO employeeDAO;
@@ -15,8 +19,8 @@ public class EmployeesController {
 	@RequestMapping("/servidores")
 	public String save(Employee employee){
 		System.out.println("Cadastrando o servidor "+employee);
-		employee.save(employee);
-		return "servidores/ok";
+		employeeDAO.save(employee);
+		return "/eacervo";
 	}
 	@RequestMapping("/servidores/form")
 	public String form(){
