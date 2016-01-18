@@ -1,5 +1,7 @@
 package org.ntvru.eacervo.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -18,7 +20,9 @@ public class TopicDAO {
 		 manager.persist(topic);		 
 	 }
 	 
-	 
+	 public List<Topic> list(){		 
+		 return manager.createQuery("select t from Topic t",Topic.class).getResultList();
+	 }
 	 
 	 
 	 

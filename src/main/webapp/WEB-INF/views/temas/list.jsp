@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -29,21 +29,21 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">E-Acervo</a>
+            <a class="navbar-brand" href="/eacervo">E-Acervo</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li class="active"></li>
               <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cadastro <span class="caret"></span></a></a>
                 <ul class="dropdown-menu">
-                  <li><a href="servidores/form">Servidor</a></li>
-                  <li><a href="produto">Produto</a></li>
-                  <li><a href="area">&Aacute;rea</a></li>
+                	<li><a href="form_servidor.html">Pessoa</a></li>
+                  <li><a href="form_produto.html">Produto</a></li>
+                  <li><a href="form_area.html">&Aacute;rea</a></li>
                   <li><a href="#">Solicitante</a></li>
                   <li><a href="#">Respons&aacute;vel</a></li>
-                  <li><a href="temas/form">Tema</a></li>
-                  <li><a href="procedimento">Procedimento</a></li>
-                  <li><a href="tipomidia">Tipo de M&iacute;dia</a></li>
+                  <li><a href="#">Tema</a></li>
+                  <li><a href="form_procedimento.html">Procedimento</a></li>
+                  <li><a href="#">Tipo de M&iacute;dia</a></li>
                   <li><a href="#">Sistem&aacute;tica de  Produ&ccedil;&atilde;o</a></li>
 
                 </ul><!-- /. ul dropdown-menu-->
@@ -53,7 +53,7 @@
                  	<li><a href="">Pessoas</a></li>
                  	<li><a href="">Produtos</a></li>
                 	<li><a href="">Solicitantes</a></li>
-                	<li><a href="temas">Temas</a></li>
+                	<li><a href="">Temas</a></li>
                 	<li><a href="">Procedimentos</a></li>
                 	<li><a href="">Tipo de M&iacute;dias</a></li>
                  </ul>
@@ -84,11 +84,31 @@
 
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
-        <h1>N&uacute;cleo de TV e R&aacute;dio Universit&aacute;ria.</h1>
-        <p>Sistema de gerenciamento de programa&ccedil;&atilde;o da TV Universit&aacute;ria.</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="#" role="button">Cadastro Assistido</a>
-        </p>
+       <div class="table-responsive">          
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Tema</th>
+        <th>Descri&ccedil;&atilde;o</th>
+      
+      </tr>
+    </thead>
+    <tbody>
+     <c:forEach items="${temas}" var="tema">
+      <tr>
+       <td>${tema.id}</td>  
+    <td>${tema.name}</td>  
+    <td >${tema.description}</td>    
+    <td><a href="#" class="btn btn-info" role="button">Editar</a>
+    <a href="#" class="btn btn-info" role="button">Remover</a></td>
+    
+      </tr>
+       </c:forEach>
+    </tbody>
+  </table>
+  </div>
+        
       </div>
 
     </div> <!-- /container -->
