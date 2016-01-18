@@ -1,5 +1,6 @@
 package org.ntvru.eacervo.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +15,8 @@ public class Employee {
    private int code;
    @Id
    @GeneratedValue(strategy=GenerationType.IDENTITY)
-   private int employee_id;
+   @Column(name="employee_id")
+   private int id;
    private String name;
    private String bound;
    private String branchLine;
@@ -57,12 +59,13 @@ public String getEmail() {
 public void setEmail(String email) {
 	this.email = email;
 }
-public int getEmployee_id() {
-	return employee_id;
+public int getId() {
+	return id;
 }
-public void setEmployee_id(int employee_id) {
-	this.employee_id = employee_id;
+public void setId(int id) {
+	this.id = id;
 }
+
 
 
 

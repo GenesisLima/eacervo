@@ -37,13 +37,13 @@
               <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cadastro <span class="caret"></span></a></a>
                 <ul class="dropdown-menu">
                 	<li><a href="#">Servidor</a></li>
-                  <li><a href="produto">Produto</a></li>
-                  <li><a href="area">&Aacute;rea</a></li>
+                  <li><a href="produtos/form">Produto</a></li>
+                  <li><a href="areas/form">&Aacute;rea</a></li>
                   <li><a href="#">Solicitante</a></li>
                   <li><a href="#">Respons&aacute;vel</a></li>
-                  <li><a href="tema">Tema</a></li>
-                  <li><a href="procedimento">Procedimento</a></li>
-                  <li><a href="tipomidia">Tipo de M&iacute;dia</a></li>
+                  <li><a href="../temas/form">Tema</a></li>
+                  <li><a href="procedimentos/form">Procedimento</a></li>
+                  <li><a href="tiposmidia/form">Tipo de M&iacute;dia</a></li>
                   <li><a href="#">Sistem&aacute;tica de  Produ&ccedil;&atilde;o</a></li>
 
                 </ul><!-- /. ul dropdown-menu-->

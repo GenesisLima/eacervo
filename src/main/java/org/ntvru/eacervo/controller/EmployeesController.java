@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @Transactional
 public class EmployeesController {
-    @Autowired
+    
+	@Autowired
 	private EmployeeDAO employeeDAO;
 	
 	
@@ -20,8 +21,9 @@ public class EmployeesController {
 	public String save(Employee employee){
 		System.out.println("Cadastrando o servidor "+employee);
 		employeeDAO.save(employee);
-		return "/eacervo";
+		return "index";
 	}
+	
 	@RequestMapping("/servidores/form")
 	public String form(){
 		return "/servidores/form";
