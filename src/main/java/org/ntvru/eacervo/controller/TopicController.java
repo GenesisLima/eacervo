@@ -9,30 +9,37 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Transactional
+@RequestMapping("/temas")
 public class TopicController {
    
 	@Autowired
 	private TopicDAO topicDAO;	
 	
-	@RequestMapping("/temas/form")
+	@RequestMapping("/form")
 	public String form(){
 		return "/temas/form";
 		
 	}
 	
-	@RequestMapping(value="/temas",method=RequestMethod.POST)
-	public String save(Topic topic){
+	@RequestMapping(method=RequestMethod.POST)
+	public ModelAndView save(Topic topic, RedirectAttributes redirectAttributes){
 		topicDAO.save(topic);
-	  return "index";
+		ModelAndView modelAndView = new ModelAndView("redirect:temas");
+		String info = "success";
+		String mensagem = "Tema Cadastrado com sucesso!";		
+		redirectAttributes.addFlashAttribute("info", info);
+		redirectAttributes.addFlashAttribute("mensagem", mensagem);
+		
+	  return modelAndView;
 	}
-	@RequestMapping(value="/temas",method=RequestMethod.GET)
+	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView list(){
-		ModelAndView modelAndView = new ModelAndView("temas/list");
-		modelAndView.addObject("temas",topicDAO.list());
-		System.out.println("Valores: "+topicDAO.list().get(0).getName());
+		ModelAndView modelAndView = new ModelAndView("/temas/list");
+		modelAndView.addObject("temas",topicDAO.list());		
 		return modelAndView;
 	}
 }

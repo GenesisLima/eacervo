@@ -81,7 +81,9 @@
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>
-
+      <div class="alert alert-${info}">
+  <strong></strong> ${mensagem}
+</div>
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
        <div class="table-responsive">          
