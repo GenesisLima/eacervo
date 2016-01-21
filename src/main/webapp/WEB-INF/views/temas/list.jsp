@@ -130,7 +130,7 @@
         <div class="form-group">
               <label for="area">&Aacute;rea:</label>
               <div class="input-group">
-              <input type="text" class="form-control" id="area" name="area" disabled>
+              <input type="text" class="form-control" id="area" name="id" >
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>&nbsp;</button>
               </span>

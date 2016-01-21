@@ -16,14 +16,16 @@ public class TopicDAO {
 	 private EntityManager manager;
 	 
 	 
-	 public void save(Topic topic){
-		 manager.persist(topic);		 
+	 public void save(Topic topic){		 
+		 manager.merge(topic);		 
 	 }
 	 
 	 public List<Topic> list(){		 
 		 return manager.createQuery("select t from Topic t",Topic.class).getResultList();
 	 }
 	 
+	
+		 
 	 
 	 
 	
