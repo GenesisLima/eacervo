@@ -150,7 +150,7 @@
     </div>
 
   </div>
-</div><br/><br/>
+</div><br/><br/><!-- /end modal -->
   
   <button type="submit" class="btn btn-default">Salvar</button>
   </form><!-- /end form -->

@@ -15,6 +15,8 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
 </head>
 <body>
 <div class="container">
@@ -97,12 +99,12 @@
       </tr>
     </thead>
     <tbody>
-     <c:forEach items="${temas}" var="tema">
+     <c:forEach items="${temas}" var="tema" varStatus="status">
       <tr>
-       <td>${tema.id}</td>  
-    <td>${tema.name}</td>  
+    <td>${tema.id}</td>             
+    <td >${tema.name}</td>  
     <td >${tema.description}</td>    
-    <td><a href="#" class="btn btn-info" role="button">Editar</a>
+    <td><a href="#" class="btn btn-info" role="button" data-toggle="modal" data-id="${tema.id}" data-name="${tema.name}" data-description="${tema.description}" data-target="#myModal">Editar</a>
     <a href="#" class="btn btn-info" role="button">Remover</a></td>
     
       </tr>
@@ -110,10 +112,91 @@
     </tbody>
   </table>
   </div>
-        
       </div>
 
-    </div> <!-- /container -->
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+ <form role="form" class="tema">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Tema</h4>
+      </div>
+      <div class="modal-body">
+        <p>Tema aa</p>
+        
+        <div class="form-group">
+              <label for="area">&Aacute;rea:</label>
+              <div class="input-group">
+              <input type="text" class="form-control" id="area" name="area" disabled>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>&nbsp;</button>
+              </span>
+              </div>
+           </div>
 
+           <div class="form-group">
+                     
+              <label for="nome">Nome:</label>
+              <input type="text" class="form-control"  name="name" id="name"></input>
+             
+           </div>
+
+           <div class="form-group">
+              <label for="descricao">Descri&ccedil;&atilde;o:</label>
+              <textarea type="text"  class="form-control" name="description" id="description"></textarea>
+           </div>
+  </form><!-- /end form-->
+      </div>
+      <div class="modal-footer">
+        <button id="submit" class="btn btn-default" data-dismiss="modal">Salvar</button>
+        <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+      </div>
+    
+    </div>
+
+  </div>
+</div><br/><br/><!-- /end modal -->
+    </div> <!-- /container -->
+        <script type="text/javascript">
+        $('#myModal').on('show.bs.modal', function (e) {
+        	//alert('testa js')
+        	  var button = $(e.relatedTarget) // Button that triggered the modal
+        	  var recipient = button.data('id')
+        	  var name = button.data('name')
+        	  var desc = button.data('description')
+        	  // Extract info from data-* attributes
+        	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        	  var modal = $(this);
+        	// modal.find('#nome').val(document.getElementById("tema_name").value)        	 
+        	  modal.find('#area').val(recipient)
+        	  modal.find('#name').val(name)
+        	  modal.find('#description').val(desc)
+        	  
+        	  
+        	})
+        	
+        	
+        	 $(function() {
+//twitter bootstrap script
+ $("button#submit").click(function(){
+         $.ajax({
+     type: "POST",
+ url: "/eacervo/temas",
+ data: $('form.tema').serialize(),
+         success: function(msg){
+                 $("#thanks").html(msg)
+        $("#form-content").modal('hide'); 
+         },
+ error: function(){
+ alert("failure");
+ }
+       });
+ });
+});
+</script>
 </body>
 </html>

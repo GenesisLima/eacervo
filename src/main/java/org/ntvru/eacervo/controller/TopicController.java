@@ -32,8 +32,7 @@ public class TopicController {
 		String info = "success";
 		String mensagem = "Tema Cadastrado com sucesso!";		
 		redirectAttributes.addFlashAttribute("info", info);
-		redirectAttributes.addFlashAttribute("mensagem", mensagem);
-		
+		redirectAttributes.addFlashAttribute("mensagem", mensagem);		
 	  return modelAndView;
 	}
 	@RequestMapping(method=RequestMethod.GET)
