@@ -55,7 +55,7 @@
                  	<li><a href="">Pessoas</a></li>
                  	<li><a href="">Produtos</a></li>
                 	<li><a href="">Solicitantes</a></li>
-                	<li><a href="">Temas</a></li>
+                	<li><a href="#">Temas</a></li>
                 	<li><a href="">Procedimentos</a></li>
                 	<li><a href="">Tipo de M&iacute;dias</a></li>
                  </ul>
@@ -105,7 +105,7 @@
     <td >${tema.name}</td>  
     <td >${tema.description}</td>    
     <td><a href="#" class="btn btn-info" role="button" data-toggle="modal" data-id="${tema.id}" data-name="${tema.name}" data-description="${tema.description}" data-target="#myModal">Editar</a>
-    <a href="#" class="btn btn-info" role="button">Remover</a></td>
+    <a href="/eacervo/temas/remove/${tema.id}" class="btn btn-info" role="button">Remover</a></td>
     
       </tr>
        </c:forEach>
@@ -180,7 +180,7 @@
         	})
         	
         	
-        	 $(function() {
+ $(function() {
 //twitter bootstrap script
  $("button#submit").click(function(){
          $.ajax({
@@ -197,6 +197,27 @@
        });
  });
 });
+        $('#myModal').on('hidden.bs.modal', function (e) {
+        	window.location.reload();
+        });
+        
+//    	 $(function() {
+//    	//twitter bootstrap script
+//    	 $("button#submit").click(function(){
+//    	         $.ajax({
+//    	     type: "POST",
+//    	 url: "/eacervo/temas",
+//    	 data: $('form.tema').serialize(),
+//    	         success: function(msg){
+//    	                 $("#thanks").html(msg)
+//    	        $("#form-content").modal('hide'); 
+//    	         },
+//    	 error: function(){
+//    	 alert("failure");
+//    	 }
+//    	       });
+//    	 });
+//    	});
 </script>
 </body>
 </html>

@@ -16,9 +16,10 @@ public class Topic implements Serializable {
 	private int id;
     private String name;
     private String description;
+    @Column(columnDefinition="char(1) default 'A'")
+    private String status = "A";
     
-    
-    
+        
 	public String getName() {
 		return name;
 	}
@@ -36,6 +37,15 @@ public class Topic implements Serializable {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+    
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	@Override
 	public int hashCode() {
