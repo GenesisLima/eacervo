@@ -37,13 +37,13 @@
               <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cadastro <span class="caret"></span></a></a>
                 <ul class="dropdown-menu">
                 	<li><a href="#">Servidor</a></li>
-                  <li><a href="produtos/form">Produto</a></li>
+                  <li><a href="/eacervo/produtos/form">Produto</a></li>
                   <li><a href="areas/form">&Aacute;rea</a></li>
                   <li><a href="#">Solicitante</a></li>
                   <li><a href="#">Respons&aacute;vel</a></li>
                   <li><a href="../temas/form">Tema</a></li>
-                  <li><a href="procedimentos/form">Procedimento</a></li>
-                  <li><a href="tiposmidia/form">Tipo de M&iacute;dia</a></li>
+                  <li><a href="../procedimentos/form">Procedimento</a></li>
+                  <li><a href="../tiposmidia/form">Tipo de M&iacute;dia</a></li>
                   <li><a href="#">Sistem&aacute;tica de  Produ&ccedil;&atilde;o</a></li>
 
                 </ul><!-- /. ul dropdown-menu-->
@@ -106,7 +106,7 @@
             <div class="input-group">                            
               <input type="text" class="form-control" id="funcao">
               <span class="input-group-btn">
-              <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>&nbsp;</button>
+              <a  class="btn btn-default" role="button" data-toggle="modal" data-target="#modalFuncao"><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
             </span>
             </div><!--end input-group-->
 
@@ -114,9 +114,9 @@
            <div class="form-group">
               <label for="lotacao">Lota&ccedil;&atilde;o:</label>
               <div class="input-group">                            
-              <input type="text" class="form-control" id="funcao">
+              <input type="text" class="form-control" id="lotacao">
               <span class="input-group-btn">
-              <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>&nbsp;</button>
+              <a  class="btn btn-default" role="button" data-toggle="modal" data-target="#modalLotacao"><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
             </span>
            </div>
            <div class="form-group">
@@ -130,9 +130,9 @@
            <div class="form-group">
               <label for="responsavel">Respons&aacute;vel:</label>
              <div class="input-group">                            
-              <input type="text" class="form-control" id="funcao">
+              <input type="text" class="form-control" id="responsavel">
               <span class="input-group-btn">
-              <button type="button" name="responsible" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>&nbsp;</button>
+              <a  class="btn btn-default" role="button" name="responsible" data-toggle="modal" data-target="#modalResponsavel"><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
             </span>
            </div> 
   
@@ -143,6 +143,244 @@
       </div>
 
     </div> <!-- /container -->
+    <!-- Modal função-->
+<div id="modalFuncao" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+ <form role="form" class="funcao">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Buscar Fun&ccedil;&atilde;o</h4>
+      </div>
+      <div class="modal-body">
+<!--         <p>Fun&ccedil;&atilde;o</p> -->
+        <div class="table-responsive">          
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Fun&ccedil;&atilde;o</th>
+        <th>Descri&ccedil;&atilde;o</th>
+      
+      </tr>
+    </thead>
+    <tbody>
+     <c:forEach items="${function}" var="funcao" varStatus="status">
+      <tr>
+    <td>${funcao.id}</td>             
+    <td >${funcao.name}</td>  
+    <td >${funcao.description}</td>    
+    <td><a href="#" class="btn btn-info" role="button" data-toggle="modal" data-id="${funcao.id}" data-name="${funcao.name}" data-description="${funcao.description}" data-target="#myModal">Escolher</a>
+<%--     <a href="/eacervo/temas/remove/${tema.id}" class="btn btn-info" role="button">Remover</a></td> --%>
+    
+      </tr>
+       </c:forEach>
+    </tbody>
+  </table>
+  </div>
+        
+  </form><!-- /end form-->
+      </div>
+      <div class="modal-footer">
+<!--         <button id="submit" class="btn btn-default" data-dismiss="modal">Salvar</button> -->
+        <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+      </div>
+    
+    </div>
 
+  </div>
+</div><br/><br/><!-- /end modal função-->
+    <!-- Modal lotação-->
+<div id="modalLotacao" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+ <form role="form" class="lotacao">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Buscar Lota&ccedil;&atilde;o</h4>
+      </div>
+      <div class="modal-body">
+<!--         <p>Fun&ccedil;&atilde;o</p> -->
+        <div class="table-responsive">          
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Setor</th>
+        <th>Descri&ccedil;&atilde;o</th>
+      
+      </tr>
+    </thead>
+    <tbody>
+     <c:forEach items="${departments}" var="setor" varStatus="status">
+      <tr>
+    <td>${setor.id}</td>             
+    <td >${setor.name}</td>  
+    <td >${setor.description}</td>    
+    <td><a href="#" class="btn btn-info" role="button" data-toggle="modal" data-id="${setor.id}" data-name="${setor.name}" data-description="${setor.description}" data-target="#myModal">Escolher</a>
+<%--     <a href="/eacervo/temas/remove/${tema.id}" class="btn btn-info" role="button">Remover</a></td> --%>
+    
+      </tr>
+       </c:forEach>
+    </tbody>
+  </table>
+  </div>
+        
+  </form><!-- /end form-->
+      </div>
+      <div class="modal-footer">
+<!--         <button id="submit" class="btn btn-default" data-dismiss="modal">Salvar</button> -->
+        <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+      </div>
+    
+    </div>
+
+  </div>
+</div><br/><br/><!-- /end modal locação-->
+ <!-- Modal Responsável-->
+<div id="modalResponsavel" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+ <form role="form" class="lotacao">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Buscar Respons&aacute;vel</h4>
+      </div>
+      <div class="modal-body">
+<!--         <p>Fun&ccedil;&atilde;o</p> -->
+        <div class="table-responsive">          
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Descri&ccedil;&atilde;o</th>
+      
+      </tr>
+    </thead>
+    <tbody>
+     <c:forEach items="${departments}" var="setor" varStatus="status">
+      <tr>
+    <td>${setor.id}</td>             
+    <td >${setor.name}</td>  
+    <td >${setor.description}</td>    
+    <td><a href="#" class="btn btn-info" role="button" data-toggle="modal" data-id="${setor.id}" data-name="${setor.name}" data-description="${setor.description}" data-target="#myModal">Escolher</a>
+<%--     <a href="/eacervo/temas/remove/${tema.id}" class="btn btn-info" role="button">Remover</a></td> --%>
+    
+      </tr>
+       </c:forEach>
+    </tbody>
+  </table>
+  </div>
+        
+  </form><!-- /end form-->
+      </div>
+      <div class="modal-footer">
+<!--         <button id="submit" class="btn btn-default" data-dismiss="modal">Salvar</button> -->
+        <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+      </div>
+    
+    </div>
+
+  </div>
+</div><br/><br/><!-- /end modal Responsável-->
+  <script type="text/javascript">
+        $('#modalFuncao').on('show.bs.modal', function (e) {
+        	//alert('testa js')
+        	  var button = $(e.relatedTarget) // Button that triggered the modal
+        	  var recipient = button.data('id')
+        	  var name = button.data('name')
+        	  var desc = button.data('description')
+        	  // Extract info from data-* attributes
+        	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        	  var modal = $(this);
+        	// modal.find('#nome').val(document.getElementById("tema_name").value)        	 
+        	  modal.find('#area').val(recipient)
+        	  modal.find('#name').val(name)
+        	  modal.find('#description').val(desc)
+        	  
+        	  
+        	});
+        	
+        	
+        $('#modalLotacao').on('show.bs.modal', function (e) {
+        	//alert('testa js')
+        	  var button = $(e.relatedTarget) // Button that triggered the modal
+        	  var recipient = button.data('id')
+        	  var name = button.data('name')
+        	  var desc = button.data('description')
+        	  // Extract info from data-* attributes
+        	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        	  var modal = $(this);
+        	// modal.find('#nome').val(document.getElementById("tema_name").value)        	 
+        	  modal.find('#area').val(recipient)
+        	  modal.find('#name').val(name)
+        	  modal.find('#description').val(desc)
+        	  
+        	  
+        	});
+        	
+        $('#modalResponsavel').on('show.bs.modal', function (e) {
+        	//alert('testa js')
+        	  var button = $(e.relatedTarget) // Button that triggered the modal
+        	  var recipient = button.data('id')
+        	  var name = button.data('name')
+        	  var desc = button.data('description')
+        	  // Extract info from data-* attributes
+        	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        	  var modal = $(this);
+        	// modal.find('#nome').val(document.getElementById("tema_name").value)        	 
+        	  modal.find('#area').val(recipient)
+        	  modal.find('#name').val(name)
+        	  modal.find('#description').val(desc)
+        	  
+        	  
+        	});
+        	
+ $(function() {
+//twitter bootstrap script
+ $("button#submit").click(function(){
+         $.ajax({
+     type: "GET",
+ url: "/eacervo/jobTitles",
+ data: $('form.tema').serialize(),
+         success: function(msg){
+                 $("#thanks").html(msg)
+        $("#form-content").modal('hide'); 
+         },
+ error: function(){
+ alert("failure");
+ }
+       });
+ });
+});
+        $('#modalFuncao').on('hidden.bs.modal', function (e) {
+        	//window.location.reload();
+        });
+        
+//    	 $(function() {
+//    	//twitter bootstrap script
+//    	 $("button#submit").click(function(){
+//    	         $.ajax({
+//    	     type: "POST",
+//    	 url: "/eacervo/temas",
+//    	 data: $('form.tema').serialize(),
+//    	         success: function(msg){
+//    	                 $("#thanks").html(msg)
+//    	        $("#form-content").modal('hide'); 
+//    	         },
+//    	 error: function(){
+//    	 alert("failure");
+//    	 }
+//    	       });
+//    	 });
+//    	});
+</script>
 </body>
 </html>

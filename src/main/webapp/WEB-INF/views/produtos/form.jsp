@@ -29,19 +29,19 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">E-Acervo</a>
+            <a class="navbar-brand" href="/eacervo">E-Acervo</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li class="active"></li>
               <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cadastro <span class="caret"></span></a></a>
                 <ul class="dropdown-menu">
-                  <li><a href="servidores/form">Servidor</a></li>
-                  <li><a href="produtos/form">Produto</a></li>
+                	<li><a href="servidor">Pessoa</a></li>
+                  <li><a href="#">Produto</a></li>	
                   <li><a href="area">&Aacute;rea</a></li>
                   <li><a href="#">Solicitante</a></li>
                   <li><a href="#">Respons&aacute;vel</a></li>
-                  <li><a href="temas/form">Tema</a></li>
+                  <li><a href="tema">Tema</a></li>
                   <li><a href="procedimento">Procedimento</a></li>
                   <li><a href="tipomidia">Tipo de M&iacute;dia</a></li>
                   <li><a href="#">Sistem&aacute;tica de  Produ&ccedil;&atilde;o</a></li>
@@ -53,7 +53,7 @@
                  	<li><a href="">Pessoas</a></li>
                  	<li><a href="">Produtos</a></li>
                 	<li><a href="">Solicitantes</a></li>
-                	<li><a href="temas">Temas</a></li>
+                	<li><a href="">Temas</a></li>
                 	<li><a href="">Procedimentos</a></li>
                 	<li><a href="">Tipo de M&iacute;dias</a></li>
                  </ul>
@@ -84,11 +84,68 @@
 
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
-        <h1>N&uacute;cleo de TV e R&aacute;dio Universit&aacute;ria.</h1>
-        <p>Sistema de gerenciamento de programa&ccedil;&atilde;o da TV Universit&aacute;ria.</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="#" role="button">Cadastro Assistido</a>
-        </p>
+      <!--  <h2>Cadastro de Servidor.</h2>-->
+<div class="panel panel-default">
+  <div class="panel-heading">Cadastrar Produto</div>
+  <div class="panel-body">
+        <form role="form">
+           <div class="form-group">
+    <label for="id_produto">ID:</label>
+    <input type="text" class="form-control" id="id_produto" disabled>
+  </div>
+           <div class="form-group">
+              <label for="nome">Nome:</label>
+              <input type="text" class="form-control" id="nome">
+           </div>
+           <div class="form-group">
+              <label for="tema">Tema:</label>
+              <div class="input-group">
+              <input type="text" class="form-control" id="tema">
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>&nbsp;</button>
+              </span>
+            </div>
+           </div>
+           <div class="form-group">
+            <label for="obtencao">Forma de Obten&ccedil;&atilde;o:</label>                                       
+              <input type="text" class="form-control" id="obtencao">           
+             </div><!--end input-group-->
+
+         
+           <div class="form-group">
+              <label for="parceiro">Parceiro/Produtora:</label>
+              <input type="text" class="form-control" id="parceiro">
+             
+           </div>
+           <div class="form-group">
+              <label for="custo_producao">Custo de Produ&ccedil;&atilde;o:</label>
+              <input type="number" class="form-control" id="custo_producao">
+           </div>
+          
+           <div class="form-group">
+              <label for="equipe">Equipe:</label>
+             <div class="input-group">                            
+              <input type="text" class="form-control" id="equipe">
+              <span class="input-group-btn">
+              <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>&nbsp;</button>
+            </span>
+           </div> 
+           <br>
+
+           <div class="panel panel-default">
+               <div class="panel-body"> 
+                  <strong>Obten&ccedil;&atilde;o: </strong>
+                   <label class="radio-inline"> <input type="radio" name="sistematica_radio">Produ&ccedil;&atilde;o</label>
+                   <label class="radio-inline"> <input type="radio" name="sistematica_radio">Aquisi&ccedil;&atilde;o</label>    
+                   <label class="radio-inline"> <input type="radio" name="sistematica_radio">Licenciamento</label>    
+
+               </div>
+           </div>
+  
+  <button type="submit" class="btn btn-default">Salvar</button>
+  </form><!-- /end form -->
+  </div>
+      </div>
       </div>
 
     </div> <!-- /container -->
