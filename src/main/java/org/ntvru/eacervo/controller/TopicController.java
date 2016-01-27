@@ -30,8 +30,15 @@ public class TopicController {
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public ModelAndView save(Topic topic, RedirectAttributes redirectAttributes){
+		ModelAndView modelAndView;
+		System.out.println("TOPIC ID :"+topic.getId());
+ 		if(topic.getId()==0){
 		topicDAO.save(topic);
-		ModelAndView modelAndView = new ModelAndView("redirect:temas");
+		modelAndView = new ModelAndView("redirect:temas");
+ 		}else{
+ 			topicDAO.save(topic);
+ 			modelAndView = new ModelAndView("/temas/list");
+ 		}
 		String info = "success";
 		String mensagem = "Tema Cadastrado com sucesso!";		
 		redirectAttributes.addFlashAttribute("info", info);
@@ -42,17 +49,25 @@ public class TopicController {
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView list(){
 		ModelAndView modelAndView = new ModelAndView("/temas/list");
-		modelAndView.addObject("temas",topicDAO.list());		
+		modelAndView.addObject("temas",topicDAO.list());	
+		System.out.println("LIST ALL");
 		return modelAndView;
 	}
 	
 	@RequestMapping(value="/remove/{id}",method=RequestMethod.GET)
 	public ModelAndView remove(@PathVariable("id") int id){		
 		this.topicDAO.remove(id);
-		ModelAndView modelAndView = new ModelAndView("redirect:/temas");
+		ModelAndView modelAndView = new ModelAndView("/temas/list");
 		modelAndView.addObject("temas",topicDAO.list());
 		return modelAndView;
 	}
 	
+	@RequestMapping(method=RequestMethod.GET,params={"search"})
+	public ModelAndView listByName(@RequestParam(value = "search") String name){
+		ModelAndView modelAndView = new ModelAndView("/temas/list");
+		System.out.println("LIST BY NAME");		
+		modelAndView.addObject("temas",topicDAO.getByName(name));
+		return modelAndView;
+	}
 }
        

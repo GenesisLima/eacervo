@@ -3,7 +3,10 @@ package org.ntvru.eacervo.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.ntvru.eacervo.models.Topic;
 import org.springframework.stereotype.Repository;
@@ -27,14 +30,17 @@ public class TopicDAO {
 	 
 	
 		//TODO implementar update com flag 
-	 public void remove(int id){
-		 
-		 manager.createQuery("update Topic t set t.status='D' where t.id="+id).executeUpdate();
-		 
-		
-		
-		
+	 public void remove(int id){		 
+		 manager.createQuery("update Topic t set t.status='D' where t.id="+id).executeUpdate();		
 	 }
+	 
+	 public List<Topic> getByName(String name){
+		 TypedQuery<Topic> query = manager.createNamedQuery("Topic.findByName",Topic.class).setParameter("topicName", name);
+		 System.out.println(query);		 
+		 return query.getResultList();
+	 }
+	 
+	 
 	 
 	
 	

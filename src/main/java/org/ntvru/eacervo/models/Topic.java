@@ -7,8 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQueries({@NamedQuery(name="Topic.findByName", query="SELECT t FROM Topic t WHERE t.name LIKE :topicName")})
 public class Topic implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)

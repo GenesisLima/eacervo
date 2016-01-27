@@ -272,11 +272,29 @@
        });
  });
 });
-        $('#myModal').on('hidden.bs.modal', function (e) {
+        $("#myModal").on('hidden.bs.modal', function (e) {
         	window.location.reload();
         });
         
-       
+        $("#search").keyup(function(e){
+        	if(e.which == 13){        		
+          		$.ajax({url:"/eacervo/temas",
+    		        type:"get",
+    		        data:{},
+    		        success: function(response){
+    		         //  $('table#resultTable tbody').html(response);
+    		         
+    		          }
+    		});
+        	}
+  
+		});
+
+		
+        		
+        		
+        
+        
         
 //    	 $(function() {
 //    	//twitter bootstrap script
