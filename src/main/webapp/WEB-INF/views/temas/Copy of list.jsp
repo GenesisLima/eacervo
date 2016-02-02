@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="datatables" uri="http://github.com/dandelion/datatables" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -15,7 +14,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <!-- Latest compiled and minified JavaScript -->
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
      <spring:url value="/resources/css/main.css" var="mainCss" />	
      
@@ -174,37 +173,30 @@ text.align:right;
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
       
-<!--        <div class="table-responsive">           -->
-<!--   <table class="table" id="table"> -->
-<!--     <thead> -->
-<!--       <tr> -->
-<!--         <th>#</th> -->
-<!--         <th>Tema</th> -->
-<!--         <th>Descri&ccedil;&atilde;o</th> -->
+       <div class="table-responsive">          
+  <table class="table" id="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Tema</th>
+        <th>Descri&ccedil;&atilde;o</th>
       
-<!--       </tr> -->
-<!--     </thead> -->
-<!--     <tbody> -->
-<%--      <c:forEach items="${temas}" var="tema" varStatus="status"> --%>
-<!--       <tr> -->
-<%--     <td>${tema.id}</td>              --%>
-<%--     <td >${tema.name}</td>   --%>
-<%--     <td >${tema.description}</td>     --%>
-<%--     <td><a href="#" class="btn btn-info" role="button" data-toggle="modal" data-id="${tema.id}" data-name="${tema.name}" data-description="${tema.description}" data-target="#myModal">Editar</a> --%>
-<%--     <a href="/eacervo/temas/remove/${tema.id}" class="btn btn-info" role="button">Remover</a></td> --%>
+      </tr>
+    </thead>
+    <tbody>
+     <c:forEach items="${temas}" var="tema" varStatus="status">
+      <tr>
+    <td>${tema.id}</td>             
+    <td >${tema.name}</td>  
+    <td >${tema.description}</td>    
+    <td><a href="#" class="btn btn-info" role="button" data-toggle="modal" data-id="${tema.id}" data-name="${tema.name}" data-description="${tema.description}" data-target="#myModal">Editar</a>
+    <a href="/eacervo/temas/remove/${tema.id}" class="btn btn-info" role="button">Remover</a></td>
     
-<!--       </tr> -->
-<%--        </c:forEach> --%>
-<!--     </tbody> -->
-<!--   </table> -->
-<!--   </div> -->
- <!-- <a id="reload" href="">Click me to refresh the table!</a> -->
-    <datatables:table id="temasTable" data="${temas}"   theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
-        <datatables:column title="ID" property="id"  />
-        <datatables:column title="NAME" property="name" />
-<%--        	<datatables:column title="DESCRIPTION" property="description" /> --%>
-       
-    </datatables:table>
+      </tr>
+       </c:forEach>
+    </tbody>
+  </table>
+  </div>
   <div class="pagination-centered">
    <ul class="pagination">
     <input type="hidden" id="selected_value" value="3"></input>
@@ -332,47 +324,47 @@ text.align:right;
 
  <!--rPage-->
  /*my function*/
-//  $(document).ready(function () {
+ $(document).ready(function () {
 	
-// 		 $.fn.generateRandomPagination = function(options)
+		 $.fn.generateRandomPagination = function(options)
          
-//          {
+         {
          	
-//              var content = '<li class="left-etc"><a href="#">&laquo;</a></li>';
+             var content = '<li class="left-etc"><a href="#">&laquo;</a></li>';
           
-//              for (var i = 1; i <= options.max_value; i++)
+             for (var i = 1; i <= options.max_value; i++)
              	
-//              {
-//                  if (i == options.selected_value){
-//                      content += '<li class="active"><span>' + i + '</span></li>';
-//                      console.log(content)
-//                  }
-//                  else{
-//                      content += '<li><a href="">' + i + '</a></li>';
-//                  }
-//              }
-//              content += '<li><a href="#">&raquo;</a></li>';
-//              $(this).html(content);
-//          }
+             {
+                 if (i == options.selected_value){
+                     content += '<li class="active"><span>' + i + '</span></li>';
+                     console.log(content)
+                 }
+                 else{
+                     content += '<li><a href="">' + i + '</a></li>';
+                 }
+             }
+             content += '<li><a href="#">&raquo;</a></li>';
+             $(this).html(content);
+         }
 		
-//          var i = $("input#selected_value").val();
+         var i = $("input#selected_value").val();
          
-//          var y = $("input#max_value").val();
-//          $(".pagination").each(function(){
-//              $(this).generateRandomPagination({
-//                  max_value: y,
-//                  selected_value: i
+         var y = $("input#max_value").val();
+         $(".pagination").each(function(){
+             $(this).generateRandomPagination({
+                 max_value: y,
+                 selected_value: i
                 
-//              });
+             });
            
-//            //  i += 8;
-//          });
+           //  i += 8;
+         });
 
-//          $(".pagination").rPage();
+         $(".pagination").rPage();
 		
 	
            
-//         });
+        });
  /*end my function*/
  
  /*

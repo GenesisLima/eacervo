@@ -91,5 +91,25 @@
   		<artifactId>mysql-connector-java</artifactId>
   		<version>5.1.15</version>
   	</dependency>
+  	<dependency>
+  		<groupId>com.github.dandelion</groupId>
+  		<artifactId>datatables-jsp</artifactId>
+  		<version>0.10.1</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.github.dandelion</groupId>
+  		<artifactId>datatables-spring3</artifactId>
+  		<version>0.10.1</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.github.dandelion</groupId>
+  		<artifactId>datatables-core</artifactId>
+  		<version>0.10.1</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-context</artifactId>
+  		<version>4.1.4.RELEASE</version>
+  	</dependency>
   </dependencies>
 </project>
