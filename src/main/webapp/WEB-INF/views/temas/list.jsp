@@ -199,11 +199,17 @@ text.align:right;
 <!--   </table> -->
 <!--   </div> -->
  <!-- <a id="reload" href="">Click me to refresh the table!</a> -->
-    <datatables:table id="temasTable" data="${temas}"   theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
-        <datatables:column title="ID" property="id"  />
-        <datatables:column title="NAME" property="name" />
+    <datatables:table id="temasTable" row="tema" data="${temas}"   theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
+        
+        <datatables:column title="ID" property="id"   />
+        <datatables:column title="NAME" property="name"/>
 <%--        	<datatables:column title="DESCRIPTION" property="description" /> --%>
+      <datatables:column title="AÇÃO" >
        
+   <a href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-id="${tema.id}" data-name="${tema.name}" data-description="${tema.description}" data-target="#myModal" onclick="setValues()">Editar</a>
+   <a href="/eacervo/temas/remove/${tema.id}" class="btn btn-info" role="button">Remover</a>
+  
+      </datatables:column>
     </datatables:table>
   <div class="pagination-centered">
    <ul class="pagination">
@@ -263,9 +269,12 @@ text.align:right;
 </div><br/><br/><!-- /end modal -->
     </div> <!-- /container -->
         <script type="text/javascript">
+       function setValues(){
         $('#myModal').on('show.bs.modal', function (e) {
-        	//alert('testa js')
-        	  var button = $(e.relatedTarget) // Button that triggered the modal
+        	
+        	  var button = $(e.relatedTarget)
+        	  console.log('Botao: '+button)
+        	  // Button that triggered the modal
         	  var recipient = button.data('id')
         	  var name = button.data('name')
         	  var desc = button.data('description')
@@ -273,7 +282,7 @@ text.align:right;
         	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
         	  var modal = $(this);
-        	// modal.find('#nome').val(document.getElementById("tema_name").value)        	 
+        	      	 
         	  modal.find('#area').val(recipient)
         	  modal.find('#name').val(name)
         	  modal.find('#description').val(desc)
@@ -281,7 +290,7 @@ text.align:right;
         	  
         	})
         	
-        	
+       }
  $(function() {
 //twitter bootstrap script
  $("button#submit").click(function(){
