@@ -63,7 +63,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">A&ccedil;&otilde;es <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="temas/wizard/equipe">Montar Equipe</a></li>
+                  <li><a href="#">Montar Equipe</a></li>
                   <li><a href="#">Montar Programa&ccedil;&atilde;o</a></li>
                   <li><a href="#">Something else here</a></li>
                   <li role="separator" class="divider"></li>
@@ -84,14 +84,125 @@
 
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
-        <h1>N&uacute;cleo de TV e R&aacute;dio Universit&aacute;ria.</h1>
-        <p>Sistema de gerenciamento de programa&ccedil;&atilde;o da TV Universit&aacute;ria.</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="#" role="button">Cadastro Assistido</a>
-        </p>
+<!--         <h1>N&uacute;cleo de TV e R&aacute;dio Universit&aacute;ria.</h1> -->
+<!--         <p>Sistema de gerenciamento de programa&ccedil;&atilde;o da TV Universit&aacute;ria.</p> -->
+<!--         <p> -->
+<!--           <a class="btn btn-lg btn-primary" href="#" role="button">Cadastro Assistido</a> -->
+<!--         </p> -->
+<div class="container" id="myWizard">
+  
+   <h3>Montar Equipe</h3>
+  
+   <hr>
+  
+   <div class="progress">
+     <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" style="width: 20%;">
+       Passo 1 de 5
+     </div>
+   </div>
+  
+   <div class="navbar">
+      <div class="navbar-inner">
+            <ul class="nav nav-pills">
+               <li class="active"><a href="#step1" data-toggle="tab" data-step="1">Passo 1</a></li>
+               <li><a href="#step2" data-toggle="tab" data-step="2">Passo 2</a></li>
+               <li><a href="#step3" data-toggle="tab" data-step="3">Passo 3</a></li>
+               <li><a href="#step4" data-toggle="tab" data-step="4">Passo 4</a></li>
+               <li><a href="#step5" data-toggle="tab" data-step="5">Passo 5</a></li>
+            </ul>
+      </div>
+   </div>
+   <div class="tab-content">
+      <div class="tab-pane fade in active" id="step1">
+         
+        <div class="well"> 
+          
+            <label>Security Question 1</label>
+            <select class="form-control input-lg">
+              <option value="What was the name of your first pet?">What was the name of your first pet?</option>
+              <option value="Where did you first attend school?">Where did you first attend school?</option>
+              <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
+              <option value="What is your favorite car model?">What is your favorite car model?</option>
+            </select>
+            <br>
+            <label>Enter Response</label>
+            <input class="form-control input-lg">
+            
+        </div>
+
+         <a class="btn btn-default btn-lg next" href="#">Continue</a>
+      </div>
+      <div class="tab-pane fade" id="step2">
+         <div class="well"> 
+          
+            <label>Security Question 2</label>
+            <select class="form-control  input-lg">
+              <option value="What was the name of your first pet?">What was the name of your first pet?</option>
+              <option selected="" value="Where did you first attend school?">Where did you first attend school?</option>
+              <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
+              <option value="What is your favorite car model?">What is your favorite car model?</option>
+            </select>
+            <br>
+            <label>Enter Response</label>
+            <input class="form-control  input-lg">
+            
+         </div>
+         <a class="btn btn-default next" href="#">Continue</a>
+      </div>
+      <div class="tab-pane fade" id="step3">
+        <div class="well"> <h2>Step 3</h2> Add another step here..</div>
+         <a class="btn btn-default next" href="#">Continue</a>
+      </div>
+      <div class="tab-pane fade" id="step4">
+        <div class="well"> <h2>Step 4</h2> Add another almost done step here..</div>
+         <a class="btn btn-default next" href="#">Continue</a>
+      </div>
+      <div class="tab-pane fade" id="step5">
+        <div class="well"> <h2>Resumo do trabalho</h2> Descriç&atilde;o de todo processo.</div>
+         <a class="btn btn-success first" href="#">Concluir</a>
+      </div>
+   </div>
+  
+   <hr>
+  
+  
+  
+   <hr>
+  
+</div>
+
+
       </div>
 
     </div> <!-- /container -->
+    
+<script type="text/javascript">
+$('.next').click(function(){
 
+	  var nextId = $(this).parents('.tab-pane').next().attr("id");
+	  $('[href=#'+nextId+']').tab('show');
+	  return false;
+	  
+	})
+
+	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+	  
+	  //update progress
+	  var step = $(e.target).data('step');
+	  var percent = (parseInt(step) / 5) * 100;
+	  
+	  $('.progress-bar').css({width: percent + '%'});
+	  $('.progress-bar').text("Step " + step + " of 5");
+	  
+	  //e.relatedTarget // previous tab
+	  
+	})
+
+	$('.first').click(function(){
+
+	  $('#myWizard a:first').tab('show')
+
+	})
+</script>
 </body>
 </html>

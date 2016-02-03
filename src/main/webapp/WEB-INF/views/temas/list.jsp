@@ -259,8 +259,8 @@ text.align:right;
   </form><!-- /end form-->
       </div>
       <div class="modal-footer">
-        <button id="submit" class="btn btn-default" data-dismiss="modal">Salvar</button>
-        <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+        <button id="submit" class="btn btn-default" data-dismiss="modal" onclick="refreshModal()">Salvar</button>
+        <a href="#" class="btn btn-default" data-dismiss="modal" onclick="refreshModal()">Close</a>
       </div>
     
     </div>
@@ -317,11 +317,12 @@ text.align:right;
         	 });
         	});
         
-        
+       function refreshModal(){ 
         
         $("#myModal").on('hidden.bs.modal', function (e) {
         	window.location.reload();
         });
+       }
         
         $("#search").keyup(function(e){
         	if(e.which == 13){        		

@@ -57,7 +57,7 @@ public class TopicController {
 	@RequestMapping(value="/remove/{id}",method=RequestMethod.GET)
 	public ModelAndView remove(@PathVariable("id") int id){		
 		this.topicDAO.remove(id);
-		ModelAndView modelAndView = new ModelAndView("/temas/list");
+		ModelAndView modelAndView = new ModelAndView("redirect:/temas");
 		modelAndView.addObject("temas",topicDAO.list());
 		return modelAndView;
 	}
@@ -69,5 +69,12 @@ public class TopicController {
 		modelAndView.addObject("temas",topicDAO.getByName(name));
 		return modelAndView;
 	}
+	
+	@RequestMapping("/wizard/equipe")
+	public String wizard(){
+		return "/wizard/equipe";
+		
+	}
+	
 }
        
