@@ -1,12 +1,16 @@
 package org.ntvru.eacervo.models;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /*Classe para objetos do tipo Servidor, onde serão contidos, valores e métodos para o mesmo.
  * @author Gênesis Lima  
@@ -24,6 +28,18 @@ public class Employee implements Serializable{
    private String branchLine;
    private String email;
   // private Employee responsible;
+   
+   @ManyToOne
+   @JoinColumn(name="department_id")
+   private Department department; 
+   
+   @ManyToOne
+   private Employee parent;
+   
+   @OneToMany(mappedBy="parent")
+   private List<Employee> childrens;
+   
+   
    
    /** Método para retorno da matrícula do funcionário.
     * 
@@ -86,6 +102,24 @@ public boolean equals(Object obj) {
 	if (id != other.id)
 		return false;
 	return true;
+}
+public Department getDepartment() {
+	return department;
+}
+public void setDepartment(Department department) {
+	this.department = department;
+}
+public Employee getParent() {
+	return parent;
+}
+public void setParent(Employee parent) {
+	this.parent = parent;
+}
+public List<Employee> getChildrens() {
+	return childrens;
+}
+public void setChildrens(List<Employee> childrens) {
+	this.childrens = childrens;
 }
 
 

@@ -72,8 +72,7 @@ public class TopicController {
 	
 	@RequestMapping("/wizard/equipe")
 	public String wizard(){
-		return "/wizard/equipe";
-		
+		return "/wizard/equipe";		
 	}
 	
 }

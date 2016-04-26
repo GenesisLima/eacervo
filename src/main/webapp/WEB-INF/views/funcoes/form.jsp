@@ -29,23 +29,22 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">E-Acervo</a>
+            <a class="navbar-brand" href="/eacervo">E-Acervo</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li class="active"></li>
               <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cadastro <span class="caret"></span></a></a>
                 <ul class="dropdown-menu">
-                  <li><a href="servidores/form">Servidor</a></li>
-                  <li><a href="produtos/form">Produto</a></li>
-                  <li><a href="area">&Aacute;rea</a></li>
-                  <li><a href="#">Solicitante</a></li>
-                  <li><a href="#">Respons&aacute;vel</a></li>
-                  <li><a href="temas/form">Tema</a></li>
-                   <li><a href="funcoes/form">Fun&ccedil;&atilde;o</a></li>
-                  <li><a href="procedimento">Procedimento</a></li>
-                  <li><a href="tipomidia">Tipo de M&iacute;dia</a></li>
-                  <li><a href="#">Sistem&aacute;tica de  Produ&ccedil;&atilde;o</a></li>
+                	<li><a href="servidor">Servidor</a></li>
+                	<li><a href="produto">Produto</a></li>
+                	<li><a href="area">&Aacute;rea</a></li>
+                	<li><a href="#">Solicitante</a></li>
+                	<li><a href="#">Respons&aacute;vel</a></li>
+                	<li><a href="tema">Tema</a></li>
+                	<li><a href="procedimento">Procedimento</a></li>
+                	<li><a href="tipomidia">Tipo de M&iacute;dia</a></li>
+                	<li><a href="#">Sistem&aacute;tica de  Produ&ccedil;&atilde;o</a></li>
 
                 </ul><!-- /. ul dropdown-menu-->
               </li><!-- /.li dropdown-->
@@ -54,8 +53,7 @@
                  	<li><a href="">Pessoas</a></li>
                  	<li><a href="">Produtos</a></li>
                 	<li><a href="">Solicitantes</a></li>
-                	<li><a href="temas">Temas</a></li>
-                	<li><a href="funcoes">Fun&ccedil;&otilde;es</a></li>
+                	<li><a href="">Temas</a></li>
                 	<li><a href="">Procedimentos</a></li>
                 	<li><a href="">Tipo de M&iacute;dias</a></li>
                  </ul>
@@ -65,7 +63,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">A&ccedil;&otilde;es <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="temas/wizard/equipe">Montar Equipe</a></li>
+                  <li><a href="#">Montar Equipe</a></li>
                   <li><a href="#">Montar Programa&ccedil;&atilde;o</a></li>
                   <li><a href="#">Something else here</a></li>
                   <li role="separator" class="divider"></li>
@@ -86,11 +84,29 @@
 
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
-        <h1>N&uacute;cleo de TV e R&aacute;dio Universit&aacute;ria.</h1>
-        <p>Sistema de gerenciamento de programa&ccedil;&atilde;o da TV Universit&aacute;ria.</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="#" role="button">Cadastro Assistido</a>
-        </p>
+      <!--  <h2>Cadastro de Servidor.</h2>-->
+<div class="panel panel-default">
+  <div class="panel-heading">Cadastrar Fun&ccedil;&atilde;o</div>
+  <div class="panel-body">
+        <form role="form" method="post" action="/eacervo/funcoes">
+           <div class="form-group">
+    <label for="function_id">ID:</label>
+    <input type="text" class="form-control" id="function_id" disabled>
+  </div>
+           <div class="form-group">
+              <label for="function">Fun&ccedil;&atilde;o:</label>
+              <input type="text" class="form-control" id="function" name="function">
+           </div>
+           <div class="form-group">
+              <label for="description">Descri&ccedil;&atilde;o:</label>
+              <textarea type="text" class="form-control" id="description" name="description"></textarea>
+           </div>
+          
+  
+  <button type="submit" class="btn btn-default">Salvar</button>
+  </form><!-- /end form -->
+  </div>
+      </div>
       </div>
 
     </div> <!-- /container -->

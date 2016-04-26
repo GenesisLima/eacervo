@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="datatables" uri="http://github.com/dandelion/datatables" %>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -104,9 +107,9 @@
            <div class="form-group">
             <label for="funcao">Fun&ccedil;&atilde;o:</label>
             <div class="input-group">                            
-              <input type="text" class="form-control" id="funcao">
+              <input type="text" class="form-control" id="funcao" disabled>
               <span class="input-group-btn">
-              <a  class="btn btn-default" role="button" data-toggle="modal" data-target="#modalFuncao"><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
+              <a  class="btn btn-default" role="button" data-toggle="modal"  data-target="#modalFuncao" ><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
             </span>
             </div><!--end input-group-->
 
@@ -144,7 +147,7 @@
 
     </div> <!-- /container -->
     <!-- Modal função-->
-<div id="modalFuncao" class="modal fade" role="dialog">
+<div id="modalFuncao" class="modal fade" role="dialog" >
   <div class="modal-dialog">
  <form role="form" class="funcao">
     <!-- Modal content-->
@@ -155,31 +158,16 @@
       </div>
       <div class="modal-body">
 <!--         <p>Fun&ccedil;&atilde;o</p> -->
-        <div class="table-responsive">          
-  <table class="table">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Fun&ccedil;&atilde;o</th>
-        <th>Descri&ccedil;&atilde;o</th>
-      
-      </tr>
-    </thead>
-    <tbody>
-     <c:forEach items="${function}" var="funcao" varStatus="status">
-      <tr>
-    <td>${funcao.id}</td>             
-    <td >${funcao.name}</td>  
-    <td >${funcao.description}</td>    
-    <td><a href="#" class="btn btn-info" role="button" data-toggle="modal" data-id="${funcao.id}" data-name="${funcao.name}" data-description="${funcao.description}" data-target="#myModal">Escolher</a>
-<%--     <a href="/eacervo/temas/remove/${tema.id}" class="btn btn-info" role="button">Remover</a></td> --%>
-    
-      </tr>
-       </c:forEach>
-    </tbody>
-  </table>
-  </div>
+<datatables:table id="employeeFunctionTable" row="funcao"  url="/eacervo/funcoes/functionsJSON"  theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
         
+        <datatables:column title="ID" property="id" id="funcao_id"    />
+        <datatables:column title="NAME" property="function" id="funcao_nome" />
+          <datatables:column  title="AÇÃO" renderFunction='actions' >
+          
+          
+
+      </datatables:column>
+    </datatables:table>
   </form><!-- /end form-->
       </div>
       <div class="modal-footer">
@@ -267,7 +255,7 @@
     <td>${setor.id}</td>             
     <td >${setor.name}</td>  
     <td >${setor.description}</td>    
-    <td><a href="#" class="btn btn-info" role="button" data-toggle="modal" data-id="${setor.id}" data-name="${setor.name}" data-description="${setor.description}" data-target="#myModal">Escolher</a>
+    <td><a  href="#" class="btn btn-info" role="button" data-toggle="modal" data-id="${setor.id}" data-name="${setor.name}" data-description="${setor.description}" data-target="#myModal">Escolher</a>
 <%--     <a href="/eacervo/temas/remove/${tema.id}" class="btn btn-info" role="button">Remover</a></td> --%>
     
       </tr>
@@ -288,24 +276,53 @@
   </div>
 </div><br/><br/><!-- /end modal Responsável-->
   <script type="text/javascript">
-        $('#modalFuncao').on('show.bs.modal', function (e) {
-        	//alert('testa js')
-        	  var button = $(e.relatedTarget) // Button that triggered the modal
-        	  var recipient = button.data('id')
-        	  var name = button.data('name')
-        	  var desc = button.data('description')
-        	  // Extract info from data-* attributes
-        	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-        	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-        	  var modal = $(this);
-        	// modal.find('#nome').val(document.getElementById("tema_name").value)        	 
-        	  modal.find('#area').val(recipient)
-        	  modal.find('#name').val(name)
-        	  modal.find('#description').val(desc)
-        	  
-        	  
-        	});
-        	
+  
+ 
+
+  function actions(data, type, full) {
+	//  console.log(full)
+	  console.log(full.id)
+	  console.log(full.description)
+	var  description = full.description;
+	  console.log(description)
+	 
+// 	'<a class="btn btn-mini" data-id='+ full.id +' data-description='+ full.description + '>Escolher</a>'
+	   return '<a class="btn btn-mini" data-dismiss="modal" onclick="setFunctionValue(\''+ description +'\')" data-id='+ full.id +' data-description='.concat(full.description).concat('>Escolher</a>') ;
+	}
+  
+  $('#choiceButton').on("click", ".getValues", function () {
+	     var myBookId = $(this).data('id');
+	     console.log(myBookId)
+	  //   $(".modal-body #bookId").val( myBookId );
+	    //$('#addBookDialog').modal('show');
+	});
+ 
+  
+  function setFunctionValue(value){
+	 $('#funcao').val(value);
+	 
+	$('#modalFuncao.in').modal('hide');
+	//$('body').removeClass('modal-open');
+	//$('.modal-backdrop').remove();
+  }
+	  
+  $('#modalFuncao').on('show.bs.modal', function (e) {
+      	//alert('testa js')
+      
+      var modal = $(this)
+      
+      	//console.log(modal);
+      	;
+      	
+      	  
+      //	});
+    
+});
+	
+ 
+  
+	  
+        
         	
         $('#modalLotacao').on('show.bs.modal', function (e) {
         	//alert('testa js')
@@ -360,6 +377,23 @@
        });
  });
 });
+//  $(function() {
+// 	//twitter bootstrap script
+// 	 $("a#ajaxFunction").click(function(){
+// 	         $.ajax({
+// 	     type: "GET",
+// 	 url: "/eacervo/funcoes",
+// 	 data: $('form.tema').serialize(),
+// 	         success: function(msg){
+// 	                 $("#thanks").html(msg)
+// 	        $("#form-content").modal('hide'); 
+// 	         },
+// 	 error: function(){
+// 	 alert("failure");
+// 	 }
+// 	       });
+// 	 });
+// 	});
         $('#modalFuncao').on('hidden.bs.modal', function (e) {
         	//window.location.reload();
         });

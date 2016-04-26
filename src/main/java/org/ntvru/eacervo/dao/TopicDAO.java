@@ -12,7 +12,6 @@ import org.ntvru.eacervo.models.Topic;
 import org.springframework.stereotype.Repository;
 
 @Repository
-
 public class TopicDAO {
 
 	

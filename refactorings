@@ -1,0 +1,4 @@
+REFACTORINGS TO BE DONE
+RF01: Change templating of all software.
+RF02: Change javascript implementation for function modal feature. The actual solution is a shit!
+RF02 Solution: Was added data-dismiss tag o the anchor link and added modal('hide') to the javascript function. 

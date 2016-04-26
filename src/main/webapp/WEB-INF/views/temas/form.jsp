@@ -90,12 +90,12 @@
   <div class="panel-body">
         <form role="form" method="post" action="/eacervo/temas">
            <div class="form-group">
-    <label for="id_procedimento">ID:</label>
+    <label for="topic_id">ID:</label>
     <input type="text" class="form-control" id="topic_id" disabled>
   </div>
            <div class="form-group">
               <label for="name">Tema:</label>
-              <input type="text" class="form-control" id="name" name="name">
+              <input type="text" class="form-control" id="topic" name="topic">
            </div>
            <div class="form-group">
               <label for="description">Descri&ccedil;&atilde;o:</label>

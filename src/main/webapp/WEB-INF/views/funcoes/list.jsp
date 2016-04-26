@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!-- Taglib for dandelion -->
 <%@ taglib prefix="datatables" uri="http://github.com/dandelion/datatables" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -200,15 +199,15 @@ text.align:right;
 <!--   </table> -->
 <!--   </div> -->
  <!-- <a id="reload" href="">Click me to refresh the table!</a> -->
-    <datatables:table id="temasTable" row="tema" data="${temas}"   theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
+    <datatables:table id="functionsTable" row="function" data="${functions}"   theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
         
         <datatables:column title="ID" property="id"   />
-        <datatables:column title="NAME" property="name"/>
-<%--        	<datatables:column title="DESCRIPTION" property="description" /> --%>
+        <datatables:column title="FUNÇÃO" property="function"/>
+<%--        	<datatables:column title="DESCRIÇÃO" property="description" />  --%>
       <datatables:column title="AÇÃO" >
        
-   <a href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-id="${tema.id}" data-name="${tema.name}" data-description="${tema.description}" data-target="#myModal" onclick="setValues()">Editar</a>
-   <a href="/eacervo/temas/remove/${tema.id}" class="btn btn-info" role="button">Remover</a>
+   <a href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-id="${function.id}" data-function="${function.function}" data-description="${function.description}" data-target="#myModal" onclick="setValues()">Editar</a>
+   <a href="/eacervo/funcoes/remove/${function.id}" class="btn btn-info" role="button">Remover</a>
   
       </datatables:column>
     </datatables:table>
@@ -226,35 +225,33 @@ text.align:right;
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
- <form role="form" class="tema">
+ <form role="form" class="funcao">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Tema</h4>
+        <h4 class="modal-title">Fun&ccedil;&atilde;o</h4>
       </div>
       <div class="modal-body">
-        <p>Tema aa</p>
+<!--         <p>Fun&ccedil;&atilde;o</p> -->
         
         <div class="form-group">
-              <label for="area">&Aacute;rea:</label>
+              <label for="id">ID:</label>
               <div class="input-group">
-              <input type="text" class="form-control" id="area" name="id" >
+              <input type="text" class="form-control" id="id" name="id" >
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>&nbsp;</button>
               </span>
               </div>
            </div>
 
-           <div class="form-group">
-                     
-              <label for="nome">Nome:</label>
-              <input type="text" class="form-control"  name="name" id="name"></input>
-             
+           <div class="form-group">                     
+              <label for="function">Fun&ccedil;&atilde;o:</label>
+              <input type="text" class="form-control"  name="function" id="function"></input>             
            </div>
 
            <div class="form-group">
-              <label for="descricao">Descri&ccedil;&atilde;o:</label>
+              <label for="description">Descri&ccedil;&atilde;o:</label>
               <textarea type="text"  class="form-control" name="description" id="description"></textarea>
            </div>
   </form><!-- /end form-->
@@ -277,15 +274,15 @@ text.align:right;
         	  console.log('Botao: '+button)
         	  // Button that triggered the modal
         	  var recipient = button.data('id')
-        	  var name = button.data('name')
+        	  var name = button.data('function')
         	  var desc = button.data('description')
         	  // Extract info from data-* attributes
         	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
         	  var modal = $(this);
         	      	 
-        	  modal.find('#area').val(recipient)
-        	  modal.find('#name').val(name)
+        	  modal.find('#id').val(recipient)
+        	  modal.find('#function').val(name)
         	  modal.find('#description').val(desc)
         	  
         	  
@@ -297,8 +294,8 @@ text.align:right;
  $("button#submit").click(function(){
          $.ajax({
      type: "POST",
- url: "/eacervo/temas",
- data: $('form.tema').serialize(),
+ url: "/eacervo/funcoes",
+ data: $('form.funcao').serialize(),
          success: function(msg){
                  $("#thanks").html(msg)
         $("#form-content").modal('hide'); 
@@ -327,7 +324,7 @@ text.align:right;
         
         $("#search").keyup(function(e){
         	if(e.which == 13){        		
-          		$.ajax({url:"/eacervo/temas",
+          		$.ajax({url:"/eacervo/funcoes",
     		        type:"get",
     		        data:{},
     		        success: function(response){
