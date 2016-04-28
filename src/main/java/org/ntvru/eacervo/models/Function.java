@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 
 
@@ -26,7 +27,7 @@ public class Function implements Serializable {
 	private String function;
 	private String description;
 	
-	@OneToMany(mappedBy="function", fetch=FetchType.EAGER)
+	@Transient
 	private List<Employee> employees; 
 	
 	@Column(columnDefinition="char(1) default 'A'")

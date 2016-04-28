@@ -42,7 +42,7 @@
             <label for="funcao">Fun&ccedil;&atilde;o:</label>
             <div class="input-group">                            
               <input type="text" class="form-control" id="funcao" disabled>
-              <input type="hidden" id="funcaoId" name="funcaoId" value="1"/>
+              <input type="hidden" id="funcaoId" name="funcaoId" />
               <span class="input-group-btn">
               <a  class="btn btn-default" role="button" data-toggle="modal"  data-target="#modalFuncao" ><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
             </span>
@@ -93,7 +93,7 @@
       </div>
       <div class="modal-body">
 <!--         <p>Fun&ccedil;&atilde;o</p> -->
-<datatables:table id="employeeFunctionTable" row="funcao"  url="/eacervo/funcoes/functionsJSON"  theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
+<datatables:table id="employeeFunctionTable" row="funcao"  url="/eacervo/funcoes/functionsJSON" deferRender="true" stateSave="true" theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
         
         <datatables:column title="ID" property="id" id="funcao_id"    />
         <datatables:column title="NAME" property="function" id="funcao_nome" />
@@ -222,7 +222,7 @@
 	  console.log(description)
 	 
 // 	'<a class="btn btn-mini" data-id='+ full.id +' data-description='+ full.description + '>Escolher</a>'
-	   return '<a class="btn btn-mini" data-dismiss="modal" onclick="setFunctionValue(\''+ description +'\')" data-id='+ full.id +' data-description='.concat(full.description).concat('>Escolher</a>') ;
+	   return '<a class="btn btn-mini" data-dismiss="modal" onclick="setFunctionValue(\''+ description +'\',\''+ full.id +'\')" data-id='+ full.id +' data-description='.concat(full.description).concat('>Escolher</a>') ;
 	}
   
   $('#choiceButton').on("click", ".getValues", function () {
@@ -233,9 +233,9 @@
 	});
  
   
-  function setFunctionValue(value){
+  function setFunctionValue(value,id){
 	 $('#funcao').val(value);
-	 
+	 $('#funcaoId').val(id);
 	$('#modalFuncao.in').modal('hide');
 	//$('body').removeClass('modal-open');
 	//$('.modal-backdrop').remove();

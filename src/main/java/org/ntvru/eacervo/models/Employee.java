@@ -3,8 +3,10 @@ package org.ntvru.eacervo.models;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,6 +39,7 @@ public class Employee implements Serializable{
    private Employee parent;
    
    @OneToMany(mappedBy="parent")
+   @Basic(optional=true)
    private List<Employee> childrens;
    
    @ManyToOne
