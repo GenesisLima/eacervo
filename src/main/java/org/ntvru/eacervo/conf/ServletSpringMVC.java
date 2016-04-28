@@ -1,6 +1,5 @@
 package org.ntvru.eacervo.conf;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.Filter;

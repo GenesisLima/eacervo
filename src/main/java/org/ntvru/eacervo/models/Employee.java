@@ -39,6 +39,10 @@ public class Employee implements Serializable{
    @OneToMany(mappedBy="parent")
    private List<Employee> childrens;
    
+   @ManyToOne
+   @JoinColumn(name="function_id")
+   private Function function;
+   
    
    
    /** Método para retorno da matrícula do funcionário.
@@ -120,6 +124,12 @@ public List<Employee> getChildrens() {
 }
 public void setChildrens(List<Employee> childrens) {
 	this.childrens = childrens;
+}
+public Function getFunction() {
+	return function;
+}
+public void setFunction(Function function) {
+	this.function = function;
 }
 
 

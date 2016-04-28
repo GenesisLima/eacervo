@@ -26,30 +26,38 @@ public class HomeController {
 		   }
 		return "index";		
 	}
-//	@RequestMapping("/servidor")
-//	public String getEmployeeRegisterPage(){
-//		return "servidores/form_servidor";		
-//	}
+	@RequestMapping("/servidor")
+	public String getEmployeeRegisterPage(){
+		return "servidores/form";		
+	}
 	
 	@RequestMapping("/produto")
 	public String getProductRegisterPage(){
-		return "produtos/form_produto";
+		return "produtos/form";
 	}
 	@RequestMapping("/area")
 	public String getAreaRegisterPage(){
-		return "areas/form_area";
+		return "areas/form";
 	}
 	@RequestMapping("/tema")
 	public String getTopicRegisterPage(){
-		return "temas/form_tema";		
+		return "temas/form";		
 	}
 	@RequestMapping("/tipomidia")
 	public String getMediaRegisterPage(){
-		return	"tiposmidia/form_tipomidia";	
+		return	"tiposmidia/form";	
 	}
 	
 	@RequestMapping("/procedimento")
 	public String getProcedureRegisterPage(){
-		return "procedimentos/form_procedimento";
+		return "procedimentos/form";
 	}
+	
+	@RequestMapping("funcao")
+	public String getFunctionRegisterPage(){
+		
+	   return"funcoes/form";	
+	}
+	
+	
 }

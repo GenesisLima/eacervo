@@ -1,14 +1,17 @@
 package org.ntvru.eacervo.models;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 
 
@@ -22,6 +25,9 @@ public class Function implements Serializable {
 	private int id;
 	private String function;
 	private String description;
+	
+	@OneToMany(mappedBy="function", fetch=FetchType.EAGER)
+	private List<Employee> employees; 
 	
 	@Column(columnDefinition="char(1) default 'A'")
     private String status = "A";
@@ -68,6 +74,12 @@ public class Function implements Serializable {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+	public List<Employee> getEmployees() {
+		return employees;
+	}
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
 	}
 	
 	

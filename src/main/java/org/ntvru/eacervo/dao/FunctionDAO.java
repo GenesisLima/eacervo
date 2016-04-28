@@ -28,4 +28,10 @@ public class FunctionDAO {
 		
 	}
 	
+	public Function getById(int id){
+		
+		return manager.createQuery("select f from Function f where f.status='A' and f.id="+id,Function.class).getSingleResult();
+		
+	}
+	
 }
