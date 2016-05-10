@@ -4,23 +4,20 @@
 <%@ taglib prefix="datatables" uri="http://github.com/dandelion/datatables" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-
-
 <head>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-<jsp:include page="../templates/head.jsp" ></jsp:include>
-
+ 
+ <jsp:include page="../templates/head.jsp" ></jsp:include>
 </head>
 
 <body>
 <div class="container">
 
-     <jsp:include page="../templates/menu.jsp" ></jsp:include>
-     
-      <!-- Main component for a primary marketing message or call to action -->
+
+      <jsp:include page="../templates/menu.jsp" ></jsp:include>
+      
       <div class="jumbotron">
       
 <!--        <div class="table-responsive">           -->
@@ -48,15 +45,15 @@
 <!--   </table> -->
 <!--   </div> -->
  <!-- <a id="reload" href="">Click me to refresh the table!</a> -->
-    <datatables:table id="functionsTable" row="function" data="${functions}"   theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
+    <datatables:table id="departmentsTable" row="department" data="${departments}"   theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
         
         <datatables:column title="ID" property="id"   />
-        <datatables:column title="FUNÇÃO" property="function"/>
+        <datatables:column title="DEPARTAMENTO" property="name"/>
 <%--        	<datatables:column title="DESCRIÇÃO" property="description" />  --%>
       <datatables:column title="AÇÃO" >
        
-   <a href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-id="${function.id}" data-function="${function.function}" data-description="${function.description}" data-target="#myModal" onclick="setValues()">Editar</a>
-   <a href="/eacervo/funcoes/remove/${function.id}" class="btn btn-info" role="button">Remover</a>
+   <a href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-id="${department.id}" data-department="${department.name}" data-description="${department.description}" data-target="#myModal" onclick="setValues()">Editar</a>
+   <a href="/eacervo/funcoes/remove/${department.id}" class="btn btn-info" role="button">Remover</a>
   
       </datatables:column>
     </datatables:table>
@@ -74,12 +71,12 @@
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
- <form role="form" class="funcao">
+ <form role="form" class="departamento">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Fun&ccedil;&atilde;o</h4>
+        <h4 class="modal-title">Departamento</h4>
       </div>
       <div class="modal-body">
 <!--         <p>Fun&ccedil;&atilde;o</p> -->
@@ -95,8 +92,8 @@
            </div>
 
            <div class="form-group">                     
-              <label for="function">Fun&ccedil;&atilde;o:</label>
-              <input type="text" class="form-control"  name="function" id="function"></input>             
+              <label for="function">Departamento:</label>
+              <input type="text" class="form-control"  name="name" id="name"></input>             
            </div>
 
            <div class="form-group">
@@ -123,7 +120,7 @@
         	  console.log('Botao: '+button)
         	  // Button that triggered the modal
         	  var recipient = button.data('id')
-        	  var name = button.data('function')
+        	  var name = button.data('department')
         	  var desc = button.data('description')
         	  // Extract info from data-* attributes
         	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
@@ -131,7 +128,7 @@
         	  var modal = $(this);
         	      	 
         	  modal.find('#id').val(recipient)
-        	  modal.find('#function').val(name)
+        	  modal.find('#department').val(name)
         	  modal.find('#description').val(desc)
         	  
         	  
@@ -143,8 +140,8 @@
  $("button#submit").click(function(){
          $.ajax({
      type: "POST",
- url: "/eacervo/funcoes",
- data: $('form.funcao').serialize(),
+ url: "/eacervo/departamentos",
+ data: $('form.departamento').serialize(),
          success: function(msg){
                  $("#thanks").html(msg)
         $("#form-content").modal('hide'); 

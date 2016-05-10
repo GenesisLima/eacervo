@@ -53,10 +53,14 @@ public class HomeController {
 		return "procedimentos/form";
 	}
 	
-	@RequestMapping("funcao")
+	@RequestMapping("/funcao")
 	public String getFunctionRegisterPage(){
 		
-	   return"funcoes/form";	
+	   return "funcoes/form";	
+	}
+	@RequestMapping("/departamento")
+	public String getDepartmentRegisterPage(){
+		return "departamentos/form";
 	}
 	
 	

@@ -9,15 +9,15 @@ import org.ntvru.eacervo.models.Function;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class FunctionDAO {
+public class FunctionDAO extends GenericDAO<Function>{
 
-	@PersistenceContext
-	private EntityManager manager;
-	
-	
-	public void save(Function function){		
-		manager.merge(function);
-	}
+//	@PersistenceContext
+//	private EntityManager manager;
+//	
+//	
+//	public void save(Function function){		
+//		super.save(function);
+//	}
 
 	public List<Function> list(){		
 		return manager.createQuery("select f from Function f where f.status='A'").getResultList();
@@ -33,5 +33,6 @@ public class FunctionDAO {
 		return manager.createQuery("select f from Function f where f.status='A' and f.id="+id,Function.class).getSingleResult();
 		
 	}
+	
 	
 }

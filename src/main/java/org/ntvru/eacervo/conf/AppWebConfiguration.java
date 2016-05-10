@@ -2,6 +2,7 @@ package org.ntvru.eacervo.conf;
 
 import org.ntvru.eacervo.controller.HomeController;
 import org.ntvru.eacervo.dao.EmployeeDAO;
+import org.ntvru.eacervo.dao.GenericDAO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

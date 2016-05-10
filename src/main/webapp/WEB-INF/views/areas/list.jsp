@@ -48,15 +48,15 @@
 <!--   </table> -->
 <!--   </div> -->
  <!-- <a id="reload" href="">Click me to refresh the table!</a> -->
-    <datatables:table id="functionsTable" row="function" data="${functions}"   theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
+    <datatables:table id="areasTable" row="area" data="${areas}"   theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
         
         <datatables:column title="ID" property="id"   />
-        <datatables:column title="FUNÇÃO" property="function"/>
+        <datatables:column title="ÁREA" property="name"/>
 <%--        	<datatables:column title="DESCRIÇÃO" property="description" />  --%>
       <datatables:column title="AÇÃO" >
        
-   <a href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-id="${function.id}" data-function="${function.function}" data-description="${function.description}" data-target="#myModal" onclick="setValues()">Editar</a>
-   <a href="/eacervo/funcoes/remove/${function.id}" class="btn btn-info" role="button">Remover</a>
+   <a href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-id="${area.id}" data-function="${area.name}" data-description="${area.description}" data-target="#myModal" onclick="setValues()">Editar</a>
+   <a href="/eacervo/areas/remove/${area.id}" class="btn btn-info" role="button">Remover</a>
   
       </datatables:column>
     </datatables:table>
@@ -74,7 +74,7 @@
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
- <form role="form" class="funcao">
+ <form role="form" class="area">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
@@ -95,8 +95,8 @@
            </div>
 
            <div class="form-group">                     
-              <label for="function">Fun&ccedil;&atilde;o:</label>
-              <input type="text" class="form-control"  name="function" id="function"></input>             
+              <label for="name">Area</label>
+              <input type="text" class="form-control"  name="name" id="name"></input>             
            </div>
 
            <div class="form-group">
@@ -123,7 +123,7 @@
         	  console.log('Botao: '+button)
         	  // Button that triggered the modal
         	  var recipient = button.data('id')
-        	  var name = button.data('function')
+        	  var name = button.data('area')
         	  var desc = button.data('description')
         	  // Extract info from data-* attributes
         	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
@@ -131,7 +131,7 @@
         	  var modal = $(this);
         	      	 
         	  modal.find('#id').val(recipient)
-        	  modal.find('#function').val(name)
+        	  modal.find('#area').val(name)
         	  modal.find('#description').val(desc)
         	  
         	  
@@ -143,8 +143,8 @@
  $("button#submit").click(function(){
          $.ajax({
      type: "POST",
- url: "/eacervo/funcoes",
- data: $('form.funcao').serialize(),
+ url: "/eacervo/areas",
+ data: $('form.area').serialize(),
          success: function(msg){
                  $("#thanks").html(msg)
         $("#form-content").modal('hide'); 

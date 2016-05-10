@@ -27,32 +27,35 @@
 <div class="panel panel-default">
   <div class="panel-heading">Cadastrar &Aacute;rea</div>
   <div class="panel-body">
-        <form role="form">
+        <form role="form" method="post" action="/eacervo/areas">
            <div class="form-group">
-    <label for="id_procedimento">ID:</label>
-    <input type="text" class="form-control" id="id_procedimento" disabled>
+    <label for="area_id">ID:</label>
+    <input type="text" class="form-control" id="area_id" name="area_id" disabled>
   </div>
            <div class="form-group">
-              <label for="procedimento">Nome:</label>
+              <label for="name">Nome:</label>
               <div class="input-group">
-              <input type="text" class="form-control" id="procedimento">
+              <input type="text" class="form-control" id="name" name="name">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>&nbsp;</button>
               </span>
               </div>
            </div>
            <div class="form-group">
-              <label for="nome">Descri&ccedil;&atilde;o:</label>
-              <textarea type="text" class="form-control" id="nome"></textarea>
+              <label for="description">Descri&ccedil;&atilde;o:</label>
+              <textarea type="text" class="form-control" id="description" name="description"></textarea>
            </div>
 
           <!-- Trigger the modal with a button -->
-<button type="button" class="btn btn-link btn-md" data-toggle="modal" data-target="#myModal">Cadastrar Sub &Aacute;rea</button>
 
+ <button type="submit" class="btn btn-default">Salvar</button><br/><br/> 
+</form>
+
+<button type="button" class="btn btn-link btn-md" data-toggle="modal" data-target="#myModal">Cadastrar Sub &Aacute;rea</button>
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-
+ <form>
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
@@ -91,7 +94,7 @@
   </div>
 </div><br/><br/><!-- /end modal -->
   
-  <button type="submit" class="btn btn-default">Salvar</button>
+ 
   </form><!-- /end form -->
   </div>
       </div>

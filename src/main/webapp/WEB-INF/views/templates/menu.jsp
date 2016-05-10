@@ -1,17 +1,7 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<head>
+<!-- <?xml version="1.0" encoding="ISO-8859-1" ?> -->
+<%-- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"  pageEncoding="ISO-8859-1"%> --%>
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-</head>
 <!-- <div class="container"> -->
 
       <!-- Static navbar -->
@@ -35,6 +25,7 @@
                   <li><a href="produto">Produto</a></li>
                   <li><a href="area">&Aacute;rea</a></li>
                   <li><a href="solicitante">Solicitante</a></li>
+                  <li><a href="departamento">Departamento</a></li>
                   <li><a href="responsavel">Respons&aacute;vel</a></li>
                   <li><a href="temas/form">Tema</a></li>
                    <li><a href="funcao">Fun&ccedil;&atilde;o</a></li>
@@ -49,6 +40,7 @@
                  	<li><a href="pessoas">Pessoas</a></li>
                  	<li><a href="produtos">Produtos</a></li>
                 	<li><a href="solicitantes">Solicitantes</a></li>
+                	<li><a href="departamentos">Departamentos</a></li>
                 	<li><a href="temas">Temas</a></li>
                 	<li><a href="funcoes">Fun&ccedil;&otilde;es</a></li>
                 	<li><a href="procedimentos">Procedimentos</a></li>
