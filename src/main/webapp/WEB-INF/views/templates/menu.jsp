@@ -27,7 +27,7 @@
                   <li><a href="solicitante">Solicitante</a></li>
                   <li><a href="departamento">Departamento</a></li>
                   <li><a href="responsavel">Respons&aacute;vel</a></li>
-                  <li><a href="temas/form">Tema</a></li>
+                  <li><a href="tema">Tema</a></li>
                    <li><a href="funcao">Fun&ccedil;&atilde;o</a></li>
                   <li><a href="procedimento">Procedimento</a></li>
                   <li><a href="tipomidia">Tipo de M&iacute;dia</a></li>

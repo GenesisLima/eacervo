@@ -14,6 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 /*Classe para objetos do tipo Servidor, onde serão contidos, valores e métodos para o mesmo.
  * @author Gênesis Lima  
  * */
@@ -33,19 +36,24 @@ public class Employee implements Serializable{
    
    @ManyToOne
    @JoinColumn(name="department_id")
+   @JsonManagedReference
    private Department department; 
    
    @ManyToOne
    private Employee parent;
    
-   @OneToMany(mappedBy="parent")
+   @OneToMany(mappedBy="parent", fetch=FetchType.LAZY)
    @Basic(optional=true)
+   @JsonBackReference
    private List<Employee> childrens;
    
    @ManyToOne
    @JoinColumn(name="function_id")
+   @JsonManagedReference
    private Function function;
    
+   @Column(columnDefinition="char(1) default 'A'")
+   private String status = "A";
    
    
    /** Método para retorno da matrícula do funcionário.
@@ -133,6 +141,12 @@ public Function getFunction() {
 }
 public void setFunction(Function function) {
 	this.function = function;
+}
+public String getStatus() {
+	return status;
+}
+public void setStatus(String status) {
+	this.status = status;
 }
 
 

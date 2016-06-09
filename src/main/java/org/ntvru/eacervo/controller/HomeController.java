@@ -1,5 +1,9 @@
 package org.ntvru.eacervo.controller;
 
+import java.sql.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +25,7 @@ public class HomeController {
 		   if (ipAddress == null) {  
 			   ipAddress = request.getRemoteAddr(); 
 			   
-			   System.out.println("Client IP: "+ipAddress );
+			   System.out.println("Client IP: "+ipAddress+" Date: "+ new GregorianCalendar());
 			  // System.out.println("Local IP: "+localAddress);
 		   }
 		return "index";		
@@ -38,6 +42,10 @@ public class HomeController {
 	@RequestMapping("/area")
 	public String getAreaRegisterPage(){
 		return "areas/form";
+	}
+	@RequestMapping("/solicitante")
+	public String getRequestorPage(){		
+		return "solicitantes/form";
 	}
 	@RequestMapping("/tema")
 	public String getTopicRegisterPage(){

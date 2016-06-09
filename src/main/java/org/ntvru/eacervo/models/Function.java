@@ -14,6 +14,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 
 @Entity
@@ -26,8 +28,9 @@ public class Function implements Serializable {
 	private int id;
 	private String function;
 	private String description;
-	
-	@Transient
+	//Existe uma abertura de solução de Bug no redmine relacionado a este problema do EAGER Fetching
+	@OneToMany(mappedBy="function", fetch=FetchType.LAZY)
+	@JsonBackReference
 	private List<Employee> employees; 
 	
 	@Column(columnDefinition="char(1) default 'A'")

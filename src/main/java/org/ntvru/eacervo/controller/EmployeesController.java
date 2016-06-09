@@ -1,18 +1,26 @@
 package org.ntvru.eacervo.controller;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
+import org.ntvru.eacervo.dao.DepartmentDAO;
 import org.ntvru.eacervo.dao.EmployeeDAO;
 import org.ntvru.eacervo.dao.FunctionDAO;
 import org.ntvru.eacervo.models.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 //Classe que representa os Servidores da instituição
 @Controller
 @Transactional
+@RequestMapping("/servidores")
 public class EmployeesController {
     
 	@Autowired
@@ -21,14 +29,38 @@ public class EmployeesController {
 	@Autowired
 	private FunctionDAO functionDAO;
 	
+	@Autowired
+	private DepartmentDAO departamentDAO;
 	
-	@RequestMapping("/servidores")
-	public String save(Employee employee, @RequestParam(value="funcaoId") int functionId){
+	
+	@RequestMapping(method=RequestMethod.POST)
+	public ModelAndView save(Employee employee, @RequestParam(value="funcaoId") int functionId, @RequestParam(value="lotacaoId") int departmentId, @RequestParam(value="responsavelId", required=false) Integer employeeId, RedirectAttributes redirectAttributes ){
 		System.out.println("Cadastrando o servidor "+employee);
 		
-		employee.setFunction(functionDAO.getById(functionId));
+		ModelAndView modelAndView;
+		System.out.println("FUNCTION ID :"+employee.getId());
+ 		if(employee.getId()==0){
+        employee.setFunction(functionDAO.getById(functionId));
+		employee.setDepartment(departamentDAO.getById(departmentId));
+		if(employeeId !=null){
+			System.out.println("ID EMPREGADO: "+employeeId);
+		employee.setParent(employeeDAO.getById(employeeId));
+		}
 		employeeDAO.save(employee);
-		return "index";
+		
+		modelAndView = new ModelAndView("redirect:servidores");
+ 		}else{
+ 			employeeDAO.save(employee);
+ 			modelAndView = new ModelAndView("/servidores/list");
+ 		}
+		String info = "success";
+		String mensagem = "Empregado Cadastrada com sucesso!";		
+		redirectAttributes.addFlashAttribute("info", info);
+		redirectAttributes.addFlashAttribute("mensagem", mensagem);		
+	  return modelAndView;
+		
+		
+		
 	}
 	
 	@RequestMapping("/servidores/form")
@@ -36,5 +68,19 @@ public class EmployeesController {
 		return "servidores/form";
 		
 	}
+	
+	@RequestMapping(method=RequestMethod.GET)
+	public ModelAndView list(){
+		ModelAndView modelAndView = new ModelAndView("servidores/list");	
+		modelAndView.addObject("employees", employeeDAO.list());		
+		return modelAndView; 
+	}
+	
+	@RequestMapping(value="/employeesJSON", method=RequestMethod.GET)
+	public @ResponseBody List<Employee> listEmployeesJSON(){	
+		System.out.println("REQUEST EMPREGADO AJAX ");
+		return employeeDAO.list();
+	}
+	
 	
 }

@@ -7,8 +7,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
@@ -53,6 +51,7 @@
               <label for="lotacao">Lota&ccedil;&atilde;o:</label>
               <div class="input-group">                            
               <input type="text" class="form-control" id="lotacao" disabled>
+                 <input type="hidden" id="lotacaoId" name="lotacaoId" />
               <span class="input-group-btn">
               <a  class="btn btn-default" role="button" data-toggle="modal" data-target="#modalLotacao"><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
             </span>
@@ -69,6 +68,7 @@
               <label for="responsavel">Respons&aacute;vel:</label>
              <div class="input-group">                            
               <input type="text" class="form-control" id="responsavel" disabled>
+              <input type="hidden" id="responsavelId" name="responsavelId" />
               <span class="input-group-btn">
               <a  class="btn btn-default" role="button" name="responsible" data-toggle="modal" data-target="#modalResponsavel"><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
             </span>
@@ -97,7 +97,7 @@
         
         <datatables:column title="ID" property="id" id="funcao_id"    />
         <datatables:column title="NAME" property="function" id="funcao_nome" />
-          <datatables:column  title="AÇÃO" renderFunction='actions' >
+          <datatables:column  title="AÇÃO" renderFunction='action_function' >
           
           
 
@@ -115,7 +115,7 @@
   </div>
 </div><br/><br/><!-- /end modal função-->
     <!-- Modal lotação-->
-<div id="modalLotacao" class="modal fade" role="dialog">
+<div id="modalLotacao" class="modal fade" role="dialog" >
   <div class="modal-dialog">
  <form role="form" class="lotacao">
     <!-- Modal content-->
@@ -126,31 +126,16 @@
       </div>
       <div class="modal-body">
 <!--         <p>Fun&ccedil;&atilde;o</p> -->
-        <div class="table-responsive">          
-  <table class="table">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Setor</th>
-        <th>Descri&ccedil;&atilde;o</th>
-      
-      </tr>
-    </thead>
-    <tbody>
-     <c:forEach items="${departments}" var="setor" varStatus="status">
-      <tr>
-    <td>${setor.id}</td>             
-    <td >${setor.name}</td>  
-    <td >${setor.description}</td>    
-    <td><a href="#" class="btn btn-info" role="button" data-toggle="modal" data-id="${setor.id}" data-name="${setor.name}" data-description="${setor.description}" data-target="#myModal">Escolher</a>
-<%--     <a href="/eacervo/temas/remove/${tema.id}" class="btn btn-info" role="button">Remover</a></td> --%>
-    
-      </tr>
-       </c:forEach>
-    </tbody>
-  </table>
-  </div>
+<datatables:table id="employeeDepartmentTable" row="departamento"  url="/eacervo/departamentos/departmentsJSON" deferRender="true" stateSave="true" theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
         
+        <datatables:column title="ID" property="id" id="departamento_id"    />
+        <datatables:column title="NAME" property="name" id="departamento_nome" />
+          <datatables:column  title="AÇÃO" renderFunction='action_department' >
+          
+          
+
+      </datatables:column>
+    </datatables:table>
   </form><!-- /end form-->
       </div>
       <div class="modal-footer">
@@ -163,42 +148,27 @@
   </div>
 </div><br/><br/><!-- /end modal locação-->
  <!-- Modal Responsável-->
-<div id="modalResponsavel" class="modal fade" role="dialog">
+<div id="modalResponsavel" class="modal fade" role="dialog" >
   <div class="modal-dialog">
  <form role="form" class="lotacao">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Buscar Respons&aacute;vel</h4>
+        <h4 class="modal-title">Buscar Respons;&aacute;vel</h4>
       </div>
       <div class="modal-body">
 <!--         <p>Fun&ccedil;&atilde;o</p> -->
-        <div class="table-responsive">          
-  <table class="table">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Nome</th>
-        <th>Descri&ccedil;&atilde;o</th>
-      
-      </tr>
-    </thead>
-    <tbody>
-     <c:forEach items="${departments}" var="setor" varStatus="status">
-      <tr>
-    <td>${setor.id}</td>             
-    <td >${setor.name}</td>  
-    <td >${setor.description}</td>    
-    <td><a  href="#" class="btn btn-info" role="button" data-toggle="modal" data-id="${setor.id}" data-name="${setor.name}" data-description="${setor.description}" data-target="#myModal">Escolher</a>
-<%--     <a href="/eacervo/temas/remove/${tema.id}" class="btn btn-info" role="button">Remover</a></td> --%>
-    
-      </tr>
-       </c:forEach>
-    </tbody>
-  </table>
-  </div>
+<datatables:table id="employeeResponsibleTable" row="responsavel"  url="/eacervo/servidores/employeesJSON" deferRender="true" stateSave="true" theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
         
+        <datatables:column title="ID" property="id" id="responsavel_id"    />
+        <datatables:column title="NAME" property="name" id="responsavel_nome" />
+          <datatables:column  title="AÇÃO" renderFunction='action_employee' >
+          
+          
+
+      </datatables:column>
+    </datatables:table>
   </form><!-- /end form-->
       </div>
       <div class="modal-footer">
@@ -214,7 +184,7 @@
   
  
 
-  function actions(data, type, full) {
+  function action_function(data, type, full) {
 	//  console.log(full)
 	//  console.log(full.id)
 	//  console.log(full.description)
@@ -224,6 +194,28 @@
 // 	'<a class="btn btn-mini" data-id='+ full.id +' data-description='+ full.description + '>Escolher</a>'
 	   return '<a class="btn btn-mini" data-dismiss="modal" onclick="setFunctionValue(\''+ description +'\',\''+ full.id +'\')" data-id='+ full.id +' data-description='.concat(full.description).concat('>Escolher</a>') ;
 	}
+  
+  function action_department(data, type, full) {
+		//  console.log(full)
+		//  console.log(full.id)
+		//  console.log(full.description)
+		var  name = full.name;
+		  console.log(name)
+		 
+//	 	'<a class="btn btn-mini" data-id='+ full.id +' data-description='+ full.description + '>Escolher</a>'
+		   return '<a class="btn btn-mini" data-dismiss="modal" onclick="setDepartmentValue(\''+ name +'\',\''+ full.id +'\')" data-id='+ full.id +' data-name='.concat(full.name).concat('>Escolher</a>') ;
+		}
+  
+  function action_employee(data, type, full) {
+		//  console.log(full)
+		//  console.log(full.id)
+		//  console.log(full.description)
+		var  name = full.name;
+		  console.log(name)
+		 
+//	 	'<a class="btn btn-mini" data-id='+ full.id +' data-description='+ full.description + '>Escolher</a>'
+		   return '<a class="btn btn-mini" data-dismiss="modal" onclick="setEmployeeValue(\''+ name +'\',\''+ full.id +'\')" data-id='+ full.id +' data-name='.concat(full.name).concat('>Escolher</a>') ;
+		}
   
   $('#choiceButton').on("click", ".getValues", function () {
 	     var myBookId = $(this).data('id');
@@ -241,6 +233,23 @@
 	//$('.modal-backdrop').remove();
   }
 	  
+  function setDepartmentValue(value,id){
+		 $('#lotacao').val(value);
+		 $('#lotacaoId').val(id);
+		$('#modalLotacao.in').modal('hide');
+		//$('body').removeClass('modal-open');
+		//$('.modal-backdrop').remove();
+	  }
+  
+  function setEmployeeValue(value,id){
+		 $('#responsavel').val(value);
+		 $('#responsavelId').val(id);
+		$('#modalLotacao.in').modal('hide');
+		//$('body').removeClass('modal-open');
+		//$('.modal-backdrop').remove();
+	  }
+  
+  
   $('#modalFuncao').on('show.bs.modal', function (e) {
       	//alert('testa js')
       

@@ -19,8 +19,7 @@ public class EmployeeDAO extends GenericDAO<Employee>{
 
 	@Override
 	public List<Employee> list() {
-		// TODO Auto-generated method stub
-		return null;
+		return manager.createQuery("select e from Employee e where e.status='A'").getResultList();
 	}
 
 	@Override
@@ -31,7 +30,7 @@ public class EmployeeDAO extends GenericDAO<Employee>{
 
 	@Override
 	public Employee getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return manager.createQuery("select e from Employee e where e.id="+id+" and e.status='A'", Employee.class).getSingleResult();
 	}
 }

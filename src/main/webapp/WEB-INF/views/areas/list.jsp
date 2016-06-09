@@ -55,7 +55,7 @@
 <%--        	<datatables:column title="DESCRIÇÃO" property="description" />  --%>
       <datatables:column title="AÇÃO" >
        
-   <a href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-id="${area.id}" data-function="${area.name}" data-description="${area.description}" data-target="#myModal" onclick="setValues()">Editar</a>
+   <a href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-id="${area.id}" data-area="${area.name}" data-description="${area.description}" data-target="#myModal" onclick="setValues()">Editar</a>
    <a href="/eacervo/areas/remove/${area.id}" class="btn btn-info" role="button">Remover</a>
   
       </datatables:column>
@@ -79,7 +79,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Fun&ccedil;&atilde;o</h4>
+        <h4 class="modal-title">&Aacute;rea</h4>
       </div>
       <div class="modal-body">
 <!--         <p>Fun&ccedil;&atilde;o</p> -->
@@ -95,8 +95,8 @@
            </div>
 
            <div class="form-group">                     
-              <label for="name">Area</label>
-              <input type="text" class="form-control"  name="name" id="name"></input>             
+              <label for="area">&Aacute;rea</label>
+              <input type="text" class="form-control"  name="name" id="area"></input>             
            </div>
 
            <div class="form-group">
