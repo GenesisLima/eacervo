@@ -71,5 +71,9 @@ public class HomeController {
 		return "departamentos/form";
 	}
 	
+	@RequestMapping("/tipoproduto")
+	public String getProductTypeRegisterPage(){
+		return "tiposprodutos/form";
+	}
 	
 }

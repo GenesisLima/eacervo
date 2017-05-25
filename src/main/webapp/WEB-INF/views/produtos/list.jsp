@@ -48,15 +48,15 @@
 <!--   </table> -->
 <!--   </div> -->
  <!-- <a id="reload" href="">Click me to refresh the table!</a> -->
-    <datatables:table id="areasTable" row="area" data="${areas}"   theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
+    <datatables:table id="areasTable" row="product" data="${products}"   theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
         
         <datatables:column title="ID" property="id"   />
-        <datatables:column title="ÁREA" property="name"/>
+        <datatables:column title="PRODUTO" property="name"/>
 <%--        	<datatables:column title="DESCRIÇÃO" property="description" />  --%>
       <datatables:column title="AÇÃO" >
        
-   <a href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-id="${area.id}" data-area="${area.name}" data-description="${area.description}" data-target="#myModal" onclick="setValues()">Editar</a>
-   <a href="/eacervo/areas/remove/${area.id}" class="btn btn-info" role="button">Remover</a>
+   <a href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-id="${product.id}" data-area="${product.name}"  data-target="#myModal" onclick="setValues()">Editar</a>
+   <a href="/eacervo/produtos/remove/${product.id}" class="btn btn-info" role="button">Remover</a>
   
       </datatables:column>
     </datatables:table>
@@ -79,7 +79,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">&Aacute;rea</h4>
+        <h4 class="modal-title">Produto</h4>
       </div>
       <div class="modal-body">
 <!--         <p>Fun&ccedil;&atilde;o</p> -->
@@ -95,8 +95,8 @@
            </div>
 
            <div class="form-group">                     
-              <label for="area">&Aacute;rea</label>
-              <input type="text" class="form-control"  name="name" id="area"></input>             
+              <label for="area">Produto</label>
+              <input type="text" class="form-control"  name="name" id="product"></input>             
            </div>
 
            <div class="form-group">
@@ -123,16 +123,16 @@
         	  console.log('Botao: '+button)
         	  // Button that triggered the modal
         	  var recipient = button.data('id')
-        	  var name = button.data('area')
-        	  var desc = button.data('description')
+        	  var name = button.data('product')
+        	  
         	  // Extract info from data-* attributes
         	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
         	  var modal = $(this);
         	      	 
         	  modal.find('#id').val(recipient)
-        	  modal.find('#area').val(name)
-        	  modal.find('#description').val(desc)
+        	  modal.find('#product').val(name)
+        	
         	  
         	  
         	})
@@ -177,7 +177,7 @@
     		        type:"get",
     		        data:{},
     		        success: function(response){
-    		        //  $('table#resultTable tbody').html(response);
+    		         //  $('table#resultTable tbody').html(response);
     		         
     		          }
     		});

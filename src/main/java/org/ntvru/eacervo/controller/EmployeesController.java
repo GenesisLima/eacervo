@@ -78,7 +78,7 @@ public class EmployeesController {
 	
 	@RequestMapping(value="/employeesJSON", method=RequestMethod.GET)
 	public @ResponseBody List<Employee> listEmployeesJSON(){	
-		System.out.println("REQUEST EMPREGADO AJAX ");
+		
 		return employeeDAO.list();
 	}
 	

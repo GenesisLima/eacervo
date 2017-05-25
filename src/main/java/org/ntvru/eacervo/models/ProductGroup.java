@@ -7,22 +7,29 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 
-@Entity
-@NamedQueries({@NamedQuery(name="Topic.findByName", query="SELECT t FROM Topic t WHERE t.name LIKE :topicName")})
-public class Topic implements Serializable {
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="fk_topic")
+@Entity	
+public class ProductGroup implements Serializable {
+
+	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-    private String name;
-    private String description;
-    @Column(columnDefinition="char(1) default 'A'")
-    private String status = "A";
-    
-        
+	private String name;
+	private String description;
+	@Column(columnDefinition="char(1) DEFAULT 'A'")
+	private String status = "A";
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}
@@ -35,15 +42,6 @@ public class Topic implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-    
-	
 	public String getStatus() {
 		return status;
 	}
@@ -65,13 +63,19 @@ public class Topic implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Topic other = (Topic) obj;
+		ProductGroupg other = (ProductGroupg) obj;
 		if (id != other.id)
 			return false;
 		return true;
 	}
-    
-    
+	@Override
+	public String toString() {
+		return "ProductGroupg [id=" + id + ", name=" + name + ", description="
+				+ description + ", status=" + status + "]";
+	}
 	
-
+	
+	
+	
+	
 }

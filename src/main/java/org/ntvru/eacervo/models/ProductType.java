@@ -7,49 +7,60 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 
-@Entity
-@NamedQueries({@NamedQuery(name="Topic.findByName", query="SELECT t FROM Topic t WHERE t.name LIKE :topicName")})
-public class Topic implements Serializable {
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="fk_topic")
+@Entity(name="PRODUCT_TYPE")
+public class ProductType implements Serializable{
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="product_type_id")
 	private int id;
-    private String name;
-    private String description;
-    @Column(columnDefinition="char(1) default 'A'")
-    private String status = "A";
-    
-        
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
+
+	private String name;
+	
+	private String description;
+	
+	@Column(columnDefinition="char(1) DEFAULT 'A'")
+	private String status = "A";
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-    
-	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public String getStatus() {
 		return status;
 	}
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -57,6 +68,7 @@ public class Topic implements Serializable {
 		result = prime * result + id;
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -65,13 +77,21 @@ public class Topic implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Topic other = (Topic) obj;
+		ProductType other = (ProductType) obj;
 		if (id != other.id)
 			return false;
 		return true;
 	}
-    
-    
+
+	@Override
+	public String toString() {
+		return "ProductType [id=" + id + ", name=" + name + ", description="
+				+ description + ", status=" + status + "]";
+	}
+	
+	
+	
+	
 	
 
 }
