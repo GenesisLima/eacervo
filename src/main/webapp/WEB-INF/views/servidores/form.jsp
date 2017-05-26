@@ -25,22 +25,22 @@
   <div class="panel-body">
         <form role="form" method="post" action="/eacervo/servidores">
            <div class="form-group">
-    <label for="matricula">Matricula:</label>
-    <input type="text" name="code" class="form-control" id="matricula">
+    <label for="employee_id">Matricula:</label>
+    <input type="text" name="employee_id" class="form-control" id="employee_id">
   </div>
            <div class="form-group">
-              <label for="nome">Nome:</label>
-              <input type="text" name="name" class="form-control" id="nome">
+              <label for="name">Nome:</label>
+              <input type="text" name="name" class="form-control" id="name">
            </div>
            <div class="form-group">
-              <label for="vinculo">Vinculo:</label>
-              <input type="text" name="bound" class="form-control" id="vinculo">
+              <label for="bound">Vinculo:</label>
+              <input type="text" name="bound" class="form-control" id="bound">
            </div>
            <div class="form-group">
-            <label for="funcao">Fun&ccedil;&atilde;o:</label>
+            <label for="function">Fun&ccedil;&atilde;o:</label>
             <div class="input-group">                            
-              <input type="text" class="form-control" id="funcao" disabled>
-              <input type="hidden" id="funcaoId" name="funcaoId" />
+              <input type="text" class="form-control" id="function" disabled>
+              <input type="hidden" id="functionId" name="functionId" />
               <span class="input-group-btn">
               <a  class="btn btn-default" role="button" data-toggle="modal"  data-target="#modalFuncao" ><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
             </span>
@@ -48,27 +48,27 @@
 
            </div>
            <div class="form-group">
-              <label for="lotacao">Lota&ccedil;&atilde;o:</label>
+              <label for="department">Lota&ccedil;&atilde;o:</label>
               <div class="input-group">                            
-              <input type="text" class="form-control" id="lotacao" disabled>
-                 <input type="hidden" id="lotacaoId" name="lotacaoId" />
+              <input type="text" class="form-control" id="department" disabled>
+                 <input type="hidden" id="departmentId" name="departmentId" />
               <span class="input-group-btn">
               <a  class="btn btn-default" role="button" data-toggle="modal" data-target="#modalLotacao"><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
             </span>
            </div>
            <div class="form-group">
-              <label for="ramal">Ramal:</label>
-              <input type="number" name="branchLine" class="form-control" id="ramal">
+              <label for="branchLine">Ramal:</label>
+              <input type="number" name="branchLine" class="form-control" id="branchLine">
            </div>
            <div class="form-group">
               <label for="email">Email:</label>
               <input type="email" name="email" class="form-control" id="email">
            </div>
            <div class="form-group">
-              <label for="responsavel">Respons&aacute;vel:</label>
+              <label for="employee">Respons&aacute;vel:</label>
              <div class="input-group">                            
-              <input type="text" class="form-control" id="responsavel" disabled>
-              <input type="hidden" id="responsavelId" name="responsavelId" />
+              <input type="text" class="form-control" id="employee" disabled>
+              <input type="hidden" id="employeeId" name="employeeId" />
               <span class="input-group-btn">
               <a  class="btn btn-default" role="button" name="responsible" data-toggle="modal" data-target="#modalResponsavel"><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
             </span>
@@ -84,7 +84,7 @@
     <!-- Modal função-->
 <div id="modalFuncao" class="modal fade" role="dialog" >
   <div class="modal-dialog">
- <form role="form" class="funcao">
+ <form role="form" class=function>
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
@@ -117,7 +117,7 @@
     <!-- Modal lotação-->
 <div id="modalLotacao" class="modal fade" role="dialog" >
   <div class="modal-dialog">
- <form role="form" class="lotacao">
+ <form role="form" class="department">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
@@ -150,12 +150,12 @@
  <!-- Modal Responsável-->
 <div id="modalResponsavel" class="modal fade" role="dialog" >
   <div class="modal-dialog">
- <form role="form" class="lotacao">
+ <form role="form" class="employee">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Buscar Respons;&aacute;vel</h4>
+        <h4 class="modal-title">Buscar Respons&aacute;vel</h4>
       </div>
       <div class="modal-body">
 <!--         <p>Fun&ccedil;&atilde;o</p> -->
@@ -226,16 +226,16 @@
  
   
   function setFunctionValue(value,id){
-	 $('#funcao').val(value);
-	 $('#funcaoId').val(id);
+	 $('#function').val(value);
+	 $('#functionId').val(id);
 	$('#modalFuncao.in').modal('hide');
 	//$('body').removeClass('modal-open');
 	//$('.modal-backdrop').remove();
   }
 	  
   function setDepartmentValue(value,id){
-		 $('#lotacao').val(value);
-		 $('#lotacaoId').val(id);
+		 $('#department').val(value);
+		 $('#departmentId').val(id);
 		$('#modalLotacao.in').modal('hide');
 		//$('body').removeClass('modal-open');
 		//$('.modal-backdrop').remove();

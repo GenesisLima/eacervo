@@ -76,4 +76,9 @@ public class HomeController {
 		return "tiposprodutos/form";
 	}
 	
+	@RequestMapping("/grupoproduto")
+	public String getProductGroupRegisterPage(){
+		return "gruposprodutos/form";
+	}
+	
 }

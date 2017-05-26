@@ -23,6 +23,7 @@
                 <ul class="dropdown-menu">
                   <li><a href="servidor">Servidor</a></li>
                    <li><a href="tipoproduto"> Tipo de Produto</a></li>
+                    <li><a href="grupoproduto"> Grupo de Produtos</a></li>
                   <li><a href="produto">Produto</a></li>
                   <li><a href="area">&Aacute;rea</a></li>
                   <li><a href="solicitante">Solicitante</a></li>
@@ -38,7 +39,9 @@
               </li><!-- /.li dropdown-->
               <li class="dropdown"><a href="#" class="dropdown-toglle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Listar <span class="caret"></span></a>
                  <ul class="dropdown-menu">
-                 	<li><a href="pessoas">Pessoas</a></li>
+                 	<li><a href="servidores">Servidores</a></li>
+                 	 <li><a href="tiposprodutos"> Tipo de Produto</a></li>
+                    <li><a href="gruposprodutos"> Grupo de Produtos</a></li>
                  	<li><a href="produtos">Produtos</a></li>
                 	<li><a href="solicitantes">Solicitantes</a></li>
                 	<li><a href="departamentos">Departamentos</a></li>

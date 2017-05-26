@@ -34,7 +34,7 @@ public class EmployeesController {
 	
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ModelAndView save(Employee employee, @RequestParam(value="funcaoId") int functionId, @RequestParam(value="lotacaoId") int departmentId, @RequestParam(value="responsavelId", required=false) Integer employeeId, RedirectAttributes redirectAttributes ){
+	public ModelAndView save(Employee employee, @RequestParam(value="functionId") int functionId, @RequestParam(value="departmentId") int departmentId, @RequestParam(value="employeeId", required=false) Integer employeeId, RedirectAttributes redirectAttributes ){
 		System.out.println("Cadastrando o servidor "+employee);
 		
 		ModelAndView modelAndView;
@@ -63,12 +63,12 @@ public class EmployeesController {
 		
 	}
 	
-	@RequestMapping("/servidores/form")
-	public String form(){
-		return "servidores/form";
-		
-	}
-	
+//	@RequestMapping("/servidores/form")
+//	public String form(){
+//		return "servidores/form";
+//		
+//	}
+//	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView list(){
 		ModelAndView modelAndView = new ModelAndView("servidores/list");	

@@ -7,7 +7,7 @@ import javax.persistence.PersistenceContext;
 
 public abstract class GenericDAO<T> {
 	
-	DAOUtility<T> daoU = new DAOUtility<>();
+	//DAOUtility<T> daoU = new DAOUtility<>();
 	
 	@PersistenceContext
 	protected EntityManager manager;

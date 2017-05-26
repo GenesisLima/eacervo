@@ -25,12 +25,12 @@
       <div class="jumbotron">
       <!--  <h2>Cadastro de Servidor.</h2>-->
 <div class="panel panel-default">
-  <div class="panel-heading">Cadastrar Tipo de Produto</div>
+  <div class="panel-heading">Cadastrar Grupo de Produto</div>
   <div class="panel-body">
-        <form role="form" method="post" action="/eacervo/tiposprodutos">
+        <form role="form" method="post" action="/eacervo/gruposprodutos">
            <div class="form-group">
     <label for="product_id">ID:</label>
-    <input type="text" class="form-control" id="product_type_id" name="product_type_id" disabled>
+    <input type="text" class="form-control" id="product_group_id" name="product_group_id" disabled>
   </div>
            <div class="form-group">
               <label for="name">Nome:</label>

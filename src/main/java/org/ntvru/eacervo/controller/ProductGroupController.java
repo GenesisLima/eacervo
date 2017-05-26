@@ -3,7 +3,7 @@ package org.ntvru.eacervo.controller;
 import javax.transaction.Transactional;
 
 import org.ntvru.eacervo.dao.GenericDAO;
-import org.ntvru.eacervo.models.Product;
+import org.ntvru.eacervo.models.ProductGroup;
 import org.ntvru.eacervo.models.ProductType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,24 +16,24 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Transactional
-@RequestMapping("/tiposprodutos")
-public class ProductTypeController {
+@RequestMapping("/gruposprodutos")
+public class ProductGroupController {
 
 	@Autowired
-	private GenericDAO<ProductType> productTypeDAO;
+	private GenericDAO<ProductGroup> productGroupDAO;
 	
 
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ModelAndView save(ProductType product, RedirectAttributes redirectAttributes){
+	public ModelAndView save(ProductGroup product, RedirectAttributes redirectAttributes){
 		ModelAndView modelAndView;
 		System.out.println("DEPT ID :"+product.getId());
  		if(product.getId()==0){
- 			productTypeDAO.save(product);
-		modelAndView = new ModelAndView("redirect:tiposprodutos");
+ 			productGroupDAO.save(product);
+		modelAndView = new ModelAndView("redirect:gruposprodutos");
  		}else{
- 			productTypeDAO.save(product);
- 			modelAndView = new ModelAndView("/tiposprodutos/list");
+ 			productGroupDAO.save(product);
+ 			modelAndView = new ModelAndView("/gruposprodutos/list");
  		}
 		String info = "success";
 		String mensagem = "Produto Cadastrado com sucesso!";		
@@ -45,15 +45,16 @@ public class ProductTypeController {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView list(){
-		ModelAndView modelAndView = new ModelAndView("/tiposprodutos/list");	
-		modelAndView.addObject("productTypes",productTypeDAO.list());		
+		ModelAndView modelAndView = new ModelAndView("/gruposprodutos/list");	
+		modelAndView.addObject("productGroups",productGroupDAO.list());		
 		return modelAndView; 
 	}
+	
 	@RequestMapping(value="/remove/{id}",method=RequestMethod.GET)
 	public ModelAndView remove(@PathVariable("id") int id){		
-		this.productTypeDAO.remove(id);
-		ModelAndView modelAndView = new ModelAndView("redirect:/tiposprodutos");
-		modelAndView.addObject("productTypes",productTypeDAO.list());
+		this.productGroupDAO.remove(id);
+		ModelAndView modelAndView = new ModelAndView("redirect:/gruposprodutos");
+		modelAndView.addObject("productGroups",productGroupDAO.list());
 		return modelAndView;
 	}
 	
