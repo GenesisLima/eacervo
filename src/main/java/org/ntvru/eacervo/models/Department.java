@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-@Entity
+@Entity(name="DEPARTAMENT")
 public class Department implements Serializable{
 
 	@Id

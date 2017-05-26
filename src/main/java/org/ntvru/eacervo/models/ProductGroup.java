@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity	
+@Entity(name="PRODUCT_GROUP")	
 public class ProductGroup implements Serializable {
 
 	
@@ -63,7 +63,7 @@ public class ProductGroup implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ProductGroupg other = (ProductGroupg) obj;
+		ProductGroup other = (ProductGroup) obj;
 		if (id != other.id)
 			return false;
 		return true;
