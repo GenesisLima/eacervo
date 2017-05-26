@@ -25,12 +25,12 @@
       <div class="jumbotron">
       <!--  <h2>Cadastro de Servidor.</h2>-->
 <div class="panel panel-default">
-  <div class="panel-heading">Cadastrar Produto</div>
+  <div class="panel-heading">Cadastrar Tipo de Produto</div>
   <div class="panel-body">
-        <form role="form" method="post" action="/eacervo/produtos">
+        <form role="form" method="post" action="/eacervo/tiposprodutos">
            <div class="form-group">
     <label for="product_id">ID:</label>
-    <input type="text" class="form-control" id="product_id" name="product_id" disabled>
+    <input type="text" class="form-control" id="product_type_id" name="product_type_id" disabled>
   </div>
            <div class="form-group">
               <label for="name">Nome:</label>
@@ -42,8 +42,8 @@
               </div>
            </div>
            <div class="form-group">
-              <label for="obtainment">Obten&ccedil;&atilde;o:</label>
-              <textarea type="text" class="form-control" id="obtainment" name="obtainment"></textarea>
+              <label for="obtainment">Descri&ccedil;&atilde;o:</label>
+              <textarea type="text" class="form-control" id="description" name=""description""></textarea>
            </div>
 
           <!-- Trigger the modal with a button -->

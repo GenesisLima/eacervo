@@ -22,6 +22,7 @@
               <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cadastro <span class="caret"></span></a></a>
                 <ul class="dropdown-menu">
                   <li><a href="servidor">Servidor</a></li>
+                   <li><a href="tipoproduto"> Tipo de Produto</a></li>
                   <li><a href="produto">Produto</a></li>
                   <li><a href="area">&Aacute;rea</a></li>
                   <li><a href="solicitante">Solicitante</a></li>
