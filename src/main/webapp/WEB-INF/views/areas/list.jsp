@@ -60,12 +60,7 @@
   
       </datatables:column>
     </datatables:table>
-  <div class="pagination-centered">
-   <ul class="pagination">
-    <input type="hidden" id="selected_value" value="3"></input>
-    <input type="hidden" id="max_value" value="10"></input>
-   </ul> 
-  </div>
+
       </div>
 
      

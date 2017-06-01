@@ -7,7 +7,10 @@ import javax.transaction.Transactional;
 import org.ntvru.eacervo.dao.DepartmentDAO;
 import org.ntvru.eacervo.dao.EmployeeDAO;
 import org.ntvru.eacervo.dao.FunctionDAO;
+import org.ntvru.eacervo.dao.GenericDAO;
+import org.ntvru.eacervo.models.Department;
 import org.ntvru.eacervo.models.Employee;
+import org.ntvru.eacervo.models.Function;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,13 +27,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class EmployeesController {
     
 	@Autowired
-	private EmployeeDAO employeeDAO;
+	private GenericDAO<Employee> employeeDAO;
 	
 	@Autowired
-	private FunctionDAO functionDAO;
+	private GenericDAO<Function> functionDAO;
 	
 	@Autowired
-	private DepartmentDAO departamentDAO;
+	private GenericDAO<Department> departamentDAO;
 	
 	
 	@RequestMapping(method=RequestMethod.POST)

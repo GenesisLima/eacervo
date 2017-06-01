@@ -23,7 +23,7 @@ public class Product implements Serializable {
 	private String name;
 	
 	@ManyToOne
-	@JoinColumn(name="fk_topic")
+	@JoinColumn(name="fk_product_topic")
 	private Topic topic;
 	
 	private String obtainment;
@@ -97,6 +97,24 @@ public class Product implements Serializable {
 
 	public void setTeam(Team team) {
 		this.team = team;
+	}
+	
+	
+
+	public ProductGroup getProductGroup() {
+		return productGroup;
+	}
+
+	public void setProductGroup(ProductGroup productGroup) {
+		this.productGroup = productGroup;
+	}
+
+	public ProductType getProductType() {
+		return productType;
+	}
+
+	public void setProductType(ProductType productType) {
+		this.productType = productType;
 	}
 
 	@Override

@@ -48,25 +48,19 @@
 <!--   </table> -->
 <!--   </div> -->
  <!-- <a id="reload" href="">Click me to refresh the table!</a> -->
-    <datatables:table id="areasTable" row="product" data="${products}"   theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
+    <datatables:table id="seasonsTable" row="season" data="${seasons}"   theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
         
         <datatables:column title="ID" property="id"   />
-        <datatables:column title="PRODUTO" property="name"/>
+        <datatables:column title="TEMPORADA" property="name"/>
 <%--        	<datatables:column title="DESCRIÇÃO" property="description" />  --%>
       <datatables:column title="AÇÃO" >
        
-   <a href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-id="${product.id}" data-name="${product.name}"  data-obtainment="${product.obtainment}" data-partner="${product.partner}" data-target="#myModal" onclick="setValues()">Editar</a>
-   <a href="/eacervo/produtos/remove/${product.id}" class="btn btn-info" role="button">Remover</a>
+   <a href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-id="${season.id}" data-name="${season.name}" data-description="${season.description}" data-target="#myModal" onclick="setValues()">Editar</a>
+   <a href="/eacervo/temporadas/remove/${season.id}" class="btn btn-info" role="button">Remover</a>
   
       </datatables:column>
     </datatables:table>
-  <div class="pagination-centered">
-   <ul class="pagination">
-    <input type="hidden" id="selected_value" value="3"></input>
-    <input type="hidden" id="max_value" value="10"></input>
-   </ul> 
-  </div>
-      </div>
+        </div>
 
      
       
@@ -74,47 +68,19 @@
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
- <form role="form" class="area">
+ 
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Produto</h4>
+        <h4 class="modal-title">Temporada</h4>
       </div>
       <div class="modal-body">
-<!--         <p>Fun&ccedil;&atilde;o</p> -->
-        
-        <div class="form-group">
-              <label for="id">ID:</label>
-              <div class="input-group">
-              <input type="text" class="form-control" id="id" name="id" >
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>&nbsp;</button>
-              </span>
-              </div>
-           </div>
+     <jsp:include page="../temporadas/form.jsp" ></jsp:include>
 
-           <div class="form-group">                     
-              <label for="name">Produto</label>
-              <input type="text" class="form-control"  name="name" id="name"></input>             
-           </div>
-
-           <div class="form-group">
-              <label for="obtainment">Obten&ccedil;&atilde;o:</label>
-              <textarea type="text"  class="form-control" name="obtainment" id="obtainment"></textarea>
-           </div>
-               <div class="form-group">
-              <label for="partner">Parceiro:</label>
-              <textarea type="text"  class="form-control" name="partner" id="partner"></textarea>
-           </div>
-           <div class="form-group">
-              <label for="productionCost">Custo de Produção:</label>
-              <textarea type="text"  class="form-control" name="productionCost" id="productionCost"></textarea>
-           </div>
-  </form><!-- /end form-->
       </div>
       <div class="modal-footer">
-        <button id="submit" class="btn btn-default" data-dismiss="modal" onclick="refreshModal()">Salvar</button>
+<!--         <button id="submit" class="btn btn-default" data-dismiss="modal" onclick="refreshModal()">Salvar</button> -->
         <a href="#" class="btn btn-default" data-dismiss="modal" onclick="refreshModal()">Close</a>
       </div>
     
@@ -130,9 +96,9 @@
         	  var button = $(e.relatedTarget)
         	  console.log('Botao: '+button)
         	  // Button that triggered the modal
-        	  //var recipient = button.data('id')
-        	 // var name = button.data('name')
-        	  
+//         	  var recipient = 
+//         	  var name = 
+//         	  var desc = 
         	  // Extract info from data-* attributes
         	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
@@ -140,9 +106,7 @@
         	      	 
         	  modal.find('#id').val(button.data('id'))
         	  modal.find('#name').val(button.data('name'))
-        	   modal.find('#obtainment').val(button.data('obtainment'))
-        	   modal.find('#partner').val(button.data('partner'))
-        	
+        	  modal.find('#description').val(button.data('description'))
         	  
         	  
         	})
@@ -153,8 +117,8 @@
  $("button#submit").click(function(){
          $.ajax({
      type: "POST",
- url: "/eacervo/areas",
- data: $('form.area').serialize(),
+ url: "/eacervo/temporadas",
+ data: $('form.temporada').serialize(),
          success: function(msg){
                  $("#thanks").html(msg)
         $("#form-content").modal('hide'); 
@@ -181,19 +145,19 @@
         });
        }
         
-        $("#search").keyup(function(e){
-        	if(e.which == 13){        		
-          		$.ajax({url:"/eacervo/funcoes",
-    		        type:"get",
-    		        data:{},
-    		        success: function(response){
-    		         //  $('table#resultTable tbody').html(response);
+//         $("#search").keyup(function(e){
+//         	if(e.which == 13){        		
+//           		$.ajax({url:"/eacervo/funcoes",
+//     		        type:"get",
+//     		        data:{},
+//     		        success: function(response){
+//     		        //  $('table#resultTable tbody').html(response);
     		         
-    		          }
-    		});
-        	}
+//     		          }
+//     		});
+//         	}
   
-		});
+// 		});
         
         
 

@@ -1,18 +1,3 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@ taglib prefix="datatables" uri="http://github.com/dandelion/datatables" %>
-    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-<jsp:include page="../templates/head.jsp" ></jsp:include>
-</head>
-<body>
 <div class="container">
 
       <jsp:include page="../templates/menu.jsp" ></jsp:include>
@@ -39,7 +24,7 @@
            <div class="form-group">
             <label for="function">Fun&ccedil;&atilde;o:</label>
             <div class="input-group">                            
-              <input type="text" class="form-control" id="function" disabled>
+              <input type="text" class="form-control" id="function" readonly="readonly" value="0">
               <input type="hidden" id="functionId" name="functionId" />
               <span class="input-group-btn">
               <a  class="btn btn-default" role="button" data-toggle="modal"  data-target="#modalFuncao" ><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
@@ -50,7 +35,7 @@
            <div class="form-group">
               <label for="department">Lota&ccedil;&atilde;o:</label>
               <div class="input-group">                            
-              <input type="text" class="form-control" id="department" disabled>
+              <input type="text" class="form-control" id="department" readonly="readonly" value="0">
                  <input type="hidden" id="departmentId" name="departmentId" />
               <span class="input-group-btn">
               <a  class="btn btn-default" role="button" data-toggle="modal" data-target="#modalLotacao"><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
@@ -67,7 +52,7 @@
            <div class="form-group">
               <label for="employee">Respons&aacute;vel:</label>
              <div class="input-group">                            
-              <input type="text" class="form-control" id="employee" disabled>
+              <input type="text" class="form-control" id="employee" readonly="readonly" value="0">
               <input type="hidden" id="employeeId" name="employeeId" />
               <span class="input-group-btn">
               <a  class="btn btn-default" role="button" name="responsible" data-toggle="modal" data-target="#modalResponsavel"><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
@@ -360,5 +345,3 @@
 //    	 });
 //    	});
 </script>
-</body>
-</html>

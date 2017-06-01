@@ -15,7 +15,7 @@ import javax.persistence.NamedQuery;
 public class Topic implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="fk_topic")
+    @Column(name="topic_id")
 	private int id;
     private String name;
     private String description;

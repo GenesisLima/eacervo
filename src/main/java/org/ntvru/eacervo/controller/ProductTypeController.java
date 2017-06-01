@@ -1,15 +1,19 @@
 package org.ntvru.eacervo.controller;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.ntvru.eacervo.dao.GenericDAO;
 import org.ntvru.eacervo.models.Product;
+import org.ntvru.eacervo.models.ProductGroup;
 import org.ntvru.eacervo.models.ProductType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -55,6 +59,12 @@ public class ProductTypeController {
 		ModelAndView modelAndView = new ModelAndView("redirect:/tiposprodutos");
 		modelAndView.addObject("productTypes",productTypeDAO.list());
 		return modelAndView;
+	}
+	
+	@RequestMapping(value="/productTypesJSON", method=RequestMethod.GET)
+	public @ResponseBody List<ProductType> listgroupsJSON(){	
+		System.out.println("REQUEST "+this.toString()+" AJAX ");
+		return productTypeDAO.list();
 	}
 	
 }

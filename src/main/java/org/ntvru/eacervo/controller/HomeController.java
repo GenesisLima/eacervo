@@ -32,16 +32,16 @@ public class HomeController {
 	}
 	@RequestMapping("/servidor")
 	public String getEmployeeRegisterPage(){
-		return "servidores/form";		
+		return "servidores/view";		
 	}
 	
 	@RequestMapping("/produto")
 	public String getProductRegisterPage(){
-		return "produtos/form";
+		return "produtos/view";
 	}
 	@RequestMapping("/area")
 	public String getAreaRegisterPage(){
-		return "areas/form";
+		return "areas/view";
 	}
 	@RequestMapping("/solicitante")
 	public String getRequestorPage(){		
@@ -49,36 +49,41 @@ public class HomeController {
 	}
 	@RequestMapping("/tema")
 	public String getTopicRegisterPage(){
-		return "temas/form";		
+		return "temas/view";		
 	}
 	@RequestMapping("/tipomidia")
 	public String getMediaRegisterPage(){
-		return	"tiposmidia/form";	
+		return	"tiposmidias/view";	
 	}
 	
 	@RequestMapping("/procedimento")
 	public String getProcedureRegisterPage(){
-		return "procedimentos/form";
+		return "procedimentos/view";
 	}
 	
 	@RequestMapping("/funcao")
 	public String getFunctionRegisterPage(){
 		
-	   return "funcoes/form";	
+	   return "funcoes/view";	
 	}
 	@RequestMapping("/departamento")
 	public String getDepartmentRegisterPage(){
-		return "departamentos/form";
+		return "departamentos/view";
 	}
 	
 	@RequestMapping("/tipoproduto")
 	public String getProductTypeRegisterPage(){
-		return "tiposprodutos/form";
+		return "tiposprodutos/view";
 	}
 	
 	@RequestMapping("/grupoproduto")
 	public String getProductGroupRegisterPage(){
-		return "gruposprodutos/form";
+		return "gruposprodutos/view";
+	}
+	
+	@RequestMapping("/temporada")
+	public String getSeasonGroupRegisterPage(){
+		return "temporadas/view";
 	}
 	
 }

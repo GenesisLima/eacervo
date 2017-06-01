@@ -30,6 +30,7 @@
                   <li><a href="departamento">Departamento</a></li>
                   <li><a href="responsavel">Respons&aacute;vel</a></li>
                   <li><a href="tema">Tema</a></li>
+                   <li><a href="temporada">Temporada</a></li>
                    <li><a href="funcao">Fun&ccedil;&atilde;o</a></li>
                   <li><a href="procedimento">Procedimento</a></li>
                   <li><a href="tipomidia">Tipo de M&iacute;dia</a></li>
@@ -46,6 +47,7 @@
                 	<li><a href="solicitantes">Solicitantes</a></li>
                 	<li><a href="departamentos">Departamentos</a></li>
                 	<li><a href="temas">Temas</a></li>
+                	<li><a href="temporadas">Temporadas</a></li>
                 	<li><a href="funcoes">Fun&ccedil;&otilde;es</a></li>
                 	<li><a href="procedimentos">Procedimentos</a></li>
                 	<li><a href="tiposMidias">Tipo de M&iacute;dias</a></li>

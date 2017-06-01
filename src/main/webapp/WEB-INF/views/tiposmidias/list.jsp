@@ -48,15 +48,15 @@
 <!--   </table> -->
 <!--   </div> -->
  <!-- <a id="reload" href="">Click me to refresh the table!</a> -->
-    <datatables:table id="areasTable" row="product" data="${products}"   theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
+    <datatables:table id="productTypeTable" row="productType" data="${productTypes}"   theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
         
         <datatables:column title="ID" property="id"   />
-        <datatables:column title="PRODUTO" property="name"/>
+        <datatables:column title="TIPO PRODUTO" property="name"/>
 <%--        	<datatables:column title="DESCRIÇÃO" property="description" />  --%>
       <datatables:column title="AÇÃO" >
        
-   <a href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-id="${product.id}" data-name="${product.name}"  data-obtainment="${product.obtainment}" data-partner="${product.partner}" data-target="#myModal" onclick="setValues()">Editar</a>
-   <a href="/eacervo/produtos/remove/${product.id}" class="btn btn-info" role="button">Remover</a>
+   <a href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-id="${productType.id}" data-name="${productType.name}" data-description="${productType.description}" data-target="#myModal" onclick="setValues()">Editar</a>
+   <a href="/eacervo/tiposprodutos/remove/${productType.id}" class="btn btn-info" role="button">Remover</a>
   
       </datatables:column>
     </datatables:table>
@@ -74,12 +74,12 @@
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
- <form role="form" class="area">
+ <form role="form" class="tiposprodutos">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Produto</h4>
+        <h4 class="modal-title">Tipo de Produto</h4>
       </div>
       <div class="modal-body">
 <!--         <p>Fun&ccedil;&atilde;o</p> -->
@@ -95,21 +95,13 @@
            </div>
 
            <div class="form-group">                     
-              <label for="name">Produto</label>
+              <label for="name">Tipo de Produto</label>
               <input type="text" class="form-control"  name="name" id="name"></input>             
            </div>
 
            <div class="form-group">
-              <label for="obtainment">Obten&ccedil;&atilde;o:</label>
-              <textarea type="text"  class="form-control" name="obtainment" id="obtainment"></textarea>
-           </div>
-               <div class="form-group">
-              <label for="partner">Parceiro:</label>
-              <textarea type="text"  class="form-control" name="partner" id="partner"></textarea>
-           </div>
-           <div class="form-group">
-              <label for="productionCost">Custo de Produção:</label>
-              <textarea type="text"  class="form-control" name="productionCost" id="productionCost"></textarea>
+              <label for="description">Descri&ccedil;&atilde;o:</label>
+              <textarea type="text"  class="form-control" name="description" id="description"></textarea>
            </div>
   </form><!-- /end form-->
       </div>
@@ -130,18 +122,18 @@
         	  var button = $(e.relatedTarget)
         	  console.log('Botao: '+button)
         	  // Button that triggered the modal
-        	  //var recipient = button.data('id')
-        	 // var name = button.data('name')
+        	  var recipient = button.data('id')
+        	  var name = button.data('name')
+        	   var description= button.data('description')
         	  
         	  // Extract info from data-* attributes
         	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
         	  var modal = $(this);
         	      	 
-        	  modal.find('#id').val(button.data('id'))
-        	  modal.find('#name').val(button.data('name'))
-        	   modal.find('#obtainment').val(button.data('obtainment'))
-        	   modal.find('#partner').val(button.data('partner'))
+        	  modal.find('#id').val(recipient)
+        	  modal.find('#name').val(name)
+        	  modal.find('#description').val(description)
         	
         	  
         	  
@@ -153,8 +145,8 @@
  $("button#submit").click(function(){
          $.ajax({
      type: "POST",
- url: "/eacervo/areas",
- data: $('form.area').serialize(),
+ url: "/eacervo/tiposprodutos",
+ data: $('form.tiposprodutos').serialize(),
          success: function(msg){
                  $("#thanks").html(msg)
         $("#form-content").modal('hide'); 
@@ -183,7 +175,7 @@
         
         $("#search").keyup(function(e){
         	if(e.which == 13){        		
-          		$.ajax({url:"/eacervo/funcoes",
+          		$.ajax({url:"/eacervo/tiposprodutos",
     		        type:"get",
     		        data:{},
     		        success: function(response){
