@@ -4,63 +4,71 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-@Entity(name="PUBLISHING")
-public class Publishing implements Serializable{
+@Entity
+public class Exhibition implements Serializable{
 
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Column(name="publishing_id")
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	@ManyToOne
+	@JoinColumn(name="fk_exhibition_publishing")
+	private Publishing publishing;
+	@ManyToOne
+	@JoinColumn(name="fk_exhibition_episode")
+	private Episode episode;
 	
-	private String name;
-	
-	private String description;
 	
 	@Column(columnDefinition="char(1) default 'A'")
     private String status = "A";
+
 
 	public int getId() {
 		return id;
 	}
 
+
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	
 
-	public String getName() {
-		return name;
+	public Publishing getPublishing() {
+		return publishing;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+
+	public void setPublishing(Publishing publishing) {
+		this.publishing = publishing;
 	}
 
-	public String getDescription() {
-		return description;
+
+	public Episode getEpisode() {
+		return episode;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+
+	public void setEpisode(Episode episode) {
+		this.episode = episode;
 	}
 
-	
+
 	public String getStatus() {
 		return status;
 	}
 
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 
 	@Override
 	public int hashCode() {
@@ -70,6 +78,7 @@ public class Publishing implements Serializable{
 		return result;
 	}
 
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -78,18 +87,19 @@ public class Publishing implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Publishing other = (Publishing) obj;
+		Exhibition other = (Exhibition) obj;
 		if (id != other.id)
 			return false;
 		return true;
 	}
 
+
 	@Override
 	public String toString() {
-		return "Publishing [id=" + id + ", description=" + description + "]";
+		return "Exhibition [id=" + id + ", publishing=" + publishing
+				+ ", episode=" + episode + ", status=" + status + "]";
 	}
-
-
+	
 	
 	
 	

@@ -63,8 +63,7 @@ public class HomeController {
 	
 	@RequestMapping("/funcao")
 	public String getFunctionRegisterPage(){
-		
-	   return "funcoes/view";	
+		return "funcoes/view";	
 	}
 	@RequestMapping("/departamento")
 	public String getDepartmentRegisterPage(){
@@ -84,6 +83,11 @@ public class HomeController {
 	@RequestMapping("/temporada")
 	public String getSeasonGroupRegisterPage(){
 		return "temporadas/view";
+	}
+	
+	@RequestMapping("/veiculacao")
+	public String getPublishingGroupRegisterPage(){
+		return "veiculacoes/view";
 	}
 	
 }

@@ -34,6 +34,7 @@
                    <li><a href="funcao">Fun&ccedil;&atilde;o</a></li>
                   <li><a href="procedimento">Procedimento</a></li>
                   <li><a href="tipomidia">Tipo de M&iacute;dia</a></li>
+                  <li><a href=veiculacao>Veicula&ccedil;&atilde;o</a></li>
                   <li><a href="sistematica">Sistem&aacute;tica de  Produ&ccedil;&atilde;o</a></li>
 
                 </ul><!-- /. ul dropdown-menu-->
@@ -51,6 +52,7 @@
                 	<li><a href="funcoes">Fun&ccedil;&otilde;es</a></li>
                 	<li><a href="procedimentos">Procedimentos</a></li>
                 	<li><a href="tiposMidias">Tipo de M&iacute;dias</a></li>
+                	<li><a href="veiculacoes">Veicula&ccedil;&otilde;es</a></li>
                  </ul>
 
               </li><!-- /.li dropdown-->
