@@ -90,4 +90,14 @@ public class HomeController {
 		return "veiculacoes/view";
 	}
 	
+	@RequestMapping("/episodio")
+	public String getEpisodeGroupRegisterPage(){
+		return "episodios/view";
+	}
+	
+	@RequestMapping("/bloco")
+	public String getBlockGroupRegisterPage(){
+		return "blocos/view";
+	}
+	
 }

@@ -17,16 +17,7 @@ public class EmployeeDAO extends GenericDAO<Employee>{
 		manager.merge(employee);
 	}
 
-	@Override
-	public List<Employee> list() {
-		return manager.createQuery("select e from EMPLOYEE e where e.status='A'").getResultList();
-	}
-
-	@Override
-	public void remove(int id) {
-		manager.createQuery("update EMPLOYEE a set a.status='D' where a.id="+id).executeUpdate();
-		
-	}
+	
 
 	@Override
 	public Employee getById(int id) {

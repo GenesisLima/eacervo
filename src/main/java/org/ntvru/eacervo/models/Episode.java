@@ -2,8 +2,11 @@ package org.ntvru.eacervo.models;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,6 +31,18 @@ public class Episode implements Serializable {
 	private String name;
 	private String description;
 	
+	@ElementCollection
+		@CollectionTable(name="BLOCK",joinColumns=@JoinColumn(name="episode_id"))
+	private List<Block> blocks;
+	
+	
+	
+	public List<Block> getBlocks() {
+		return blocks;
+	}
+	public void setBlocks(List<Block> blocks) {
+		this.blocks = blocks;
+	}
 	@Column(columnDefinition="char(1) default 'A'")
     private String status = "A";
 	
