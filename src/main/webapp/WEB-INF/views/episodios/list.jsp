@@ -3,7 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="datatables" uri="http://github.com/dandelion/datatables" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 
 <head>
@@ -48,24 +48,19 @@
 <!--   </table> -->
 <!--   </div> -->
  <!-- <a id="reload" href="">Click me to refresh the table!</a> -->
-    <datatables:table id="areasTable" row="product" data="${products}"   theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
+    <datatables:table id="areasTable" row="area" data="${areas}"   theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
         
         <datatables:column title="ID" property="id"   />
-        <datatables:column title="PRODUTO" property="name"/>
+        <datatables:column title="ÁREA" property="name"/>
 <%--        	<datatables:column title="DESCRIÇÃO" property="description" />  --%>
       <datatables:column title="AÇÃO" >
        
-   <a href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-id="${product.id}" data-name="${product.name}"  data-obtainment="${product.obtainment}" data-partner="${product.partner}" data-target="#myModal" onclick="setValues()">Editar</a>
-   <a href="/eacervo/produtos/remove/${product.id}" class="btn btn-info" role="button">Remover</a>
+   <a href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-id="${area.id}" data-area="${area.name}" data-description="${area.description}" data-target="#myModal" onclick="setValues()">Editar</a>
+   <a href="/eacervo/areas/remove/${area.id}" class="btn btn-info" role="button">Remover</a>
   
       </datatables:column>
     </datatables:table>
-  <div class="pagination-centered">
-   <ul class="pagination">
-    <input type="hidden" id="selected_value" value="3"></input>
-    <input type="hidden" id="max_value" value="10"></input>
-   </ul> 
-  </div>
+
       </div>
 
      
@@ -79,7 +74,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Produto</h4>
+        <h4 class="modal-title">&Aacute;rea</h4>
       </div>
       <div class="modal-body">
 <!--         <p>Fun&ccedil;&atilde;o</p> -->
@@ -95,21 +90,13 @@
            </div>
 
            <div class="form-group">                     
-              <label for="name">Produto</label>
-              <input type="text" class="form-control"  name="name" id="name"></input>             
+              <label for="area">&Aacute;rea</label>
+              <input type="text" class="form-control"  name="name" id="area"></input>             
            </div>
 
            <div class="form-group">
-              <label for="obtainment">Obten&ccedil;&atilde;o:</label>
-              <textarea type="text"  class="form-control" name="obtainment" id="obtainment"></textarea>
-           </div>
-               <div class="form-group">
-              <label for="partner">Parceiro:</label>
-              <textarea type="text"  class="form-control" name="partner" id="partner"></textarea>
-           </div>
-           <div class="form-group">
-              <label for="productionCost">Custo de Produção:</label>
-              <textarea type="text"  class="form-control" name="productionCost" id="productionCost"></textarea>
+              <label for="description">Descri&ccedil;&atilde;o:</label>
+              <textarea type="text"  class="form-control" name="description" id="description"></textarea>
            </div>
   </form><!-- /end form-->
       </div>
@@ -130,19 +117,17 @@
         	  var button = $(e.relatedTarget)
         	  console.log('Botao: '+button)
         	  // Button that triggered the modal
-        	  //var recipient = button.data('id')
-        	 // var name = button.data('name')
-        	  
+        	  var recipient = button.data('id')
+        	  var name = button.data('area')
+        	  var desc = button.data('description')
         	  // Extract info from data-* attributes
         	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
         	  var modal = $(this);
         	      	 
-        	  modal.find('#id').val(button.data('id'))
-        	  modal.find('#name').val(button.data('name'))
-        	   modal.find('#obtainment').val(button.data('obtainment'))
-        	   modal.find('#partner').val(button.data('partner'))
-        	
+        	  modal.find('#id').val(recipient)
+        	  modal.find('#area').val(name)
+        	  modal.find('#description').val(desc)
         	  
         	  
         	})
@@ -187,7 +172,7 @@
     		        type:"get",
     		        data:{},
     		        success: function(response){
-    		         //  $('table#resultTable tbody').html(response);
+    		        //  $('table#resultTable tbody').html(response);
     		         
     		          }
     		});

@@ -2,6 +2,7 @@ package org.ntvru.eacervo.dao;
 
 import java.util.List;
 
+import org.ntvru.eacervo.models.Area;
 import org.ntvru.eacervo.models.Department;
 import org.ntvru.eacervo.models.Function;
 import org.springframework.stereotype.Repository;
@@ -10,18 +11,11 @@ import org.springframework.stereotype.Repository;
 public class DepartmentDAO extends GenericDAO<Department> {
 
 	
+	public DepartmentDAO() {
+		super.daoU = new DAOUtility<Department>();
+		super.daoU.reflect(this);
+		}
 	
-	@Override
-	public List<Department> list() {
-		return manager.createQuery("select d from DEPARTMENT d where d.status='A'").getResultList();
-		
-	}
-
-	@Override
-	public void remove(int id) {
-		manager.createQuery("update DEPARTMENT d set d.status='D' where d.id="+id).executeUpdate();	
-		
-	}
 
 	@Override
 	public Department getById(int id) {

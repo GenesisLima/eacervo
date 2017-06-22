@@ -12,14 +12,16 @@ public class TestReflection {
 
 	public static void main(String[] args) {
 		Type type = DepartmentDAO.class.getGenericSuperclass();
-	    System.out.println(type); 
+	   // System.out.println(type); 
 	    ParameterizedType pt = (ParameterizedType) type;
 	   // Class<T implements Serializable> paramType = pt.getActualTypeArguments()[0];
 	    //System.out.println(((Class)pt.getActualTypeArguments()[0]).getSimpleName());
-	    //System.out.println(pt.getTypeName());
-	   //System.out.println(pt.getRawType());	    
+	  //  System.out.println(type.getTypeName());
+	   System.out.println(pt.getRawType());	    
 
-	    new DAOUtility().reflect(new AreaDAO());
+	    //new DAOUtility().reflect(new AreaDAO());
+	   AreaDAO a = new AreaDAO();
+	   a.getById(1);
 	   
 	}
 

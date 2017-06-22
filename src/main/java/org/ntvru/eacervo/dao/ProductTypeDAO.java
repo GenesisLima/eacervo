@@ -9,24 +9,22 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ProductTypeDAO extends GenericDAO<ProductType> {
 
-	@Override
-	public List<ProductType> list() {
-		
-		return manager.createQuery("select p from PRODUCT_TYPE p",ProductType.class).getResultList();
-	}
-
-	@Override
-	public void remove(int id) {
-		manager.createQuery("update PRODUCT_TYPE p set p.status='D' where p.id="+id).executeUpdate();
-		
+	public ProductTypeDAO() {
+	   super.daoU = new DAOUtility<ProductType>();
+	   super.daoU.reflect(this);
 	}
 
 	@Override
 	public ProductType getById(int id) {
 		
-		return manager.createQuery("select p from PRODUCT_TYPE p where p.id ="+id,ProductType.class).getSingleResult();
+		return manager.createQuery("select p from ProductType p where p.id ="+id,ProductType.class).getSingleResult();
 	}
 
+	public List<ProductType> getAll(){
+		
+		
+		return manager.createQuery( "select t from ProductType t where t.status='A'", daoU.getEntityClass()).getResultList();
+	}
 
 
 }

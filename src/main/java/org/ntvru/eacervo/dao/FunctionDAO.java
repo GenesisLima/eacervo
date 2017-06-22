@@ -18,15 +18,13 @@ public class FunctionDAO extends GenericDAO<Function>{
 //	public void save(Function function){		
 //		super.save(function);
 //	}
-
-	public List<Function> list(){		
-		return manager.createQuery("select f from FUNCTION f where f.status='A'").getResultList();
-	}
-
-	public void remove(int id) {
-		manager.createQuery("update FUNCTION f set f.status='D' where f.id="+id).executeUpdate();	
+	
+	public FunctionDAO(){
+		super.daoU = new DAOUtility<Function>();
+		super.daoU.reflect(this);
 		
 	}
+
 	
 	public Function getById(int id){
 		

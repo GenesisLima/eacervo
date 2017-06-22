@@ -5,6 +5,8 @@ import java.util.Properties;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import org.hibernate.cfg.Mappings;
+import org.ntvru.eacervo.models.ProductType;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -16,6 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableTransactionManagement
 public class JPAConfiguration {
+	
            @Bean
 	       public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
 	    	    LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
@@ -23,7 +26,7 @@ public class JPAConfiguration {
 	    	    em.setPackagesToScan(new String[]{"org.ntvru.eacervo.models"});
 	    	    
 	    	    JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-	    	    em.setJpaVendorAdapter(vendorAdapter);
+	    	    em.setJpaVendorAdapter(vendorAdapter);	    	    
 	    	    em.setJpaProperties(additionalProperties());
 	    	    return em;
 	    	   
@@ -35,15 +38,19 @@ public class JPAConfiguration {
         	    	dataSource.setUrl("jdbc:mysql://localhost:3306/eacervo_db");
         	    	dataSource.setUsername("root");
         	    	dataSource.setPassword("g3n351s");
+        	    	//dataSource.setPassword("#byt3c0d3");
         	   
         	   return dataSource;
            }
            
            private Properties additionalProperties(){
         	     Properties properties = new Properties();
+        	     //properties.setProperty("hibernate.hbm2ddl.auto", "create");
         	     properties.setProperty("hibernate.hbm2ddl.auto", "update");
         	     properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         	     properties.setProperty("hibernate.show_sql", "true");
+        	     
+        	     
         	   return properties;
            }
            
@@ -53,5 +60,7 @@ public class JPAConfiguration {
         	   transactionManager.setEntityManagerFactory(emf);
         	   return transactionManager;
            }
+           
+          
            
 }

@@ -9,19 +9,11 @@ import org.springframework.stereotype.Repository;
 public class ProceedingsDAO extends GenericDAO<Proceedings>{
 
 	
-	
-	
-	@Override
-	public List<Proceedings> list() {
-		
-		return manager.createQuery("select p from Proceedings p where p.status = 'A'").getResultList();
+	public ProceedingsDAO() {
+		super.daoU = new DAOUtility<Proceedings>();
+		super.daoU.reflect(this);
 	}
-
-	@Override
-	public void remove(int id) {
-		manager.createQuery("update Proceedings p set p.status='D' where p.id="+id);
-		
-	}
+	
 
 	@Override
 	public Proceedings getById(int id) {
