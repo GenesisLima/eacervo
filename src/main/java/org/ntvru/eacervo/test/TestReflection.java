@@ -12,7 +12,7 @@ public class TestReflection {
 
 	public static void main(String[] args) {
 		Type type = DepartmentDAO.class.getGenericSuperclass();
-	    System.out.println(type); 
+	    //System.out.println(type); 
 	    ParameterizedType pt = (ParameterizedType) type;
 	   // Class<T implements Serializable> paramType = pt.getActualTypeArguments()[0];
 	    //System.out.println(((Class)pt.getActualTypeArguments()[0]).getSimpleName());
