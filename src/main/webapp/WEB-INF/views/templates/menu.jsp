@@ -65,7 +65,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">A&ccedil;&otilde;es <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="temas/wizard/equipe">Montar Equipe</a></li>
-                  <li><a href="#">Montar Programa&ccedil;&atilde;o</a></li>
+                  <li><a href="programacao">Montar Programa&ccedil;&atilde;o</a></li>
                   <li><a href="#">Something else here</a></li>
                   <li role="separator" class="divider"></li>
                   <li class="dropdown-header">Nav header</li>

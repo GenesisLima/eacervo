@@ -100,4 +100,8 @@ public class HomeController {
 		return "blocos/view";
 	}
 	
+	@RequestMapping("/programacao")
+	public String getSchenduleRegisterPage(){
+		return "programacao/view";
+	}
 }
