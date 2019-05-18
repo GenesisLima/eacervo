@@ -7,7 +7,10 @@ import javax.transaction.Transactional;
 import org.ntvru.eacervo.dao.DepartmentDAO;
 import org.ntvru.eacervo.dao.EmployeeDAO;
 import org.ntvru.eacervo.dao.FunctionDAO;
+import org.ntvru.eacervo.dao.GenericDAO;
+import org.ntvru.eacervo.models.Department;
 import org.ntvru.eacervo.models.Employee;
+import org.ntvru.eacervo.models.Function;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,17 +27,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class EmployeesController {
     
 	@Autowired
-	private EmployeeDAO employeeDAO;
+	private GenericDAO<Employee> employeeDAO;
 	
 	@Autowired
-	private FunctionDAO functionDAO;
+	private GenericDAO<Function> functionDAO;
 	
 	@Autowired
-	private DepartmentDAO departamentDAO;
+	private GenericDAO<Department> departamentDAO;
 	
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ModelAndView save(Employee employee, @RequestParam(value="funcaoId") int functionId, @RequestParam(value="lotacaoId") int departmentId, @RequestParam(value="responsavelId", required=false) Integer employeeId, RedirectAttributes redirectAttributes ){
+	public ModelAndView save(Employee employee, @RequestParam(value="functionId") int functionId, @RequestParam(value="departmentId") int departmentId, @RequestParam(value="employeeId", required=false) Integer employeeId, RedirectAttributes redirectAttributes ){
 		System.out.println("Cadastrando o servidor "+employee);
 		
 		ModelAndView modelAndView;
@@ -63,12 +66,12 @@ public class EmployeesController {
 		
 	}
 	
-	@RequestMapping("/servidores/form")
-	public String form(){
-		return "servidores/form";
-		
-	}
-	
+//	@RequestMapping("/servidores/form")
+//	public String form(){
+//		return "servidores/form";
+//		
+//	}
+//	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView list(){
 		ModelAndView modelAndView = new ModelAndView("servidores/list");	

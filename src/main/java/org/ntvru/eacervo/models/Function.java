@@ -18,8 +18,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
 
-@Entity
-@NamedQueries({@NamedQuery(name="function.findAll",query="select f.id, f.function, f.description from Function f where f.status='A'")})
+@Entity(name="FUNCTION")
+@NamedQueries({@NamedQuery(name="FUNCTION.findAll",query="select f.id, f.function, f.description from FUNCTION f where f.status='A'")})
 public class Function implements Serializable {
     
 	@Id

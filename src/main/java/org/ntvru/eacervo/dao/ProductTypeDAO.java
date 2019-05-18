@@ -9,17 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ProductTypeDAO extends GenericDAO<ProductType> {
 
-	@Override
-	public List<ProductType> list() {
-		
-		return manager.createQuery("select p from PRODUCT_TYPE p",ProductType.class).getResultList();
-	}
-
-	@Override
-	public void remove(int id) {
-		manager.createQuery("update PRODUCT_TYPE p set p.status='D' where p.id="+id).executeUpdate();
-		
-	}
+	
 
 	@Override
 	public ProductType getById(int id) {
@@ -27,6 +17,11 @@ public class ProductTypeDAO extends GenericDAO<ProductType> {
 		return manager.createQuery("select p from PRODUCT_TYPE p where p.id ="+id,ProductType.class).getSingleResult();
 	}
 
+	@Override
+	public List<ProductType> list() {
+		// TODO Auto-generated method stub
+		return manager.createQuery("select a from PRODUCT_TYPE a where a.status='A'").getResultList();
+	}
 
 
 }

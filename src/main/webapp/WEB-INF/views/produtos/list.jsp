@@ -55,7 +55,7 @@
 <%--        	<datatables:column title="DESCRIÇÃO" property="description" />  --%>
       <datatables:column title="AÇÃO" >
        
-   <a href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-id="${product.id}" data-area="${product.name}"  data-target="#myModal" onclick="setValues()">Editar</a>
+   <a href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-id="${product.id}" data-name="${product.name}"  data-obtainment="${product.obtainment}" data-partner="${product.partner}" data-target="#myModal" onclick="setValues()">Editar</a>
    <a href="/eacervo/produtos/remove/${product.id}" class="btn btn-info" role="button">Remover</a>
   
       </datatables:column>
@@ -95,13 +95,21 @@
            </div>
 
            <div class="form-group">                     
-              <label for="area">Produto</label>
-              <input type="text" class="form-control"  name="name" id="product"></input>             
+              <label for="name">Produto</label>
+              <input type="text" class="form-control"  name="name" id="name"></input>             
            </div>
 
            <div class="form-group">
-              <label for="description">Descri&ccedil;&atilde;o:</label>
-              <textarea type="text"  class="form-control" name="description" id="description"></textarea>
+              <label for="obtainment">Obten&ccedil;&atilde;o:</label>
+              <textarea type="text"  class="form-control" name="obtainment" id="obtainment"></textarea>
+           </div>
+               <div class="form-group">
+              <label for="partner">Parceiro:</label>
+              <textarea type="text"  class="form-control" name="partner" id="partner"></textarea>
+           </div>
+           <div class="form-group">
+              <label for="productionCost">Custo de Produção:</label>
+              <textarea type="text"  class="form-control" name="productionCost" id="productionCost"></textarea>
            </div>
   </form><!-- /end form-->
       </div>
@@ -122,16 +130,18 @@
         	  var button = $(e.relatedTarget)
         	  console.log('Botao: '+button)
         	  // Button that triggered the modal
-        	  var recipient = button.data('id')
-        	  var name = button.data('product')
+        	  //var recipient = button.data('id')
+        	 // var name = button.data('name')
         	  
         	  // Extract info from data-* attributes
         	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
         	  var modal = $(this);
         	      	 
-        	  modal.find('#id').val(recipient)
-        	  modal.find('#product').val(name)
+        	  modal.find('#id').val(button.data('id'))
+        	  modal.find('#name').val(button.data('name'))
+        	   modal.find('#obtainment').val(button.data('obtainment'))
+        	   modal.find('#partner').val(button.data('partner'))
         	
         	  
         	  

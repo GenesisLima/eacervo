@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity	
+@Entity(name="PRODUCT_GROUP")	
 public class ProductGroup implements Serializable {
 
 	
@@ -19,6 +19,7 @@ public class ProductGroup implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="product_group_id")
 	private int id;
 	private String name;
 	private String description;

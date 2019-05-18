@@ -23,29 +23,40 @@
                 <ul class="dropdown-menu">
                   <li><a href="servidor">Servidor</a></li>
                    <li><a href="tipoproduto"> Tipo de Produto</a></li>
+                    <li><a href="grupoproduto"> Grupo de Produtos</a></li>
                   <li><a href="produto">Produto</a></li>
                   <li><a href="area">&Aacute;rea</a></li>
                   <li><a href="solicitante">Solicitante</a></li>
                   <li><a href="departamento">Departamento</a></li>
                   <li><a href="responsavel">Respons&aacute;vel</a></li>
                   <li><a href="tema">Tema</a></li>
+                   <li><a href="temporada">Temporada</a></li>
+                   <li><a href="episodio">Epis&oacute;dio</a></li>
+                   <li><a href="bloco">Bloco</a></li>
                    <li><a href="funcao">Fun&ccedil;&atilde;o</a></li>
                   <li><a href="procedimento">Procedimento</a></li>
                   <li><a href="tipomidia">Tipo de M&iacute;dia</a></li>
+                  <li><a href=veiculacao>Veicula&ccedil;&atilde;o</a></li>
                   <li><a href="sistematica">Sistem&aacute;tica de  Produ&ccedil;&atilde;o</a></li>
 
                 </ul><!-- /. ul dropdown-menu-->
               </li><!-- /.li dropdown-->
               <li class="dropdown"><a href="#" class="dropdown-toglle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Listar <span class="caret"></span></a>
                  <ul class="dropdown-menu">
-                 	<li><a href="pessoas">Pessoas</a></li>
+                 	<li><a href="servidores">Servidores</a></li>
+                 	 <li><a href="tiposprodutos"> Tipo de Produto</a></li>
+                    <li><a href="gruposprodutos"> Grupo de Produtos</a></li>
                  	<li><a href="produtos">Produtos</a></li>
                 	<li><a href="solicitantes">Solicitantes</a></li>
                 	<li><a href="departamentos">Departamentos</a></li>
                 	<li><a href="temas">Temas</a></li>
+                	<li><a href="temporadas">Temporadas</a></li>
+                	<li><a href="episodios">Epis&oacute;dios</a></li>
+                   <li><a href="blocos">Blocos</a></li>
                 	<li><a href="funcoes">Fun&ccedil;&otilde;es</a></li>
                 	<li><a href="procedimentos">Procedimentos</a></li>
                 	<li><a href="tiposMidias">Tipo de M&iacute;dias</a></li>
+                	<li><a href="veiculacoes">Veicula&ccedil;&otilde;es</a></li>
                  </ul>
 
               </li><!-- /.li dropdown-->

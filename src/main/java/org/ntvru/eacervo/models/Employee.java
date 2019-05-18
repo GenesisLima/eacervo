@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 /*Classe para objetos do tipo Servidor, onde serão contidos, valores e métodos para o mesmo.
  * @author Gênesis Lima  
  * */
-@Entity
+@Entity(name="EMPLOYEE")
 public class Employee implements Serializable{
    
    private int code;
