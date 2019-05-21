@@ -37,31 +37,52 @@
 $(document).ready(function(){
     var next = 1;
     $(".add-more").click(function(e){
+    	console.log("trying to add row");
         e.preventDefault();
-        var addto = "#field" + next;
-        var addRemove = "#field" + (next);
+        var addToTable = "tb-row-" + next;
+        var removeFromTable = "#tb-row-" + (next);
+        var addToField= "#field" + next;
+        var removeFromField = "#field" + (next);
         next = next + 1;
-        var newIn = '<input autocomplete="off" class="input form-control" id="field' + next + '" name="field' + next + '" type="text">';
+        //var newIn = "<tr id='tb-row'"+addToTable+"><td><input autocomplete='off' class='input form-control' id='field'"+ addToField + "name='field" + addToField+ " type='text'></tr></td>'";
+        var newIn = "<tr id="+addToTable+"'><td>ROW "+next+"</td></tr>";
+        console.log($(newIn));
         var newInput = $(newIn);
-        var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button></div><div id="field">';
+        var removeBtn = '<button id="remove' + (removeFromTable - 1) + '" class="btn btn-danger remove-me" >-</button></div><div id="field">';
         var removeButton = $(removeBtn);
-        $(addto).after(newInput);
-        $(addRemove).after(removeButton);
-        $("#field" + next).attr('data-source',$(addto).attr('data-source'));
+        console.log(newInput);
+        console.log($(addToTable));
+        $(addToTable).after(newInput);
+        $(removeFromTable).after(removeButton);
+        //$("#field" + next).attr('data-source', $(addToField).attr('data-source'));
+        $("#tb-row" + next).attr('data-source', $(addToTable).attr('data-source'));
         $("#count").val(next);  
         
             $('.remove-me').click(function(e){
                 e.preventDefault();
                 var fieldNum = this.id.charAt(this.id.length-1);
+                var tableNum = this.id.charAt(this.id.length-1);
+                var tableID = "#tb-row"+tableNum;
                 var fieldID = "#field" + fieldNum;
                 $(this).remove();
                 $(fieldID).remove();
+                $(tableID).remove();
             });
     });
     
 
     
 });
+
+$(document).ready(function(){
+	$(".add-row").click(function(){
+		var productType = "Tipo";
+		var productGroup = "Grupo";
+		var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + productType + "</td><td>" + productGroup + "</td></tr>";
+		 $("table tbody").append(markup);
+	})
+	});
+	
 
 </script>
 </html>
