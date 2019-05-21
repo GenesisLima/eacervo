@@ -5,14 +5,20 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+
 import org.hibernate.cfg.Mappings;
 import org.ntvru.eacervo.models.Area;
 import org.ntvru.eacervo.models.ProductType;
 import org.springframework.beans.factory.annotation.Autowired;
 
+
+
+
+
 public abstract class GenericDAO<T> {
 	
-	DAOUtility<T> daoU;
+	DAOUtility<T> daoU ;
+
 	
 	@PersistenceContext
 	protected EntityManager manager;
@@ -29,6 +35,7 @@ public abstract class GenericDAO<T> {
     public abstract T getById(int id);
 	 
 	 public List<T> list() {
+
 		
 		 String query = "select t from "+daoU.getClassName().toString()+" t where t.status='A'";
 		
@@ -36,10 +43,11 @@ public abstract class GenericDAO<T> {
 			return manager.createQuery(query, daoU.getEntityClass()).getResultList();
 		}
 
-		public void remove(int id) {
-			manager.createQuery("update "+daoU.getClassName()+" t set t.status='D' where t.id="+id).executeUpdate();
-			
-		}
+		
+//	 public void remove(int id) {
+//			manager.createQuery("update "+daoU.getClassName()+" t set t.status='D' where t.id="+id).executeUpdate();
+//			
+//		}
 
  
 		 private void mapClasses() {
@@ -48,8 +56,16 @@ public abstract class GenericDAO<T> {
 	       		Mappings mps = configuration.createMappings();
 	       		
 	       		
-	       		
-	       	}
+			//return manager.createQuery("select a from "+daoU.getClassName().toUpperCase()+" a where a.status='A'").getResultList();
+		}
+
+		public void remove(int id) {
+			manager.createQuery("update "+daoU.getClassName().toUpperCase()+" a set a.status='D' where a.id="+id).executeUpdate();
+			
+		}
+
+
+
 		
 		
 	

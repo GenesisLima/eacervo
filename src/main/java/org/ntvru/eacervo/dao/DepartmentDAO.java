@@ -17,6 +17,7 @@ public class DepartmentDAO extends GenericDAO<Department> {
 		}
 	
 
+
 	@Override
 	public Department getById(int id) {
 		return manager.createQuery("select d from DEPARTMENT d where d.status='A' and d.id="+id,Department.class).getSingleResult();

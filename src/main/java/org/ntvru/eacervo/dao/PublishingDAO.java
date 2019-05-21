@@ -9,10 +9,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class PublishingDAO extends GenericDAO<Publishing>{
 
+
 	public PublishingDAO() {
 		super.daoU = new DAOUtility<Publishing>();
 		super.daoU.reflect(this);
 	}
+
 	
 
 	@Override

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ProductDAO extends GenericDAO<Product> {
 
+
 //	@PersistenceContext
 //	 private EntityManager manager;
 	
@@ -18,6 +19,7 @@ public class ProductDAO extends GenericDAO<Product> {
 	  super.daoU = new DAOUtility<Product>();
 	  super.daoU.reflect(this);
 	}
+
 
 	@Override
 	public Product getById(int id) {

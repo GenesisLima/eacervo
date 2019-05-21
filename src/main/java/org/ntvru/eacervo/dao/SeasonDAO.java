@@ -8,11 +8,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class SeasonDAO extends GenericDAO<Season>{
 
+
 	public SeasonDAO(){
 		super.daoU = new DAOUtility<Season>();
 		super.daoU.reflect(this);
 		
 	}
+
 
 	@Override
 	public Season getById(int id) {
