@@ -5,16 +5,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-
 import org.hibernate.cfg.Mappings;
-import org.ntvru.eacervo.models.Area;
 import org.ntvru.eacervo.models.ProductType;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 
 
 
-
+@Repository
 public abstract class GenericDAO<T> {
 	
 	DAOUtility<T> daoU ;
@@ -50,14 +48,14 @@ public abstract class GenericDAO<T> {
 //		}
 
  
-		 private void mapClasses() {
-	       		org.hibernate.cfg.Configuration configuration = new org.hibernate.cfg.Configuration();
-	       		configuration.addAnnotatedClass(ProductType.class);
-	       		Mappings mps = configuration.createMappings();
-	       		
-	       		
-			//return manager.createQuery("select a from "+daoU.getClassName().toUpperCase()+" a where a.status='A'").getResultList();
-		}
+//		 private void mapClasses() {
+//	       		org.hibernate.cfg.Configuration configuration = new org.hibernate.cfg.Configuration();
+//	       		configuration.addAnnotatedClass(ProductType.class);
+//	       		Mappings mps = configuration.createMappings();
+//	       		
+//	       		
+//			//return manager.createQuery("select a from "+daoU.getClassName().toUpperCase()+" a where a.status='A'").getResultList();
+//		}
 
 		public void remove(int id) {
 			manager.createQuery("update "+daoU.getClassName().toUpperCase()+" a set a.status='D' where a.id="+id).executeUpdate();
