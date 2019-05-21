@@ -4,7 +4,7 @@ package org.ntvru.eacervo.controller;
 
 import javax.transaction.Transactional;
 
-import org.ntvru.eacervo.dao.GenericDAO;
+import org.ntvru.eacervo.dao.AreaDAO;
 import org.ntvru.eacervo.models.Area;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class AreaController {
     
 	@Autowired
-	private GenericDAO<Area> areaDAO;
+	private AreaDAO areaDAO;
 	
 	
 	@RequestMapping(method=RequestMethod.POST)
