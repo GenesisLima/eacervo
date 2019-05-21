@@ -10,7 +10,9 @@ public class AreaDAO extends GenericDAO<Area>{
  
  
 	public AreaDAO() {
-	super.daoU = new DAOUtility<Area>();
+
+		
+
 	super.daoU.reflect(this);
 	}
 

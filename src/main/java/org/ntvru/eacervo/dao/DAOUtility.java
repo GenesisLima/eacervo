@@ -11,7 +11,9 @@ public class DAOUtility<T> {
 	private String className;
 	private T type;
 	private Class clazz;
+
 	private Class entityClass;
+
 	
 	public <T> void reflect(T t){
 		Type type = t.getClass().getGenericSuperclass();
@@ -36,6 +38,7 @@ public class DAOUtility<T> {
 	public Class getEntityClass() {
 		return entityClass;
 	}
+
 
 	
 	

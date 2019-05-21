@@ -9,10 +9,12 @@ import org.springframework.stereotype.Repository;
 public class ProceedingsDAO extends GenericDAO<Proceedings>{
 
 	
+
 	public ProceedingsDAO() {
 		super.daoU = new DAOUtility<Proceedings>();
 		super.daoU.reflect(this);
 	}
+
 	
 
 	@Override
