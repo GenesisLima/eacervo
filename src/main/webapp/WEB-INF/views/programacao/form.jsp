@@ -14,18 +14,27 @@
         <form class="input-append" role="form" method="post" action="/eacervo/programacoes">
            <div class="form-group">
     <label for="id">ID:</label>
-    <input type="text" class="form-control" id="id" name="id" readonly="readonly" value="0">
+<!--     <input type="text" class="form-control" id="id" name="id" readonly="readonly" value="0"> -->
+        	<input type="button" class="add-row" value="Add Row">
+    
   </div>
            <div class="form-group">
-           <table>           
-           <tr>
-           <td>
-              <label for="name">Tipo:</label>
-              <div id="field" class="input-group">
-              <input autocomplete="off" class="input" id="field1" name="prof1" type="text" placeholder="Type something" data-items="8"/><button id="b1" class="btn add-more" type="button">+</button>
-              </td>              
-              </tr>
-              </table>
+          <table>
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>Tipo</th>
+                <th>Grupo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" name="record"></td>
+                <td>PGM</td>
+                <td>Programa</td>
+            </tr>
+        </tbody>
+    </table>
               </div>
            </div>
            <div class="form-group">
