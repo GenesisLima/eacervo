@@ -17,13 +17,15 @@
     <input type="text" class="form-control" id="id" name="id" readonly="readonly" value="0">
   </div>
            <div class="form-group">
-              <label for="name">Nome:</label>
+           <table>           
+           <tr>
+           <td>
+              <label for="name">Tipo:</label>
               <div id="field" class="input-group">
               <input autocomplete="off" class="input" id="field1" name="prof1" type="text" placeholder="Type something" data-items="8"/><button id="b1" class="btn add-more" type="button">+</button>
-<!--               <input type="text" class="form-control" id="name" name="name"> -->
-<!--               <span class="input-group-btn"> -->
-<!--                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>&nbsp;</button> -->
-<!--               </span> -->
+              </td>              
+              </tr>
+              </table>
               </div>
            </div>
            <div class="form-group">
