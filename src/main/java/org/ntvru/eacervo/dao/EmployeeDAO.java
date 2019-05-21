@@ -12,6 +12,12 @@ import org.springframework.stereotype.Repository;
 public class EmployeeDAO extends GenericDAO<Employee>{
      @PersistenceContext
 	private EntityManager manager;
+     
+     public EmployeeDAO(){
+    	 super.daoU = new DAOUtility<Employee>();
+    	 super.daoU.reflect(this);
+    	 
+     }
 	
 	public void save(Employee employee){
 		manager.merge(employee);

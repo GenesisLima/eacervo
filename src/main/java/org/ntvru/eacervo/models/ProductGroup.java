@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name="PRODUCT_GROUP")	
+@Entity(name="PRODUCTGROUP")	
 public class ProductGroup implements Serializable {
 
 	

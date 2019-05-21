@@ -11,13 +11,14 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class FunctionDAO extends GenericDAO<Function>{
 
-//	@PersistenceContext
-//	private EntityManager manager;
-//	
-//	
-//	public void save(Function function){		
-//		super.save(function);
-//	}
+
+	
+	public FunctionDAO(){
+		super.daoU = new DAOUtility<Function>();
+		super.daoU.reflect(this);
+		
+	}
+
 
 	
 	public Function getById(int id){

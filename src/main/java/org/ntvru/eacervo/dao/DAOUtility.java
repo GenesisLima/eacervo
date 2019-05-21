@@ -11,12 +11,16 @@ public class DAOUtility<T> {
 	private String className;
 	private T type;
 	private Class clazz;
+
+	private Class entityClass;
+
 	
 	public <T> void reflect(T t){
 		Type type = t.getClass().getGenericSuperclass();
 		clazz = t.getClass();
 	    
 	    ParameterizedType pt = (ParameterizedType) type;
+	    this.entityClass = ((Class)pt.getActualTypeArguments()[0]);
 	    this.className = ((Class)pt.getActualTypeArguments()[0]).getSimpleName();
 	  
 		
@@ -30,6 +34,11 @@ public class DAOUtility<T> {
 		
 		return clazz;
 	}
+	
+	public Class getEntityClass() {
+		return entityClass;
+	}
+
 
 	
 	

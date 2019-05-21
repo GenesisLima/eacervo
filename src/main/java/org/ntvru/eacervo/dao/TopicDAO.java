@@ -19,6 +19,13 @@ public class TopicDAO extends GenericDAO<Topic>{
 	 @PersistenceContext
 	 private EntityManager manager;
 	 
+
+	 public TopicDAO(){
+		 super.daoU = new DAOUtility<Topic>();
+		 super.daoU.reflect(this);
+		 
+	 }
+
 	 
 	 
 	 public List<Topic> getByName(String name){

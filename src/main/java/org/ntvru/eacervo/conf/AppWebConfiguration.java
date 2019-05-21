@@ -1,8 +1,11 @@
 package org.ntvru.eacervo.conf;
 
+import org.hibernate.cfg.Mappings;
 import org.ntvru.eacervo.controller.HomeController;
 import org.ntvru.eacervo.dao.EmployeeDAO;
 import org.ntvru.eacervo.dao.GenericDAO;
+import org.ntvru.eacervo.models.Product;
+import org.ntvru.eacervo.models.ProductType;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +18,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan(basePackageClasses={HomeController.class,EmployeeDAO.class})
+@ComponentScan(basePackageClasses={HomeController.class,EmployeeDAO.class, Product.class})
 public class AppWebConfiguration extends WebMvcConfigurerAdapter{
 
 	@Bean
@@ -41,8 +44,11 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter{
 	@Override
 	public void configureDefaultServletHandling(
 			DefaultServletHandlerConfigurer configurer) {
+		
 		configurer.enable();
 	}
+	
+	
 	
 	
 	

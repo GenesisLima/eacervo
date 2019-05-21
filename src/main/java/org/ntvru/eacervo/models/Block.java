@@ -4,14 +4,12 @@ import java.io.Serializable;
 import java.time.LocalTime;
 
 import javax.persistence.Embeddable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import org.springframework.format.datetime.joda.LocalTimeParser;
+import javax.persistence.Table;
 
 @Embeddable
+
+@Table(name="BLOCK")
+
 public class Block implements Serializable{
 
 	/**

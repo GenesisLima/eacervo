@@ -14,7 +14,7 @@ public class ProductGroupDAO extends GenericDAO<ProductGroup> {
 	@Override
 	public ProductGroup getById(int id) {
 		
-		return manager.createQuery("select p from PRODUCT_GROUP p where p.id ="+id,ProductGroup.class).getSingleResult();
+		return manager.createQuery("select p from ProductGroup p where p.id ="+id,ProductGroup.class).getSingleResult();
 	}
 
 
