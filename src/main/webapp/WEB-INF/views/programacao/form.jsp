@@ -5,7 +5,7 @@
       <div class="jumbotron">
       <!--  <h2>Cadastro de Servidor.</h2>-->
 <div class="panel panel-default">
-  <div class="panel-heading">Cadastrar Tipo de Produto</div>
+  <div class="panel-heading">Programação </div>
   <div class="panel-body">
   
   
@@ -22,16 +22,17 @@
           <table>
         <thead>
             <tr>
-                <th>Select</th>
+               
                 <th>Tipo</th>
                 <th>Grupo</th>
+                <th>Duracao</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><input type="checkbox" name="record"></td>
-                <td>PGM</td>
-                <td>Programa</td>
+            <tr>               
+                <td><input type="text" name="programType"></td>                
+                <td><input type="text" name="programgroup"></td>
+                <td><input type="text" name="programDuration" id="programDuration" ></td>
             </tr>
         </tbody>
     </table>

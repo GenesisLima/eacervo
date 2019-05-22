@@ -22,6 +22,8 @@
 <!-- JQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
+<!-- MomentJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"> </script>
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
@@ -78,11 +80,18 @@ $(document).ready(function(){
 	$(".add-row").click(function(){
 		var productType = "Tipo";
 		var productGroup = "Grupo";
-		var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + productType + "</td><td>" + productGroup + "</td></tr>";
+		var productDuration = "Duracao";
+		//var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + productType + "</td><td>" + productGroup + "</td></tr>";
+		var markup ="<tr><td><input type='text' name='"+productType+"'></td><td><input type='text' name='"+productGroup+"'></td><td><input type='text' name='"+productDuration+"'></td></tr>";
 		 $("table tbody").append(markup);
 	})
 	});
 	
-
+$(document).ready(function(){
+	var tempo = moment("240000","hmmss").format("HH:mm:ss");
+	console.log("Tempo "+tempo);
+	$("#programDuration").val(tempo); //= tempo;
+	
+});
 </script>
 </html>
