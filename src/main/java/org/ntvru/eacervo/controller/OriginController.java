@@ -44,7 +44,7 @@ public class OriginController {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView list(){
-		ModelAndView modelAndView = new ModelAndView("areas/list");	
+		ModelAndView modelAndView = new ModelAndView("origens/list");		
 		modelAndView.addObject("origins", dao.list());		
 		return modelAndView; 
 	}

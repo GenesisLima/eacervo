@@ -22,15 +22,15 @@ public class OriginDAO extends GenericDAO<Origin>{
 	}
 
 	
-	 @Override
-	 public List<Origin> list() {
-
-		
-		 String query = "select t from Origin t where t.status='A'";
-		
-       // mapClasses();
-			return manager.createQuery(query, Origin.class).getResultList();
-		}
+//	 @Override
+//	 public List<Origin> list() {
+//
+//		
+//		 String query = "select t from Origin t where t.status='A'";
+//		
+//       // mapClasses();
+//			return manager.createQuery(query, Origin.class).getResultList();
+//		}
 
 }
 

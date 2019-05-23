@@ -35,7 +35,7 @@ public abstract class GenericDAO<T> {
 	 public List<T> list() {
 
 		
-		 String query = "select t from "+daoU.getClassName().toString()+" t where t.status='A'";
+		 String query = "select t from "+daoU.getClassName()+" t where t.status='A'";
 		
         // mapClasses();
 			return manager.createQuery(query, daoU.getEntityClass()).getResultList();
@@ -58,7 +58,7 @@ public abstract class GenericDAO<T> {
 //		}
 
 		public void remove(int id) {
-			manager.createQuery("update "+daoU.getClassName().toUpperCase()+" a set a.status='D' where a.id="+id).executeUpdate();
+			manager.createQuery("update "+daoU.getClassName()+" a set a.status='D' where a.id="+id).executeUpdate();
 			
 		}
 
