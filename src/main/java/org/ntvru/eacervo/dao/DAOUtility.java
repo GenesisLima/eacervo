@@ -22,9 +22,7 @@ public class DAOUtility<T> {
 		 
 		 this.entityClass = ((Class)pt.getActualTypeArguments()[0]);
 		 this.className = ((Class)pt.getActualTypeArguments()[0]).getSimpleName();
-
-
-		
+	
 	}
 
 	public String getClassName() {
