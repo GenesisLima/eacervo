@@ -1,11 +1,9 @@
 package org.ntvru.eacervo.conf;
 
-import org.hibernate.cfg.Mappings;
 import org.ntvru.eacervo.controller.HomeController;
 import org.ntvru.eacervo.dao.EmployeeDAO;
-import org.ntvru.eacervo.dao.GenericDAO;
 import org.ntvru.eacervo.models.Product;
-import org.ntvru.eacervo.models.ProductType;
+import org.ntvru.eacervo.models.ProductGroup;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

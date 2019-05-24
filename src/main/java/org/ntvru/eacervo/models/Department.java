@@ -31,7 +31,6 @@ public class Department implements Serializable{
 	@Column(columnDefinition="char(1) default 'A'")
     private String status = "A";
 	
-	
 	@OneToMany(mappedBy="department", fetch=FetchType.LAZY)
 	@JsonBackReference
 	private List<Employee> employees; 

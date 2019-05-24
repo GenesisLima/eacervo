@@ -1,7 +1,5 @@
 package org.ntvru.eacervo.dao;
 
-import java.util.List;
-
 import org.ntvru.eacervo.models.Origin;
 import org.springframework.stereotype.Repository;
 
