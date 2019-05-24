@@ -36,11 +36,7 @@ public class TopicDAO extends GenericDAO<Topic>{
 
 
 
-	@Override
-	public Topic getById(int id) {
-		return manager.createQuery("select a from TOPIC a where a.status='A' and a.id="+id,Topic.class).getSingleResult();
-
-	}
+	
 	 
 	 
 	 

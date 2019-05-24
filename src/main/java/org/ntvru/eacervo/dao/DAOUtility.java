@@ -22,16 +22,8 @@ public class DAOUtility<T> {
 		 
 		 this.entityClass = ((Class)pt.getActualTypeArguments()[0]);
 		 this.className = ((Class)pt.getActualTypeArguments()[0]).getSimpleName();
-		  
-		    
-		    
-		 System.out.println(" PT "+(ParameterizedType) type);
-		 System.out.println("ENTITY CLASS "+((Class)pt.getActualTypeArguments()[0]));
-		 System.out.println(" CLASS "+((Class)pt.getActualTypeArguments()[0]).getSimpleName());
 
 
-	   
-	   
 		
 	}
 

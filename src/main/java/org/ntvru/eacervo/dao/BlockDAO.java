@@ -19,10 +19,6 @@ public class BlockDAO extends GenericDAO<Block> {
 
 	
 	
-	@Override
-	public Block getById(int id) {
-		
-		return manager.createQuery("select e from BLOCK b where e.id="+id+" and b.status='A'", Block.class).getSingleResult();
-	}
+
 
 }

@@ -16,9 +16,6 @@ public class SeasonDAO extends GenericDAO<Season>{
 	}
 
 
-	@Override
-	public Season getById(int id) {
-		return manager.createQuery("select a from SEASON a where a.status='A' and a.id="+id,Season.class).getSingleResult();
-	}
+	
 
 }

@@ -13,11 +13,7 @@ public class ProductGroupDAO extends GenericDAO<ProductGroup> {
 		super.daoU.reflect(this);
 	}
 	
-	@Override
-	public ProductGroup getById(int id) {
-		
-		return manager.createQuery("select p from ProductGroup p where p.id ="+id,ProductGroup.class).getSingleResult();
-	}
+	
 
 
 

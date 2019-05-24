@@ -16,11 +16,7 @@ public class AreaDAO extends GenericDAO<Area>{
 		super.daoU.reflect(this);
 	}
 
-	@Override
-	public Area getById(int id) {
-		
-		return manager.createQuery("select a from AREA a where a.status='A' and a.id="+id, Area.class).getSingleResult();
-	}
+	
 
 
 }

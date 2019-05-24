@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name="PRODUCTTYPE")
+@Entity
+@Table(name="PRODUCTTYPE")
 public class ProductType implements Serializable{
 	
 	

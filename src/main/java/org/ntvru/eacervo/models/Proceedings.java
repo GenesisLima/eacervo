@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name="PROCEEDINGS")
+@Entity
+@Table(name="PROCEEDINGS")
 public class Proceedings implements Serializable{
 
 	@Id

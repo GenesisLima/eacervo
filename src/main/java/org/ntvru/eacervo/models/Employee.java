@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -20,7 +21,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 /*Classe para objetos do tipo Servidor, onde serão contidos, valores e métodos para o mesmo.
  * @author Gênesis Lima  
  * */
-@Entity(name="EMPLOYEE")
+@Entity
+@Table(name="EMPLOYEE")
 public class Employee implements Serializable{
    
    private int code;

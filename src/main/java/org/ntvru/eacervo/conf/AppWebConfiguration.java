@@ -1,9 +1,9 @@
 package org.ntvru.eacervo.conf;
 
+import org.ntvru.eacervo.api.ProductGroupAPI;
 import org.ntvru.eacervo.controller.HomeController;
 import org.ntvru.eacervo.dao.EmployeeDAO;
 import org.ntvru.eacervo.models.Product;
-import org.ntvru.eacervo.models.ProductGroup;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan(basePackageClasses={HomeController.class,EmployeeDAO.class, Product.class})
+@ComponentScan(basePackageClasses={HomeController.class,EmployeeDAO.class, Product.class, ProductGroupAPI.class})
 public class AppWebConfiguration extends WebMvcConfigurerAdapter{
 
 	@Bean

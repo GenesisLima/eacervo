@@ -7,9 +7,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.Table;
 
 @Embeddable
-
 @Table(name="BLOCK")
-
 public class Block implements Serializable{
 
 	/**
