@@ -35,9 +35,11 @@ public abstract class GenericDAO<T> {
 	 public List<T> list() {
 
 		
+
 		 String query = "select t from "+daoU.getClassName()+" t where t.status='A'";
 		
         // mapClasses();
+		 System.out.println("ENTITY CLASS "+daoU.getEntityClass());
 			return manager.createQuery(query, daoU.getEntityClass()).getResultList();
 		}
 

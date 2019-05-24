@@ -18,8 +18,13 @@ public class DAOUtility<T> {
 	public <T> void reflect(T t){
 		Type type = t.getClass().getGenericSuperclass();
 		clazz = t.getClass();
-	    
-	    ParameterizedType pt = (ParameterizedType) type;
+		 ParameterizedType pt = (ParameterizedType) type;
+		 
+		 System.out.println(" PT "+(ParameterizedType) type);
+		 System.out.println("ENTITY CLASS "+((Class)pt.getActualTypeArguments()[0]));
+		 System.out.println(" CLASS "+((Class)pt.getActualTypeArguments()[0]).getSimpleName());
+
+	   
 	    this.entityClass = ((Class)pt.getActualTypeArguments()[0]);
 	    this.className = ((Class)pt.getActualTypeArguments()[0]).getSimpleName();
 	  
