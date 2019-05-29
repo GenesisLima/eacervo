@@ -5,9 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.ntvru.eacervo.dao.GenericDAO;
-import org.ntvru.eacervo.models.Product;
 import org.ntvru.eacervo.models.ProductGroup;
-import org.ntvru.eacervo.models.ProductType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,12 +22,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ScheduleController {
 
 	@Autowired
-	private GenericDAO<ProductType> productTypeDAO;
+	private GenericDAO<ProductGroup> productTypeDAO;
 	
 
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ModelAndView save(ProductType product, RedirectAttributes redirectAttributes){
+	public ModelAndView save(ProductGroup product, RedirectAttributes redirectAttributes){
 		ModelAndView modelAndView;
 		System.out.println("DEPT ID :"+product.getId());
  		if(product.getId()==0){
@@ -62,7 +60,7 @@ public class ScheduleController {
 	}
 	
 	@RequestMapping(value="/productTypesJSON", method=RequestMethod.GET)
-	public @ResponseBody List<ProductType> listgroupsJSON(){	
+	public @ResponseBody List<ProductGroup> listgroupsJSON(){	
 		System.out.println("REQUEST "+this.toString()+" AJAX ");
 		return productTypeDAO.list();
 	}
