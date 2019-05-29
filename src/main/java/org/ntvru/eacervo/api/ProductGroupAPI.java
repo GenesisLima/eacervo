@@ -2,6 +2,8 @@ package org.ntvru.eacervo.api;
 
 import java.util.List;
 
+import javax.ws.rs.Produces;
+
 import org.ntvru.eacervo.dao.GenericDAO;
 import org.ntvru.eacervo.models.ProductGroup;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +19,8 @@ public class ProductGroupAPI {
 	@Autowired
 	private GenericDAO<ProductGroup> productGroupDAO;
 	
-	
 	@RequestMapping(value="/json",method=RequestMethod.GET)
+	@Produces("application/json")
 	public @ResponseBody List<ProductGroup> listgroupsJSON(){		
 		return productGroupDAO.list();		
 	}
