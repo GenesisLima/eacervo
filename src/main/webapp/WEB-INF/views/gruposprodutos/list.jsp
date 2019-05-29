@@ -51,11 +51,12 @@
     <datatables:table id="productGroupTable" row="productGroup" data="${productGroups}"   theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
         
         <datatables:column title="ID" property="id"   />
+         <datatables:column title="TIPO PRODUTO" property="initials"/>
         <datatables:column title="GRUPO PRODUTO" property="name"/>
 <%--        	<datatables:column title="DESCRIÇÃO" property="description" />  --%>
       <datatables:column title="AÇÃO" >
        
-   <a href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-id="${productGroup.id}" data-name="${productGroup.name}" data-description="${productGroup.description}" data-target="#myModal" onclick="setValues()">Editar</a>
+   <a href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-id="${productGroup.id}" data-initials="${productGroup.initials}" data-name="${productGroup.name}" data-description="${productGroup.description}" data-target="#myModal" onclick="setValues()">Editar</a>
    <a href="/eacervo/gruposprodutos/remove/${productGroup.id}" class="btn btn-info" role="button">Remover</a>
   
       </datatables:column>
@@ -94,6 +95,11 @@
               </div>
            </div>
 
+            <div class="form-group">                     
+              <label for="name">Tipo</label>
+              <input type="text" class="form-control"  name="initials" id="initials"></input>             
+           </div>
+
            <div class="form-group">                     
               <label for="name">Grupo de Produto</label>
               <input type="text" class="form-control"  name="name" id="name"></input>             
@@ -123,6 +129,7 @@
         	  console.log('Botao: '+button)
         	  // Button that triggered the modal
         	  var recipient = button.data('id')
+        	    var initials = button.data('initials')
         	  var name = button.data('name')
         	   var description= button.data('description')
         	  
@@ -132,6 +139,7 @@
         	  var modal = $(this);
         	      	 
         	  modal.find('#id').val(recipient)
+        	   modal.find('#initials').val(initials)
         	  modal.find('#name').val(name)
         	  modal.find('#description').val(description)
         	

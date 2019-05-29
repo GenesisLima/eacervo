@@ -2,6 +2,7 @@ package org.ntvru.eacervo.models;
 
 import java.io.Serializable;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +26,11 @@ public class ProductGroup implements Serializable {
 	@Column(name="product_group_id")
 	private int id;
 	private String name;
+	@Column(columnDefinition="char(5)")
+	private String initials;	
 	private String description;
+	
+	
 	@Column(columnDefinition="char(1) DEFAULT 'A'")
 	private String status = "A";
 	public int getId() {
@@ -52,6 +57,16 @@ public class ProductGroup implements Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	
+	
+	
+	public String getInitials() {
+		return initials;
+	}
+	public void setInitials(String initials) {
+		this.initials = initials;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -74,9 +89,10 @@ public class ProductGroup implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "ProductGroupg [id=" + id + ", name=" + name + ", description="
-				+ description + ", status=" + status + "]";
+		return "ProductGroup [id=" + id + ", name=" + name + ", initials=" + initials + ", description=" + description
+				+ ", status=" + status + "]";
 	}
+	
 	
 	
 	
