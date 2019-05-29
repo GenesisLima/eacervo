@@ -34,8 +34,8 @@ public class JPAConfiguration {
         	    DriverManagerDataSource dataSource = new DriverManagerDataSource();
         	    	dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         	    	dataSource.setUrl("jdbc:mysql://localhost:3306/eacervo_db?useTimezone=true&serverTimezone=UTC");
-        	    	dataSource.setUsername("root");
-        	    	dataSource.setPassword("g3n351s");        	   
+        	    	dataSource.setUsername("dev");
+        	    	dataSource.setPassword("dev");        	   
         	   return dataSource;
            }
            
