@@ -25,6 +25,7 @@
                    <li><a href="tipoproduto"> Tipo de Produto</a></li>
                     <li><a href="grupoproduto"> Grupo de Produtos</a></li>
                   <li><a href="produto">Produto</a></li>
+                  <li><a href="origem">Origem</a></li>                  
                   <li><a href="area">&Aacute;rea</a></li>
                   <li><a href="solicitante">Solicitante</a></li>
                   <li><a href="departamento">Departamento</a></li>
@@ -47,6 +48,7 @@
                  	 <li><a href="tiposprodutos"> Tipo de Produto</a></li>
                     <li><a href="gruposprodutos"> Grupo de Produtos</a></li>
                  	<li><a href="produtos">Produtos</a></li>
+                 	<li><a href="origens">Origens dos Produtos</a></li>
                 	<li><a href="solicitantes">Solicitantes</a></li>
                 	<li><a href="departamentos">Departamentos</a></li>
                 	<li><a href="temas">Temas</a></li>

@@ -5,14 +5,13 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.ntvru.eacervo.dao.GenericDAO;
-import org.ntvru.eacervo.models.Employee;
 import org.ntvru.eacervo.models.ProductGroup;
-import org.ntvru.eacervo.models.ProductType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -63,10 +62,15 @@ public class ProductGroupController {
 	}
 	
 	
-	@RequestMapping(value="/groupsJSON", method=RequestMethod.GET)
-	public @ResponseBody List<ProductGroup> listgroupsJSON(){	
+	@RequestMapping(value="/groups", method=RequestMethod.GET)
+	public @ResponseBody List<ProductGroup> listgroupsJSON(@RequestParam("type") String dataType){	
 		System.out.println("REQUEST "+this.toString()+" AJAX ");
+		if(dataType.toLowerCase().equals("json")) {
 		return productGroupDAO.list();
+		}
+		return null;
 	}
+	
+	
 	
 }

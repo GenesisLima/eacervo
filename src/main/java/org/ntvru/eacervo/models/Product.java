@@ -10,9 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
-@Entity(name="PRODUCT")
+@Entity
+@Table(name="PRODUCT")
 public class Product implements Serializable {
 
 	@Id

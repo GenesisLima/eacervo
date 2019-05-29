@@ -104,4 +104,9 @@ public class HomeController {
 	public String getSchenduleRegisterPage(){
 		return "programacao/view";
 	}
+	
+	@RequestMapping("/origem")
+	public String getOrigemRegisterPage(){
+		return "origens/view";
+	}
 }

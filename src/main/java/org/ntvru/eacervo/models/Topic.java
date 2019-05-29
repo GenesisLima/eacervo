@@ -9,9 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
-@Entity(name="TOPIC")
-@NamedQueries({@NamedQuery(name="TOPIC.findByName", query="SELECT t FROM TOPIC t WHERE t.name LIKE :topicName")})
+@Entity
+@Table(name="TOPIC")
+//@NamedQueries({@NamedQuery(name="TOPIC.findByName", query="SELECT t FROM TOPIC t WHERE t.name LIKE :topicName")})
 public class Topic implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)

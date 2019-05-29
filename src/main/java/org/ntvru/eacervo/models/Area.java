@@ -8,8 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name="AREA")
+@Entity
+@Table(name="AREA")
 public class Area implements Serializable{
 	
 	@Id

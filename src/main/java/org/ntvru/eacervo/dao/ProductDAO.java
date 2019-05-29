@@ -21,12 +21,7 @@ public class ProductDAO extends GenericDAO<Product> {
 	}
 
 
-	@Override
-	public Product getById(int id) {
-		
-		return manager.createQuery("select p from PRODUCT p where p.id ="+id,Product.class).getSingleResult();
-	}
-
+	
 
 
 }

@@ -1,7 +1,8 @@
-package org.ntvru.eacervo.dao;
+package org.ntvru.eacervo.test;
 
 import java.util.List;
 
+import org.ntvru.eacervo.dao.TopicDAO;
 import org.ntvru.eacervo.models.Topic;
 
 public class TestDAO {

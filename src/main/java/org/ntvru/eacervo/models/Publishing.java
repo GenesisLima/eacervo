@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name="PUBLISHING")
+@Entity
+@Table(name="PUBLISHING")
 public class Publishing implements Serializable{
 
 	/**

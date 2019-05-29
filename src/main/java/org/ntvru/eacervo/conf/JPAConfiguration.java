@@ -17,12 +17,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class JPAConfiguration {
 	
-           @Bean
+  
+		@Bean
 	       public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
 	    	    LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 	    	    em.setDataSource(dataSource());
-	    	    em.setPackagesToScan(new String[]{"org.ntvru.eacervo.models"});
-	    	    
+	    	    em.setPackagesToScan(new String[]{"org.ntvru.eacervo.models"});	    	    
 	    	    JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 	    	    em.setJpaVendorAdapter(vendorAdapter);	    	    
 	    	    em.setJpaProperties(additionalProperties());
@@ -35,8 +35,7 @@ public class JPAConfiguration {
         	    	dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         	    	dataSource.setUrl("jdbc:mysql://localhost:3306/eacervo_db?useTimezone=true&serverTimezone=UTC");
         	    	dataSource.setUsername("root");
-
-        	    	dataSource.setPassword("umdois4");        	   
+        	    	dataSource.setPassword("g3n351s");        	   
         	   return dataSource;
            }
            

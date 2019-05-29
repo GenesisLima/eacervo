@@ -21,11 +21,7 @@ public class FunctionDAO extends GenericDAO<Function>{
 
 
 	
-	public Function getById(int id){
-		
-		return manager.createQuery("select f from FUNCTION f where f.status='A' and f.id="+id,Function.class).getSingleResult();
-		
-	}
+
 	
 	
 }

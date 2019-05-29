@@ -12,14 +12,15 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
 
-@Entity(name="FUNCTION")
-@NamedQueries({@NamedQuery(name="FUNCTION.findAll",query="select f.id, f.function, f.description from FUNCTION f where f.status='A'")})
+@Entity
+@Table(name="FUNCTION")
+//@NamedQueries({@NamedQuery(name="FUNCTION.findAll",query="select f.id, f.function, f.description from Function f where f.status='A'")})
 public class Function implements Serializable {
     
 	@Id
