@@ -92,7 +92,7 @@ $(document).ready(function(){
 		next = next+1;
 		console.log("NEXT "+next);
 		//var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + productType + "</td><td>" + productGroup + "</td></tr>";
-		var markup ="<tr><td><input type='text' name='"+productType+"'></td><td><input type='text' name='"+productGroup+"'></td><td><input type='text' id='"+(productDuration+next)+"'></td></tr>";
+		var markup ="<tr><td><input type='text' name='"+(productType+next)+"'></td><td><input type='text' name='"+(productGroup+next)+"'></td><td><input type='text' id='"+(productDuration+next)+"'></td></tr>";
 		 $("table tbody").append(markup);		 
 		 var programDurationID = productDuration+next;
 		 

@@ -38,9 +38,9 @@ public class Product implements Serializable {
 	@JoinColumn(name="fk_product_prod_group")
 	private ProductGroup productGroup;
 	
-	@ManyToOne
-	@JoinColumn(name="fk_product_prod_type")
-	private ProductType productType;
+//	@ManyToOne
+//	@JoinColumn(name="fk_product_prod_type")
+//	private ProductType productType;
 	
 	@Transient
 	private Team team;
@@ -111,13 +111,13 @@ public class Product implements Serializable {
 		this.productGroup = productGroup;
 	}
 
-	public ProductType getProductType() {
-		return productType;
-	}
-
-	public void setProductType(ProductType productType) {
-		this.productType = productType;
-	}
+//	public ProductType getProductType() {
+//		return productType;
+//	}
+//
+//	public void setProductType(ProductType productType) {
+//		this.productType = productType;
+//	}
 
 	@Override
 	public int hashCode() {

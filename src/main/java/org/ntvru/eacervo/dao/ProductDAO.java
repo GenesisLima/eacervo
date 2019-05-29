@@ -12,8 +12,7 @@ import org.springframework.stereotype.Repository;
 public class ProductDAO extends GenericDAO<Product> {
 
 
-//	@PersistenceContext
-//	 private EntityManager manager;
+
 	
 	public ProductDAO(){
 	  super.daoU = new DAOUtility<Product>();

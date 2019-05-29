@@ -22,7 +22,7 @@
               <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cadastro <span class="caret"></span></a></a>
                 <ul class="dropdown-menu">
                   <li><a href="servidor">Servidor</a></li>
-                   <li><a href="tipoproduto"> Tipo de Produto</a></li>
+<!--                    <li><a href="tipoproduto"> Tipo de Produto</a></li> -->
                     <li><a href="grupoproduto"> Grupo de Produtos</a></li>
                   <li><a href="produto">Produto</a></li>
                   <li><a href="origem">Origem</a></li>                  
@@ -45,7 +45,7 @@
               <li class="dropdown"><a href="#" class="dropdown-toglle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Listar <span class="caret"></span></a>
                  <ul class="dropdown-menu">
                  	<li><a href="servidores">Servidores</a></li>
-                 	 <li><a href="tiposprodutos"> Tipo de Produto</a></li>
+<!--                  	 <li><a href="tiposprodutos"> Tipo de Produto</a></li> -->
                     <li><a href="gruposprodutos"> Grupo de Produtos</a></li>
                  	<li><a href="produtos">Produtos</a></li>
                  	<li><a href="origens">Origens dos Produtos</a></li>
