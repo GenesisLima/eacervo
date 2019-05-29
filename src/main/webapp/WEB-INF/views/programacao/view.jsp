@@ -77,21 +77,42 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
+	var next = 0;
+	var tempo = moment("240000","hmmss").format("HH:mm:ss");
+	console.log("Tempo "+tempo);
+	$("#programDuration").val(tempo);
+	 //= tempo;
+	
 	$(".add-row").click(function(){
+		
+		console.log("Table changed");
 		var productType = "Tipo";
 		var productGroup = "Grupo";
 		var productDuration = "Duracao";
+		next = next+1;
+		console.log("NEXT "+next);
 		//var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + productType + "</td><td>" + productGroup + "</td></tr>";
-		var markup ="<tr><td><input type='text' name='"+productType+"'></td><td><input type='text' name='"+productGroup+"'></td><td><input type='text' name='"+productDuration+"'></td></tr>";
-		 $("table tbody").append(markup);
+		var markup ="<tr><td><input type='text' name='"+productType+"'></td><td><input type='text' name='"+productGroup+"'></td><td><input type='text' id='"+(productDuration+next)+"'></td></tr>";
+		 $("table tbody").append(markup);		 
+		 var programDurationID = productDuration+next;
+		 
+		 $("#"+programDurationID).val(moment(tempo).add(1,"hour").format("HH:mm:ss"));
+		 console.log("Program DUration ID "+ programDurationID);
 	})
 	});
 	
 $(document).ready(function(){
-	var tempo = moment("240000","hmmss").format("HH:mm:ss");
-	console.log("Tempo "+tempo);
-	$("#programDuration").val(tempo); //= tempo;
+	//var tempo = moment("240000","hmmss").format("HH:mm:ss");
+	//console.log("Tempo "+tempo);
+	//$("#programDuration").val(tempo); //= tempo;
+	
+
+
 	
 });
+
+
+	
+
 </script>
 </html>

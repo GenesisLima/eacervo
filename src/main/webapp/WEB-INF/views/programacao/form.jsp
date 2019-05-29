@@ -19,7 +19,7 @@
     
   </div>
            <div class="form-group">
-          <table>
+          <table >
         <thead>
             <tr>
                
