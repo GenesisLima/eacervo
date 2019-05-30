@@ -10,5 +10,13 @@ angular.module('eacervo').controller('ProductController', function($scope, $http
 		}).error(function(erro){
 			console.log(erro)
 		})
+		
+	
+		
+		$('#programtype').on('change',function(event){
+			$scope.initials = $scope.productTypes.find(x => x.initials === event.target.value).name;
+			$scope.$apply();
+		});	
+
 });
 

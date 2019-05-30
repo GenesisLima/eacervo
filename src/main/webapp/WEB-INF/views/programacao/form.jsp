@@ -34,18 +34,18 @@
             <tr>
             <td>              
                
-    <select class="form-control" id="programtype" name="programtype">
-      <option ng-repeat="type in productTypes" ng-value={{type.initials}} ng-model="initials">{{type.initials}}</option>
+    <select  class="form-control" id="programtype" name="programtype">
+      <option ng-repeat="type in productTypes" ng-value={{type.initials}} ng-model="type">{{type.initials}}</option>
     
 </select>   </td>  
                 <td><input  type="text" class="form-control" name="programgroup" id="programgroup" ng-model="initials" readonly></td>
 <!-- 
 <td>              
                
-    <select class="form-control" id="programorigin" name="programorigin"> -->
-<!--       <option ng-repeat="origin in productOrigins">{{origin.name}}</option> -->
+    <select class="form-control" id="programorigin" name="programorigin">
+       <option ng-repeat="origin in productOrigins">{{origin.name}}</option> 
     
-<!-- </select>   </td>         -->
+ </select>   </td>         -->
                                 <td><input type="text" class="form-control" name="programname" id="programname" ></td>
                 
                                 <td><input type="text" class="form-control" name="programepisode" id="programepisode" ></td>
