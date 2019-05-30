@@ -5,7 +5,7 @@
       <div class="jumbotron">
       <!--  <h2>Cadastro de Servidor.</h2>-->
 <div class="panel panel-default">
-  <div class="panel-heading">Programação </div>
+  <div class="panel-heading">Programação</div>
   <div class="panel-body">
   
   
@@ -25,14 +25,29 @@
                
                 <th>Tipo</th>
                 <th>Grupo</th>
+                <th>Produto</th>
+                 <th>Episódio</th>
                 <th>Duracao</th>
             </tr>
         </thead>
         <tbody>
-            <tr>               
-                <td><input type="text" name="programType"></td>                
-                <td><input type="text" name="programgroup"></td>
-                <td><input type="text" name="programDuration" id="programDuration" ></td>
+            <tr>
+            <td>              
+               
+    <select class="form-control" id="programtype" name="programtype">
+  <option ng-repeat="origin in productOrigins">{{origin.name}}</option>
+</select>   </td>  
+<td>              
+               
+    <select class="form-control" id="programorigin" name="programorigin">
+  <option ng-repeat="initials in productTypes">{{initials.initials}}</option>
+</select>   </td>        
+                <td><input type="text" class="form-control" name="programgroup" id="programgroup" readonly></td>
+                                <td><input type="text" class="form-control" name="programname" id="programname" ></td>
+                
+                                <td><input type="text" class="form-control" name="programepisode" id="programepisode" ></td>
+                                <td><input type="text" class="form-control" name="programDuration" id="programDuration" ></td>
+                
             </tr>
         </tbody>
     </table>
