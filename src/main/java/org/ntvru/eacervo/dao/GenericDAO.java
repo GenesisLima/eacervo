@@ -5,9 +5,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.hibernate.cfg.Mappings;
-import org.ntvru.eacervo.models.Origin;
-import org.ntvru.eacervo.models.ProductType;
 import org.springframework.stereotype.Repository;
 
 
