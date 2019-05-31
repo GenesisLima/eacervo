@@ -70,6 +70,7 @@ public class FunctionController {
 //	}
 	@RequestMapping(value="/functionsJSON", method=RequestMethod.GET)
 	public @ResponseBody List<Function> listJSONFunctions(){		
+		//System.out.println("FUNCTIONS "+functioDAO.list());
 		return functioDAO.list();
 	}
 } 

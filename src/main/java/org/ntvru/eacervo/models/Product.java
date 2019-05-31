@@ -44,6 +44,18 @@ public class Product implements Serializable {
 	
 	@Transient
 	private Team team;
+	
+	
+	@Column(columnDefinition="char(1) default 'A'")
+	private String status = "A";
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	public int getId() {
 		return id;

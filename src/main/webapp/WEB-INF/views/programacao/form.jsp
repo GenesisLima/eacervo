@@ -46,7 +46,15 @@
        <option ng-repeat="origin in productOrigins">{{origin.name}}</option> 
     
  </select>   </td>         -->
-                                <td><input type="text" class="form-control" name="programname" id="programname" ></td>
+                                <td>
+                                <div class="input-group">                                                        
+              <input type="text" class="form-control" name="programname" id="programname" readonly="readonly" value="0">
+              <input type="hidden" id="programid" name="programid" />
+              <span class="input-group-btn">
+              <a  class="btn btn-default" role="button" data-toggle="modal"  data-target="#modalProgram" ><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
+            </span>
+            </div><!--end input-group-->
+                                </td>
                 
                                 <td><input type="text" class="form-control" name="programepisode" id="programepisode" ></td>
                                 <td><input type="text" class="form-control" name="programDuration" id="programDuration" ></td>
@@ -56,10 +64,10 @@
     </table>
               </div>
            </div>
-           <div class="form-group">
-              <label for="description">Descri&ccedil;&atilde;o:</label>
-              <textarea type="text" class="form-control" id="description" name="description"></textarea>
-           </div>
+<!--            <div class="form-group"> -->
+<!--               <label for="description">Descri&ccedil;&atilde;o:</label> -->
+<!--               <textarea type="text" class="form-control" id="description" name="description"></textarea> -->
+<!--            </div> -->
 
           <!-- Trigger the modal with a button -->
 
@@ -71,3 +79,71 @@
       </div>
 
     </div> <!-- /container -->
+    
+        <!-- Modal programa-->
+<div id="modalProduct" class="modal fade" role="dialog" >
+  <div class="modal-dialog">
+ <form role="form" class="product">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Buscar Produto</h4>
+      </div>
+      <div class="modal-body">
+<!--         <p>Fun&ccedil;&atilde;o</p> -->
+<datatables:table id="productProgramTable" row="product"  url="/eacervo/api/v1/product"  data="${products}" deferRender="true" stateSave="true" theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
+        
+        <datatables:column title="ID" property="id" id="product_id"    />
+        <datatables:column title="NAME" property="name" id="product_name" />
+          <datatables:column  title="AÇÃO" renderFunction='action_product' >
+          
+          
+
+      </datatables:column>
+    </datatables:table>
+  </form><!-- /end form-->
+      </div>
+      <div class="modal-footer">
+<!--         <button id="submit" class="btn btn-default" data-dismiss="modal">Salvar</button> -->
+        <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+      </div>
+    
+    </div>
+    
+    
+    
+    <script type="text/javascript">
+    
+    function setProgramValue(value,id){
+   	 $('#programname').val(value);
+   	 $('#programid').val(id);
+   	$('#modalProduct.in').modal('hide');
+   	//$('body').removeClass('modal-open');
+   	//$('.modal-backdrop').remove();
+     }
+    
+    $('#modalProduct').on('show.bs.modal', function (e) {
+      	//alert('testa js')
+      
+      var modal = $(this);
+      
+      	//console.log(modal);
+      	
+      	
+      	  
+      //	});
+    
+});
+
+function action_product(data, type, full) {
+	//  console.log(full)
+	//  console.log(full.id)
+	//  console.log(full.description)
+	var  description = full.description;
+	  console.log(description)
+	 
+// 	'<a class="btn btn-mini" data-id='+ full.id +' data-description='+ full.description + '>Escolher</a>'
+	   return '<a class="btn btn-mini" data-dismiss="modal" onclick="setFunctionValue(\''+ description +'\',\''+ full.id +'\')" data-id='+ full.id +' data-description='.concat(full.description).concat('>Escolher</a>') ;
+	}
+    </script>

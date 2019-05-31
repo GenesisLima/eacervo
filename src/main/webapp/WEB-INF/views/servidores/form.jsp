@@ -1,3 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="datatables" uri="http://github.com/dandelion/datatables" %>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
 <div class="container">
 
       <jsp:include page="../templates/menu.jsp" ></jsp:include>
@@ -78,10 +86,10 @@
       </div>
       <div class="modal-body">
 <!--         <p>Fun&ccedil;&atilde;o</p> -->
-<datatables:table id="employeeFunctionTable" row="funcao"  url="/eacervo/funcoes/functionsJSON" deferRender="true" stateSave="true" theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
+<datatables:table id="employeeFunctionTable" row="function"  url="/eacervo/funcoes/functionsJSON"  deferRender="true" stateSave="true" theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
         
-        <datatables:column title="ID" property="id" id="funcao_id"    />
-        <datatables:column title="NAME" property="function" id="funcao_nome" />
+        <datatables:column title="ID" property="id" id="function_id"    />
+        <datatables:column title="NAME" property="function" id="function_nome" />
           <datatables:column  title="AÇÃO" renderFunction='action_function' >
           
           
@@ -345,3 +353,4 @@
 //    	 });
 //    	});
 </script>
+</html>

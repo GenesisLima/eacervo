@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.ntvru.eacervo.models.Product;
 import org.springframework.stereotype.Repository;
 
 
@@ -45,6 +46,15 @@ public abstract class GenericDAO<T> {
 			return (T) manager.createQuery("select a from "+daoU.getClassName()+" a where a.status='A' and a.id="+id, daoU.getEntityClass()).getSingleResult();
 		}
 
+
+		@SuppressWarnings("unchecked")
+		public List<T> getEntitiesByNames(String name){
+			String query = "select t from "+daoU.getClassName()+" t where t.status='A' and t.name LIKE :name";	
+			//String query = "select t from "+daoU.getClassName()+" t where t.status='A' and t.name LIKE :name";	
+
+			return manager.createQuery(query, daoU.getEntityClass()).setParameter("name", "%" + name + "%").getResultList();
+
+		}
 
 
 		
