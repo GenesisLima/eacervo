@@ -23,10 +23,8 @@ public class ProductGroupAPI {
 	@RequestMapping(method=RequestMethod.GET)
 	@Produces("application/json")
 	public @ResponseBody List<ProductGroup> listgroupsJSON(@RequestParam("type") String type){	
-		if(type.trim().equals("json"));
-		List<ProductGroup> pgs = productGroupDAO.list();
-		System.out.println("PGS "+pgs.get(0).getName());
-		return pgs;		
+		if(type.trim().equalsIgnoreCase("json"));		
+		return productGroupDAO.list();		
 	}
 	
 	

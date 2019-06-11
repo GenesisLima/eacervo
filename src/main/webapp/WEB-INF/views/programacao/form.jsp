@@ -1,3 +1,4 @@
+  
     <div class="container">
 
           <jsp:include page="../templates/menu.jsp" ></jsp:include>
@@ -9,7 +10,6 @@
   <div class="panel-body">
   
   
-<!--                     <div id="field"><input autocomplete="off" class="input" id="field1" name="prof1" type="text" placeholder="Type something" data-items="8"/><button id="b1" class="btn add-more" type="button">+</button></div> -->
                 
         <form class="input-append" role="form" method="post" action="/eacervo/programacoes">
            <div class="form-group">
@@ -39,13 +39,7 @@
     
 </select>   </td>  
                 <td><input  type="text" class="form-control" name="programgroup" id="programgroup" ng-model="initials" readonly></td>
-<!-- 
-<td>              
-               
-    <select class="form-control" id="programorigin" name="programorigin">
-       <option ng-repeat="origin in productOrigins">{{origin.name}}</option> 
-    
- </select>   </td>         -->
+
                                 <td>
                                 <div class="input-group">                                                        
               <input type="text" class="form-control" name="productname" id="productname" readonly="readonly" value="0">
@@ -64,10 +58,7 @@
     </table>
               </div>
            </div>
-<!--            <div class="form-group"> -->
-<!--               <label for="description">Descri&ccedil;&atilde;o:</label> -->
-<!--               <textarea type="text" class="form-control" id="description" name="description"></textarea> -->
-<!--            </div> -->
+
 
           <!-- Trigger the modal with a button -->
 
@@ -82,6 +73,7 @@
     
         <!-- Modal programa-->
 <div id="modalProduct" class="modal fade" role="dialog" >
+
   <div class="modal-dialog">
  <form role="form" class="product">
     <!-- Modal content-->
@@ -91,17 +83,29 @@
         <h4 class="modal-title">Buscar Produto</h4>
       </div>
       <div class="modal-body">
+    <table id="productProgramTable">
+      <thead>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>AÇÃO</th>
+            
+        </tr>
+    </thead>   
+    </table>
+      
+      
 <!--         <p>Fun&ccedil;&atilde;o</p> -->
-<datatables:table id="productProgramTable" row="product"  url="/eacervo/api/v1/product"  data="${products}" deferRender="true" stateSave="true" theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
+<%-- <datatables:table id="productProgramTable" row="product"  url="/eacervo/api/v1/product?type=json"  data="${products}" deferRender="true" stateSave="true" theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5"> --%>
         
-        <datatables:column title="ID" property="id" id="product_id"    />
-        <datatables:column title="NAME" property="name" id="product_name" />
-          <datatables:column  title="AÇÃO" renderFunction='action_product' >
+<!--         <datatables:column title="ID" property="id" id="product_id"    /> -->
+<!--         <datatables:column title="NAME" property="name" id="product_name" /> -->
+<!--           <datatables:column  title="AÇÃO" renderFunction='action_product' > -->
           
           
 
-      </datatables:column>
-    </datatables:table>
+<!--       </datatables:column> -->
+<!--     </datatables:table> -->
   </form><!-- /end form-->
       </div>
       <div class="modal-footer">
@@ -115,6 +119,16 @@
     
     <script type="text/javascript">
     
+    $(document).ready(function() {
+        $('#productProgramTable').DataTable( {
+            "ajax":{url: '/eacervo/api/v1/product?type=json', dataSrc:""},
+             "columns":[
+            	 {"data":"id"},
+            	 {"data":"name"},
+            	 {"defaultContent":"<button>Edit</button> <button>Remove</button>"}            	
+             ]
+        } );
+    } );
     function setProgramValue(value,id){
    	 $('#productname').val(value);
    	 $('#productid').val(id);

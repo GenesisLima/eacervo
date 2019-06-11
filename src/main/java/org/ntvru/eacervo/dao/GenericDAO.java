@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Tuple;
 
-import org.ntvru.eacervo.models.Product;
 import org.springframework.stereotype.Repository;
 
 
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public abstract class GenericDAO<T> {
 	
-	DAOUtility<T> daoU ;
+	DAOUtility<T> daoU;
 
 	
 	@PersistenceContext
@@ -50,13 +50,42 @@ public abstract class GenericDAO<T> {
 		@SuppressWarnings("unchecked")
 		public List<T> getEntitiesByNames(String name){
 			String query = "select t from "+daoU.getClassName()+" t where t.status='A' and t.name LIKE :name";	
-			//String query = "select t from "+daoU.getClassName()+" t where t.status='A' and t.name LIKE :name";	
 
 			return manager.createQuery(query, daoU.getEntityClass()).setParameter("name", "%" + name + "%").getResultList();
 
 		}
 
 
+		@SuppressWarnings("unchecked")
+		public List<Tuple> getEntitiesByAttributes(String ...attributes){
+			
+			String columns = "";
+			//String dtoPackage = daoU.getEntityClass().getPackage()+".dto";
+
+			
+			for(String attribute : attributes) {
+				if(attribute.equalsIgnoreCase(attributes[attributes.length -1])) {										
+                  columns += "t."+attribute+" as "+attribute+" ";
+				}else {
+					columns += "t."+attribute+" as "+attribute+", ";
+				}
+			}
+			
+             // working dto query version
+			//String query = "select new "+dtoPackage.replace("package", "")+".ProductDTO"+"("+columns+") from "+daoU.getClassName()+" t where t.status='A'";
+			
+			
+			String query = "select "+columns+" from "+daoU.getClassName()+" t where t.status='A'";
+
+			
+			
+			
+			return manager.createQuery(query, Tuple.class).getResultList();
+					
+		}
+			
+		
+		
 		
 		
 	
