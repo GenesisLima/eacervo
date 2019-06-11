@@ -24,20 +24,12 @@ public class ProductAPI {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	@Produces("application/json")
-	public @ResponseBody List<ProductDTO> listgroupsJSON(@RequestParam("type") String type){
-		
+	public @ResponseBody List<ProductDTO> listgroupsJSON(@RequestParam("type") String type){		
 		if(type.trim().equalsIgnoreCase("json"));	
 		return convertTupleListToProduct(dao.getEntitiesByAttributes("id","name"));
 	}
-	
-	@RequestMapping(value="/test",method=RequestMethod.GET)
-	@Produces("application/json")
-	public @ResponseBody void testListgroupsJSON(@RequestParam("type") String type){	
-		if(type.trim().equalsIgnoreCase("json")) {	
-	
-		}
 		
-	}
+	
 	
 	private List<ProductDTO> convertTupleListToProduct(List<Tuple> tupleList) {
 		List<ProductDTO> products = new ArrayList<ProductDTO>();

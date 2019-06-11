@@ -95,17 +95,7 @@
     </table>
       
       
-<!--         <p>Fun&ccedil;&atilde;o</p> -->
-<%-- <datatables:table id="productProgramTable" row="product"  url="/eacervo/api/v1/product?type=json"  data="${products}" deferRender="true" stateSave="true" theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5"> --%>
-        
-<!--         <datatables:column title="ID" property="id" id="product_id"    /> -->
-<!--         <datatables:column title="NAME" property="name" id="product_name" /> -->
-<!--           <datatables:column  title="AÇÃO" renderFunction='action_product' > -->
-          
-          
 
-<!--       </datatables:column> -->
-<!--     </datatables:table> -->
   </form><!-- /end form-->
       </div>
       <div class="modal-footer">
@@ -119,26 +109,33 @@
     
     <script type="text/javascript">
     
-    $(document).ready(function() {
-        $('#productProgramTable').DataTable( {
-            "ajax":{url: '/eacervo/api/v1/product?type=json', dataSrc:""},
-             "columns":[
-            	 {"data":"id"},
-            	 {"data":"name"},
-            	 {"defaultContent":"<button>Edit</button> <button>Remove</button>"}            	
-             ]
-        } );
-    } );
-    function setProgramValue(value,id){
-   	 $('#productname').val(value);
-   	 $('#productid').val(id);
+//     $(document).ready(function() {
+
+//     } );
+    
+
+    
+    function setProgramValue(){
+    	 var table = $("#productProgramTable").DataTable();
+    	   var row_data = table.rows( { selected: true } ).data()[0];
+
+
+   	 $('#productname').val(row_data.name);
+   
    	$('#modalProduct.in').modal('hide');
    	//$('body').removeClass('modal-open');
    	//$('.modal-backdrop').remove();
      }
     
     $('#modalProduct').on('show.bs.modal', function (e) {
-      	//alert('testa js')
+        $('#productProgramTable').DataTable( {
+            "ajax":{url: '/eacervo/api/v1/product?type=json', dataSrc:""},
+             "columns":[
+            	 {"data":"id"},
+            	 {"data":"name"},
+            	 {"defaultContent":'<a class="btn btn-mini" data-dismiss="modal" onclick="setProgramValue()" >Escolher</a>'}            	
+             ]
+        } );
       
       var modal = $(this);
       
@@ -150,14 +147,17 @@
     
 });
 
+
+
+
 function action_product(data, type, full) {
-	//  console.log(full)
-	//  console.log(full.id)
-	//  console.log(full.description)
+
 	var  description = full.description;
 	  console.log(description)
 	 
 // 	'<a class="btn btn-mini" data-id='+ full.id +' data-description='+ full.description + '>Escolher</a>'
 	   return '<a class="btn btn-mini" data-dismiss="modal" onclick="setFunctionValue(\''+ description +'\',\''+ full.id +'\')" data-id='+ full.id +' data-description='.concat(full.description).concat('>Escolher</a>') ;
 	}
+	
+
     </script>
