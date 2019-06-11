@@ -4,7 +4,7 @@ angular.module('eacervo').controller('ProductController', function($scope, $http
 	$scope.initials = ''
 	$scope.type = {}
 		
-		$http.get('/eacervo/api/v1/productgroup/json').success(function(productTypes){			
+		$http.get('/eacervo/api/v1/productgroup?type=json').success(function(productTypes){			
 			$scope.productTypes = productTypes;			
 		}).error(function(erro){
 			console.log(erro)

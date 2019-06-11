@@ -48,10 +48,10 @@
  </select>   </td>         -->
                                 <td>
                                 <div class="input-group">                                                        
-              <input type="text" class="form-control" name="programname" id="programname" readonly="readonly" value="0">
-              <input type="hidden" id="programid" name="programid" />
+              <input type="text" class="form-control" name="productname" id="productname" readonly="readonly" value="0">
+              <input type="hidden" id="productid" name="productid" />
               <span class="input-group-btn">
-              <a  class="btn btn-default" role="button" data-toggle="modal"  data-target="#modalProgram" ><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
+              <a  class="btn btn-default" role="button" data-toggle="modal"  data-target="#modalProduct" ><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
             </span>
             </div><!--end input-group-->
                                 </td>
@@ -116,8 +116,8 @@
     <script type="text/javascript">
     
     function setProgramValue(value,id){
-   	 $('#programname').val(value);
-   	 $('#programid').val(id);
+   	 $('#productname').val(value);
+   	 $('#productid').val(id);
    	$('#modalProduct.in').modal('hide');
    	//$('body').removeClass('modal-open');
    	//$('.modal-backdrop').remove();
