@@ -130,7 +130,10 @@
    	 $('#productepisode').val(row_data.name);
    	 $('#programgroup').val(row_data.product.productGroup.initials);
    	 $('#productname').val(row_data.product.name);
-   	 $('#programDuration').val(row_data.duration);
+   	var convertedDuration= moment().startOf('day')
+    .seconds(row_data.duration)
+    .format('H:mm:ss');
+   	 $('#programDuration').val(convertedDuration);
 
    	$('#modalEpisode.in').modal('hide');
    	
