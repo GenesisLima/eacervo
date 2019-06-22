@@ -1,10 +1,5 @@
 package org.ntvru.eacervo.dao;
 
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.ntvru.eacervo.models.Product;
 import org.springframework.stereotype.Repository;
 
