@@ -132,10 +132,10 @@
      }
     
     $('#modalEpisode').on('show.bs.modal', function (e) {
-    	var episodeName = $('#programepisode').val();
+//     	var episodeName = $('#programepisode').val();
         $('#productEpisodeTable').DataTable( {
         	
-            "ajax":{url: '/eacervo/api/v1/episode?name='+episodeName+'type=json', dataSrc:""},
+            "ajax":{url: '/eacervo/api/v1/episode?type=json', dataSrc:""},
              "columns":[
             	 {"data":"id"},
             	 {"data":"name"},
@@ -147,7 +147,10 @@
       
       	//console.log(modal);
       	
-      	
+    $('#productEpisodeTable').on('search.dt',function(){
+    	 var value = $('.dataTables_filter input').val();
+    	 console.log(value); // <-- the value
+    }); 	
       	  
 
     
