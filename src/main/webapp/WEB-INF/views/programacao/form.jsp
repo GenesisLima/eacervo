@@ -29,9 +29,9 @@
                 <th>Duracao</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody>	
             <tr>
-            <td><div class="input-group"><input type="text" class="form-control" name="productepisode" id="productepisode" >
+            <td><div class="input-group"><input type="text" class="form-control" name="productepisode" id="productepisode"   type="text">
                                 <span class="input-group-btn">
                                               <a  class="btn btn-default" role="button" data-toggle="modal"  data-target="#modalEpisode" ><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
                                 
@@ -75,16 +75,16 @@
 
     </div> <!-- /container -->
     
-        <!-- Modal programa-->
+        <!-- Modal episódio-->
 <div id="modalEpisode" class="modal fade" role="dialog" >
 
   <div class="modal-dialog">
- <form role="form" class="product">
+ <form role="form" class="episode">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Buscar Produto</h4>
+        <h4 class="modal-title">Buscar Episodio</h4>
       </div>
       <div class="modal-body">
     <table id="productEpisodeTable">
@@ -120,37 +120,46 @@
 
     
     function setEpisodeValue(){
-    	 var table = $("#productEpisodeTable").DataTable();
-    	   var row_data = table.rows( { selected: true } ).data()[0];
+    	
 
+    	table = $('#productEpisodeTable').DataTable( { retrieve: true} );
+       
 
+    	 var row_data = table.rows( { selected: true } ).data()[0];
+    	  
    	 $('#productepisode').val(row_data.name);
-   
+   	 $('#programgroup').val(row_data.product.productGroup.initials);
+   	 $('#productname').val(row_data.product.name);
+   	 $('#programDuration').val(row_data.duration);
+
    	$('#modalEpisode.in').modal('hide');
-   	//$('body').removeClass('modal-open');
-   	//$('.modal-backdrop').remove();
+   	
+   	
      }
     
-    $('#modalEpisode').on('show.bs.modal', function (e) {
-//     	var episodeName = $('#programepisode').val();
+    $('#modalEpisode').on('show.bs.modal', function (e) { 	  
+
+    	var episodeName = $('#programepisode').val();
         $('#productEpisodeTable').DataTable( {
-        	
-            "ajax":{url: '/eacervo/api/v1/episode?type=json', dataSrc:""},
+        	retrieve: true,
+            "ajax":{url: '/eacervo/api/v1/episode/all?type=json', dataSrc:""},
              "columns":[
             	 {"data":"id"},
             	 {"data":"name"},
-            	 {"defaultContent":'<a class="btn btn-mini" data-dismiss="modal" onclick="setEpisodeValue()" >Escolher</a>'}            	
+            	 {"defaultContent":'<a class="btn btn-mini" data-dismiss="modal" onclick="setEpisodeValue()" >Escolher</a>'},
+            	 
              ]
+            
         } );
       
       var modal = $(this);
       
       	//console.log(modal);
       	
-    $('#productEpisodeTable').on('search.dt',function(){
-    	 var value = $('.dataTables_filter input').val();
-    	 console.log(value); // <-- the value
-    }); 	
+//     $('#productEpisodeTable').on('search.dt',function(){
+//     	 var value = $('.dataTables_filter input').val();
+//     	 console.log(value); // <-- the value
+//     }); 	
       	  
 
     
@@ -165,7 +174,7 @@ function action_product(data, type, full) {
 	  console.log(description)
 	 
 // 	'<a class="btn btn-mini" data-id='+ full.id +' data-description='+ full.description + '>Escolher</a>'
-	   return '<a class="btn btn-mini" data-dismiss="modal" onclick="setFunctionValue(\''+ description +'\',\''+ full.id +'\')" data-id='+ full.id +' data-description='.concat(full.description).concat('>Escolher</a>') ;
+	   return '<a class="btn btn-mini" data-dismiss="modal" onclick="setEpisodeValue(\''+ description +'\',\''+ full.id +'\')" data-id='+ full.id +' data-description='.concat(full.description).concat('>Escolher</a>') ;
 	}
 	
 
