@@ -8,6 +8,7 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
+target/m2e-wtp/web-resources/META-INF/maven/org.eacervo/eacervo/pom.properties
 pom.properties
 
 #Eclipse files

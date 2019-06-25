@@ -14,8 +14,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
-@Entity(name="EPISODE")
+import org.codehaus.jackson.annotate.JsonIgnore;
+
+@Entity
+@Table(name="EPISODE")
 public class Episode implements Serializable {
 
 	/**
@@ -31,8 +36,10 @@ public class Episode implements Serializable {
 	private String name;
 	private String description;
 	
+	@Transient
 	@ElementCollection
-		@CollectionTable(name="BLOCK",joinColumns=@JoinColumn(name="episode_id"))
+	@CollectionTable(name="BLOCK",joinColumns=@JoinColumn(name="episode_id"))
+	@JsonIgnore
 	private List<Block> blocks;
 	
 	
