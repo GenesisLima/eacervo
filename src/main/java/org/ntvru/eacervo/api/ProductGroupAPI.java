@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -19,9 +20,10 @@ public class ProductGroupAPI {
 	@Autowired
 	private GenericDAO<ProductGroup> productGroupDAO;
 	
-	@RequestMapping(value="/json",method=RequestMethod.GET)
+	@RequestMapping(method=RequestMethod.GET)
 	@Produces("application/json")
-	public @ResponseBody List<ProductGroup> listgroupsJSON(){		
+	public @ResponseBody List<ProductGroup> listgroupsJSON(@RequestParam("type") String type){	
+		if(type.trim().equalsIgnoreCase("json"));		
 		return productGroupDAO.list();		
 	}
 	
