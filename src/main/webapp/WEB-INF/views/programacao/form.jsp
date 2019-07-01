@@ -149,7 +149,7 @@
             //console.log("NEW ENTRY "+currentEntry.html());
             
             newEntry.each(function(index,element){
-          	  console.log("ELEMENT "+$(element).attr("name"))
+          	  console.log("ELEMENT "+element)
           	    $(element).attr("id", function(){
             		  return $(element).attr("name")+index
             	  })
@@ -159,7 +159,7 @@
             
             var textinputs = newEntry.find(':input[type="text"]').each(function(index, element){
             	
-            	  $(element).attr("id", function(){
+            	  $(element).attr("id", function(){            		  
             		  return $(element).attr("name")+index
             	  })
             	
@@ -218,7 +218,7 @@
         
     	var allInputHidden = $("#openModalEpisode").data('element').find('input[type=hidden]').attr('id');
     	    
-    	var allInputTexts = $("#openModalEpisode").data('element').find(':input[type=text]');
+//     	var allInputTexts = $("#openModalEpisode").data('element').find(':input[type=text]');
     	 
 //     	console.log(allInputTexts[0].id)
 //     	    	console.log(allInputTexts[1].id)
