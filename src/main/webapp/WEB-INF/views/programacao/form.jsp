@@ -140,76 +140,45 @@
         {
         	
             e.preventDefault();
-            console.log("DIV "+$(e).parent().closest('div'));
-            $('#elementid').val(next);
-            var controlForm = $('.panel-body form:first'),
-                currentEntry = $(this).parents('.form-group:first');
-            
+            var formGroup = '.form-group';
+        
+            var controlForm = $('.panel-body form:first'), currentEntry = $(formGroup).last();
+ 
             newEntry = $(currentEntry.clone()).appendTo(controlForm);
-            //console.log("NEW ENTRY "+currentEntry.html());
-            
-            newEntry.each(function(index,element){
-          	  console.log("ELEMENT "+element)
-          	    $(element).attr("id", function(){
-            		  return $(element).attr("name")+index
-            	  })
-              
-            })
-            
-            
-            var textinputs = newEntry.find(':input[type="text"]').each(function(index, element){
-            	
-            	  $(element).attr("id", function(){            		  
-            		  return $(element).attr("name")+index
-            	  })
-            	
-            });
-            
-            var hiddeninputs = currentEntry.clone().find(':input[type="hidden"]');
-            
-            //var modifiedclone =currentEntry.clone();
 
-            console.log(textinputs.length+"\n"+hiddeninputs.length);
-            
-              for(i=0; textinputs.length >i;i++){
-            	  var id = textinputs[i].id;            	
-                  newEntry.each(function(index,element){
-                  	  console.log("ELEMENT "+$(element).attr("name"))
-                  	    $(element).attr("id", function(){
-                    		  return textinputs[i].name+next
-                    	  })
-                      
-                    })
-            	  console.log("TI "+textinputs[i].id+next);
-              }
-              
-             
-
-              
-              
-            var episodeinput = newEntry.find('input')
-                       episodeinput.val('');
-            var idvalue = episodeinput.attr( "id");
-         
-            episodeinput.attr( "id", function() {            	             
-                    	    return episodeinput.attr("name")+next;
-                    	  });
-            
+            incrementElementIndex('.form-group',':input[type="text"]');
+ 
                 controlForm.find('.btn-add:not(:last)')
                 .removeClass('btn-default').addClass('btn-danger')
                 .removeClass('btn-add').addClass('btn-remove')
                 
                 .html('<span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Remover Linha   ');
-                next = next+1;
+                //next = next+1;
         }).on('click', '.btn-remove', function(e)
         {
     		$(this).parents('.form-group:first').remove();
-
+    		 incrementElementIndex('.form-group',':input[type="text"]');
     		e.preventDefault();
     		return false;
     	});
     });
     
+    function incrementElementIndex(elementClass, controlType){
+        $(elementClass).each(function(index, element){
+            formIndex = index           	
+     	 console.log( index + ": " + $( this ).html());
+     	 $(this).find(controlType).each(function(index, element){ 
+     		 
+        	  $(element).attr("id", function(){            		  
+        		  return $(element).attr("name")+formIndex
+        	  })
+               console.log("IDX "+formIndex)
+               console.log("INPUT "+element.id)
+        	
+        });
+     	
+     });
+    }
 
     
     function setEpisodeValue(e){
