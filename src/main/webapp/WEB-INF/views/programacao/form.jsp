@@ -15,7 +15,7 @@
            <div class="form-group">
     <label for="id">ID:</label>
 <!--     <input type="text" class="form-control" id="id" name="id" readonly="readonly" value="0"> -->
-        	<input type="button" class="add-row" value="Add Row">
+<!--         	<input type="button" class="add-row" value="Add Row"> -->
     
   </div>
            <div class="form-group">
@@ -31,9 +31,9 @@
         </thead>
         <tbody>	
             <tr>
-            <td><div class="input-group"><input type="text" class="form-control" name="productepisode" id="productepisode"   type="text">
+            <td><div class="input-group"><input type="text" class="form-control" name="productepisode" id="productepisode" > <input type="hidden" name="elementid" id="elementid" >
                                 <span class="input-group-btn">
-                                              <a  class="btn btn-default" role="button" data-toggle="modal"  data-target="#modalEpisode" ><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
+                                              <a  class="btn btn-default" role="button" data-toggle="modal" id="openModalEpisode" ><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
                                 
                                 </span></div></td>
 <!--             <td>               -->
@@ -56,10 +56,14 @@
                 
                                 
                                 <td><input type="text" class="form-control" name="programDuration" id="programDuration" ></td>
+                                <td>    <button type="button" class="btn btn-success btn-add" >
+                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Inserir Linha  <!-- Add -->
+                    </button></td>
                 
             </tr>
         </tbody>
     </table>
+ 
               </div>
            </div>
 
@@ -113,20 +117,84 @@
     
     <script type="text/javascript">
     
-//     $(document).ready(function() {
-
-//     } );
-    
-
-    
-    function setEpisodeValue(){
+    $(document).on("click", "#openModalEpisode",function(){
+    	 var element = $(this);
+    	 element.data('element', $(element).parent().closest('div').parent().closest('div'));
     	
 
+    	$("#modalEpisode").modal();
+    	$("#modalEpisode .modal-body").attr("id",function(){
+    		
+    		            return element.id;
+    	})
+    	 $(".modal-body ").val(element);
+    	
+    });
+     
+    $(document).ready(function()
+    		{
+    	var next = 1;
+        $(document).on('click', '.btn-add', function(e)
+        {
+        	
+            e.preventDefault();
+            var formGroup = '.form-group';
+        
+            var controlForm = $('.panel-body form:first'), currentEntry = $(formGroup).last();
+ 
+            newEntry = $(currentEntry.clone()).appendTo(controlForm);
+
+            incrementElementIndex('.form-group',':input[type="text"]');
+ 
+                controlForm.find('.btn-add:not(:last)')
+                .removeClass('btn-default').addClass('btn-danger')
+                .removeClass('btn-add').addClass('btn-remove')
+                
+                .html('<span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Remover Linha   ');
+             
+        }).on('click', '.btn-remove', function(e)
+        {
+    		$(this).parents('.form-group:first').remove();
+    		 incrementElementIndex('.form-group',':input[type="text"]');
+    		e.preventDefault();
+    		return false;
+    	});
+    });
+    
+    function incrementElementIndex(elementClass, controlType){
+        $(elementClass).each(function(index, element){
+            formIndex = index           	
+//      	 console.log( index + ": " + $( this ).html());
+     	 $(this).find(controlType).each(function(index, element){ 
+     		 
+        	  $(element).attr("id", function(){            		  
+        		  return $(element).attr("name")+formIndex
+        	  })
+//                console.log("IDX "+formIndex)
+//                console.log("INPUT "+element.id)
+        	
+        });
+     	
+     });
+    }
+
+    
+    function setEpisodeValue(e){
+    	 
+    	
+        
+    	    
+
+
+
+    	
+    	console.log("RELATED "+$("#openModalEpisode").data('element').find(':input'));
+    	
     	table = $('#productEpisodeTable').DataTable( { retrieve: true} );
        
 
     	 var row_data = table.rows( { selected: true } ).data()[0];
-    	  
+    	   
    	 $('#productepisode').val(row_data.name);
    	 $('#programgroup').val(row_data.product.productGroup.initials);
    	 $('#productname').val(row_data.product.name);
@@ -149,7 +217,7 @@
              "columns":[
             	 {"data":"id"},
             	 {"data":"name"},
-            	 {"defaultContent":'<a class="btn btn-mini" data-dismiss="modal" onclick="setEpisodeValue()" >Escolher</a>'},
+            	 {"defaultContent":'<a class="btn btn-mini" data-dismiss="modal" onclick="setEpisodeValue(this)" >Escolher</a>'}
             	 
              ]
             
@@ -168,7 +236,8 @@
     
 });
 
-
+    
+    
 
 
 function action_product(data, type, full) {
