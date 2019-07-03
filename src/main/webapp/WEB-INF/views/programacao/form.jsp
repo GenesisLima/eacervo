@@ -141,9 +141,12 @@
             var formGroup = '.form-group';
         
             var controlForm = $('.panel-body form:first'), currentEntry = $(formGroup).last();
- 
-            newEntry = $(currentEntry.clone()).appendTo(controlForm);
-
+             cloneEntry = currentEntry.clone();
+             $(cloneEntry).find(':input[type="text"]').each(function(index, element){
+             	$(this).val('')
+             });
+            newEntry = $(cloneEntry).appendTo(controlForm);
+            
             incrementElementIndex('.form-group',':input[type="text"]');
  
                 controlForm.find('.btn-add:not(:last)')
@@ -181,14 +184,7 @@
     
     function setEpisodeValue(e){
     	 
-    	
-        
-    	    
-
-
-
-    	
-    	console.log("RELATED "+$("#openModalEpisode").data('element').find(':input'));
+	console.log("RELATED "+$("#openModalEpisode").data('element').find(':input'));
     	
     	table = $('#productEpisodeTable').DataTable( { retrieve: true} );
        
