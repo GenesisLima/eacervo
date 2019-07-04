@@ -33,7 +33,7 @@
             <tr>
             <td><div class="input-group"><input type="text" class="form-control" name="productepisode" id="productepisode" > <input type="hidden" name="elementid" id="elementid" >
                                 <span class="input-group-btn">
-                                              <a  class="btn btn-default" role="button" data-toggle="modal" id="openModalEpisode" ><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
+                                              <a  class="btn btn-default" role="button" data-test="test value" data-toggle="modal" id="openModalEpisode" ><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
                                 
                                 </span></div></td>
 <!--             <td>               -->
@@ -116,20 +116,7 @@
     
     
     <script type="text/javascript">
-    
-    $(document).on("click", "#openModalEpisode",function(){
-    	 var element = $(this);
-    	 element.data('element', $(element).parent().closest('div').parent().closest('div'));
-    	
 
-    	$("#modalEpisode").modal();
-    	$("#modalEpisode .modal-body").attr("id",function(){
-    		
-    		            return element.id;
-    	})
-    	 $(".modal-body ").val(element);
-    	
-    });
      
     $(document).ready(function()
     		{
@@ -181,7 +168,36 @@
      });
     }
 
+//     function getElementsIDs(elementClass, controlType){
+//     	$( this ).closest('.form-group').each(function(index,element){
+//   		  $(this).find(':input:text').each(function(index, element){
+//   			  console.log("DATA "+element.id)
+//   		  })
+//   	})
+//     }
     
+    $(document).on("click", "#openModalEpisode",function(){
+    	 var element = $(this).parent('.form-group');
+    	 
+    	 //element.data('element', $(element).parent().closest('div').parent().closest('div'));
+    	// element.data('test', $(element).html());
+    	
+    	    	$( this ).closest('.form-group').each(function(index,element){    	    		
+  		  $(this).find(':input:text').each(function(index, element){
+  		
+  			$(element).prop('id',element.id) 
+  			console.log("NUID "+$(element).attr('id'))
+  		  })
+  	})
+
+    	$("#modalEpisode").modal();
+    	$("#modalEpisode .modal-body").attr("id",function(){
+    		
+    		           // return element.id;
+    	})
+    	 $(".modal-body ").val(element);
+    	
+    });
     function setEpisodeValue(e){
     	 
 	console.log("RELATED "+$("#openModalEpisode").data('element').find(':input'));
