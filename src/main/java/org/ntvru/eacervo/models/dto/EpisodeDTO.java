@@ -31,6 +31,14 @@ public class EpisodeDTO {
 
 
 
+	public EpisodeDTO(Integer episodeId, String episodeName) {
+		this.episodeId = episodeId;
+		this.episodeName = episodeName;
+	}
+
+
+
+
 	public int getEpisodeId() {
 		return episodeId;
 	}

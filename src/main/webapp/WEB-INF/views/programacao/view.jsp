@@ -128,15 +128,9 @@ $(document).ready(function(){
 		console.log("NEXT "+next);
 		//var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + productType + "</td><td>" + productGroup + "</td></tr>";
 		var markup ="<tr><td><input type='text' name='"+(productType+next)+"'></td><td><input type='text' name='"+(productGroup+next)+"'></td><td><input type='text' id='"+(productDuration+next)+"'></td></tr>";
-<<<<<<< HEAD
+
 		 $("table tbody").append(markup);		 
-=======
-		
-		
-		
-		 $("table tbody").append(markup);		
-			
->>>>>>> 1da14d1c5e39d81089adf8709247f580ea27be7d
+
 		 var programDurationID = productDuration+next;
 		 console.log(programDurationID)
 // 		Inputmask({ mask: "99:99:99"}).mask(document.querySelectorAll(programDurationID));

@@ -15,7 +15,7 @@
            <div class="form-group">
     <label for="id">ID:</label>
 <!--     <input type="text" class="form-control" id="id" name="id" readonly="readonly" value="0"> -->
-        	<input type="button" class="add-row" value="Add Row">
+<!--         	<input type="button" class="add-row" value="Add Row"> -->
     
   </div>
            <div class="form-group">
@@ -29,11 +29,11 @@
                 <th>Duracao</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody>	
             <tr>
-            <td><div class="input-group"><input type="text" class="form-control" name="productepisode" id="productepisode" >
+            <td><div class="input-group"><input type="text" class="form-control" name="productepisode" id="productepisode" > <input type="hidden" name="elementid" id="elementid" >
                                 <span class="input-group-btn">
-                                              <a  class="btn btn-default" role="button" data-toggle="modal"  data-target="#modalEpisode" ><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
+                                              <a  class="btn btn-default" role="button" data-toggle="modal" id="openModalEpisode" ><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
                                 
                                 </span></div></td>
 <!--             <td>               -->
@@ -56,10 +56,14 @@
                 
                                 
                                 <td><input type="text" class="form-control" name="programDuration" id="programDuration" ></td>
+                                <td>    <button type="button" class="btn btn-success btn-add" >
+                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Inserir Linha  <!-- Add -->
+                    </button></td>
                 
             </tr>
         </tbody>
     </table>
+ 
               </div>
            </div>
 
@@ -75,16 +79,16 @@
 
     </div> <!-- /container -->
     
-        <!-- Modal programa-->
+        <!-- Modal episódio-->
 <div id="modalEpisode" class="modal fade" role="dialog" >
 
   <div class="modal-dialog">
- <form role="form" class="product">
+ <form role="form" class="episode">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Buscar Produto</h4>
+        <h4 class="modal-title">Buscar Episodio</h4>
       </div>
       <div class="modal-body">
     <table id="productEpisodeTable">
@@ -113,47 +117,123 @@
     
     <script type="text/javascript">
     
-//     $(document).ready(function() {
+    $(document).on("click", "#openModalEpisode",function(){
+    	 var element = $(this);
+    	 element.data('element', $(element).parent().closest('div').parent().closest('div'));
+    	
 
-//     } );
+    	$("#modalEpisode").modal();
+    	$("#modalEpisode .modal-body").attr("id",function(){
+    		
+    		            return element.id;
+    	})
+    	 $(".modal-body ").val(element);
+    	
+    });
+     
+    $(document).ready(function()
+    		{
+    	var next = 1;
+        $(document).on('click', '.btn-add', function(e)
+        {
+        	
+            e.preventDefault();
+            var formGroup = '.form-group';
+        
+            var controlForm = $('.panel-body form:first'), currentEntry = $(formGroup).last();
+             cloneEntry = currentEntry.clone();
+             $(cloneEntry).find(':input[type="text"]').each(function(index, element){
+             	$(this).val('')
+             });
+            newEntry = $(cloneEntry).appendTo(controlForm);
+            
+            incrementElementIndex('.form-group',':input[type="text"]');
+ 
+                controlForm.find('.btn-add:not(:last)')
+                .removeClass('btn-default').addClass('btn-danger')
+                .removeClass('btn-add').addClass('btn-remove')
+                
+                .html('<span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Remover Linha   ');
+             
+        }).on('click', '.btn-remove', function(e)
+        {
+    		$(this).parents('.form-group:first').remove();
+    		 incrementElementIndex('.form-group',':input[type="text"]');
+    		e.preventDefault();
+    		return false;
+    	});
+    });
     
+    function incrementElementIndex(elementClass, controlType){
+        $(elementClass).each(function(index, element){
+            formIndex = index           	
+//      	 console.log( index + ": " + $( this ).html());
+     	 $(this).find(controlType).each(function(index, element){ 
+     		 
+        	  $(element).attr("id", function(){            		  
+        		  return $(element).attr("name")+formIndex
+        	  })
+//                console.log("IDX "+formIndex)
+//                console.log("INPUT "+element.id)
+        	
+        });
+     	
+     });
+    }
 
     
-    function setEpisodeValue(){
-    	 var table = $("#productEpisodeTable").DataTable();
-    	   var row_data = table.rows( { selected: true } ).data()[0];
+    function setEpisodeValue(e){
+    	 
+	console.log("RELATED "+$("#openModalEpisode").data('element').find(':input'));
+    	
+    	table = $('#productEpisodeTable').DataTable( { retrieve: true} );
+       
 
-
+    	 var row_data = table.rows( { selected: true } ).data()[0];
+    	   
    	 $('#productepisode').val(row_data.name);
-   
+   	 $('#programgroup').val(row_data.product.productGroup.initials);
+   	 $('#productname').val(row_data.product.name);
+   	var convertedDuration= moment().startOf('day')
+    .seconds(row_data.duration)
+    .format('H:mm:ss');
+   	 $('#programDuration').val(convertedDuration);
+
    	$('#modalEpisode.in').modal('hide');
-   	//$('body').removeClass('modal-open');
-   	//$('.modal-backdrop').remove();
+   	
+   	
      }
     
-    $('#modalEpisode').on('show.bs.modal', function (e) {
+    $('#modalEpisode').on('show.bs.modal', function (e) { 	  
+
     	var episodeName = $('#programepisode').val();
         $('#productEpisodeTable').DataTable( {
-        	
-            "ajax":{url: '/eacervo/api/v1/episode?name='+episodeName+'type=json', dataSrc:""},
+        	retrieve: true,
+            "ajax":{url: '/eacervo/api/v1/episode/all?type=json', dataSrc:""},
              "columns":[
             	 {"data":"id"},
             	 {"data":"name"},
-            	 {"defaultContent":'<a class="btn btn-mini" data-dismiss="modal" onclick="setEpisodeValue()" >Escolher</a>'}            	
+            	 {"defaultContent":'<a class="btn btn-mini" data-dismiss="modal" onclick="setEpisodeValue(this)" >Escolher</a>'}
+            	 
              ]
+            
         } );
       
       var modal = $(this);
       
       	//console.log(modal);
       	
-      	
+//     $('#productEpisodeTable').on('search.dt',function(){
+//     	 var value = $('.dataTables_filter input').val();
+//     	 console.log(value); // <-- the value
+//     }); 	
       	  
 
     
 });
 
-
+    
+    
 
 
 function action_product(data, type, full) {
@@ -162,7 +242,7 @@ function action_product(data, type, full) {
 	  console.log(description)
 	 
 // 	'<a class="btn btn-mini" data-id='+ full.id +' data-description='+ full.description + '>Escolher</a>'
-	   return '<a class="btn btn-mini" data-dismiss="modal" onclick="setFunctionValue(\''+ description +'\',\''+ full.id +'\')" data-id='+ full.id +' data-description='.concat(full.description).concat('>Escolher</a>') ;
+	   return '<a class="btn btn-mini" data-dismiss="modal" onclick="setEpisodeValue(\''+ description +'\',\''+ full.id +'\')" data-id='+ full.id +' data-description='.concat(full.description).concat('>Escolher</a>') ;
 	}
 	
 
