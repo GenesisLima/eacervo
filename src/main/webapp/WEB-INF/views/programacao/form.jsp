@@ -31,9 +31,9 @@
         </thead>
         <tbody>	
             <tr>
-            <td><div class="input-group"><input type="text" class="form-control" name="productepisode" id="productepisode" > <input type="hidden" name="elementid" id="elementid" >
+            <td><div class="input-group"><input type="text" class="form-control" name="productepisode" id="productepisode" > <input type="hidden"  >
                                 <span class="input-group-btn">
-                                              <a  class="btn btn-default" role="button" data-test="test value" data-toggle="modal" id="openModalEpisode" ><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
+                                              <a  class="btn btn-default" role="button" data-productepisode="" data-programgroup=""  data-productname=""  data-toggle="modal" id="openModalEpisode" ><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
                                 
                                 </span></div></td>
 <!--             <td>               -->
@@ -175,41 +175,69 @@
 //   		  })
 //   	})
 //     }
-    
+     var modalCaller;
     $(document).on("click", "#openModalEpisode",function(){
-    	 var element = $(this).parent('.form-group');
-    	 
+    	// var element = $(this).parent('.form-group');
+    	   modalCaller = $(this)
+    	  console.log(this)
     	 //element.data('element', $(element).parent().closest('div').parent().closest('div'));
     	// element.data('test', $(element).html());
     	
-    	    	$( this ).closest('.form-group').each(function(index,element){    	    		
-  		  $(this).find(':input:text').each(function(index, element){
-  		
-  			$(element).prop('id',element.id) 
-  			console.log("NUID "+$(element).attr('id'))
+    	  $( this ).closest('.form-group').each(function(index,element){    	    		
+  		  $(this).find(':input:text').each(function(index, element){  		
+  		  $(element).prop('id',element.id); 
+  	
+  		         if(element.id.includes('productepisode')){
+                	$(modalCaller).data('productepisode',element.id)                	
+                 } if(element.id.includes('programgroup')){
+                	 $(modalCaller).data('programgroup',element.id)
+                 }if(element.id.includes('productname')){
+                	 $(modalCaller).data('productname',element.id)
+                 }
+           
+                      
+  		             // console.log('testing data '+$(modalCaller).data('productepisode'));
+  		  
+  			 //console.log("NUID "+$(element).attr('id'))
+            //console.log('TEST '+$(modalCaller).data('test','new test'))
+           //console.log('NUTEST '+$(modalCaller).data('test'))	
   		  })
   	})
 
     	$("#modalEpisode").modal();
-    	$("#modalEpisode .modal-body").attr("id",function(){
+//     	$("#modalEpisode .modal-body").attr("id",function(){
     		
-    		           // return element.id;
-    	})
-    	 $(".modal-body ").val(element);
+//     		           // return element.id;
+//     	})
+    	 //$(".modal-body ").val(element);
     	
     });
-    function setEpisodeValue(e){
+    function setEpisodeValue(element){
     	 
-	console.log("RELATED "+$("#openModalEpisode").data('element').find(':input'));
+	console.log("RELATED "+$(modalCaller).data('productepisode'));
+	console.log("RELATED "+$(modalCaller).data('programgroup'));
+	console.log("RELATED "+$(modalCaller).data('productname'));
     	
     	table = $('#productEpisodeTable').DataTable( { retrieve: true} );
-       
+
 
     	 var row_data = table.rows( { selected: true } ).data()[0];
-    	   
-   	 $('#productepisode').val(row_data.name);
-   	 $('#programgroup').val(row_data.product.productGroup.initials);
-   	 $('#productname').val(row_data.product.name);
+    	 //TODO refactor this approach. It is iterating over all divs.
+//      	$('.form-group').each(function(index,element){    	    		
+//   		  $(this).find(':input:text').each(function(index, element){
+//   			  console.log("ELEMENT ID "+this);
+
+  			
+//   		  })
+//   	})
+//        var productEpisode =  $(modalCaller).data('productepisode'),
+//            productGroup = $(modalCaller).data('programgroup'),           
+//            productName =  $(modalCaller).data('productName');
+    	// console.log("EPISODE "+productGroup)
+   	// $(productEpisode).val(row_data.name);
+   	 $('#'+ $(modalCaller).data('productepisode')).val(row_data.name);
+   	 $('#'+$(modalCaller).data('programgroup')).val(row_data.product.productGroup.initials);
+   	 $('#'+$(modalCaller).data('productname')).val(row_data.product.name);
    	var convertedDuration= moment().startOf('day')
     .seconds(row_data.duration)
     .format('H:mm:ss');
