@@ -31,9 +31,9 @@
         </thead>
         <tbody>	
             <tr>
-            <td><div class="input-group"><input type="text" class="form-control" name="productepisode" id="productepisode" > <input type="hidden" name="elementid" id="elementid" >
+            <td><div class="input-group"><input type="text" class="form-control" name="productepisode" id="productepisode" > <input type="hidden"  >
                                 <span class="input-group-btn">
-                                              <a  class="btn btn-default" role="button" data-test="test value" data-toggle="modal" id="openModalEpisode" ><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
+                                              <a  class="btn btn-default" role="button" data-productepisode="" data-programgroup=""  data-productname=""  data-toggle="modal" id="openModalEpisode" ><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
                                 
                                 </span></div></td>
 <!--             <td>               -->
@@ -154,15 +154,12 @@
     function incrementElementIndex(elementClass, controlType){
         $(elementClass).each(function(index, element){
             formIndex = index           	
-//      	 console.log( index + ": " + $( this ).html());
      	 $(this).find(controlType).each(function(index, element){ 
      		 
         	  $(element).attr("id", function(){            		  
         		  return $(element).attr("name")+formIndex
         	  })
-//                console.log("IDX "+formIndex)
-//                console.log("INPUT "+element.id)
-        	
+	
         });
      	
      });
@@ -175,41 +172,44 @@
 //   		  })
 //   	})
 //     }
-    
+     var modalCaller;
     $(document).on("click", "#openModalEpisode",function(){
-    	 var element = $(this).parent('.form-group');
-    	 
-    	 //element.data('element', $(element).parent().closest('div').parent().closest('div'));
-    	// element.data('test', $(element).html());
-    	
-    	    	$( this ).closest('.form-group').each(function(index,element){    	    		
-  		  $(this).find(':input:text').each(function(index, element){
-  		
-  			$(element).prop('id',element.id) 
-  			console.log("NUID "+$(element).attr('id'))
+    	   modalCaller = $(this)
+
+    	 //TODO refactor this approach. It is iterating over all divs.
+    	  $( this ).closest('.form-group').each(function(index,element){    	    		
+  		  $(this).find(':input:text').each(function(index, element){  		
+  		  $(element).prop('id',element.id); 
+  	
+  		         if(element.id.includes('productepisode')){
+                	$(modalCaller).data('productepisode',element.id)                	
+                 } if(element.id.includes('programgroup')){
+                	 $(modalCaller).data('programgroup',element.id)
+                 }if(element.id.includes('productname')){
+                	 $(modalCaller).data('productname',element.id)
+                 }
+           
+
   		  })
   	})
 
     	$("#modalEpisode").modal();
-    	$("#modalEpisode .modal-body").attr("id",function(){
-    		
-    		           // return element.id;
-    	})
-    	 $(".modal-body ").val(element);
+
     	
     });
-    function setEpisodeValue(e){
+    function setEpisodeValue(element){
     	 
-	console.log("RELATED "+$("#openModalEpisode").data('element').find(':input'));
+	
     	
     	table = $('#productEpisodeTable').DataTable( { retrieve: true} );
-       
+
 
     	 var row_data = table.rows( { selected: true } ).data()[0];
-    	   
-   	 $('#productepisode').val(row_data.name);
-   	 $('#programgroup').val(row_data.product.productGroup.initials);
-   	 $('#productname').val(row_data.product.name);
+
+
+   	 $('#'+ $(modalCaller).data('productepisode')).val(row_data.name);
+   	 $('#'+$(modalCaller).data('programgroup')).val(row_data.product.productGroup.initials);
+   	 $('#'+$(modalCaller).data('productname')).val(row_data.product.name);
    	var convertedDuration= moment().startOf('day')
     .seconds(row_data.duration)
     .format('H:mm:ss');
@@ -236,13 +236,7 @@
         } );
       
       var modal = $(this);
-      
-      	//console.log(modal);
-      	
-//     $('#productEpisodeTable').on('search.dt',function(){
-//     	 var value = $('.dataTables_filter input').val();
-//     	 console.log(value); // <-- the value
-//     }); 	
+
       	  
 
     
