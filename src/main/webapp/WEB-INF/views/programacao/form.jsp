@@ -174,9 +174,13 @@
 //     }
      var modalCaller;
     $(document).on("click", "#openModalEpisode",function(){
+
     	   modalCaller = $(this)
 
     	 //TODO refactor this approach. It is iterating over all divs.
+    	// var element = $(this).parent('.form-group');
+    	   modalCaller = $(this)
+
     	  $( this ).closest('.form-group').each(function(index,element){    	    		
   		  $(this).find(':input:text').each(function(index, element){  		
   		  $(element).prop('id',element.id); 
@@ -190,7 +194,6 @@
                  }
            
 
-  		  })
   	})
 
     	$("#modalEpisode").modal();
@@ -199,13 +202,12 @@
     });
     function setEpisodeValue(element){
     	 
-	
+
     	
     	table = $('#productEpisodeTable').DataTable( { retrieve: true} );
 
 
     	 var row_data = table.rows( { selected: true } ).data()[0];
-
 
    	 $('#'+ $(modalCaller).data('productepisode')).val(row_data.name);
    	 $('#'+$(modalCaller).data('programgroup')).val(row_data.product.productGroup.initials);
