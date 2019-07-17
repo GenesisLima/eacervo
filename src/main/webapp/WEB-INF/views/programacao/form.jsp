@@ -70,7 +70,7 @@
 
           <!-- Trigger the modal with a button -->
 
- <button type="submit" class="btn btn-default">Salvar</button><br/><br/> 
+ <button type="submit" id="submitform" class="btn btn-default">Salvar</button><br/><br/> 
 </form>
   </form><!-- /end form -->
   </div>
@@ -137,7 +137,7 @@
             newEntry = $(cloneEntry).appendTo(controlForm);
             adjustProgramDuration(newEntry);
             incrementElementIndex('.form-group',':input[type="text"]');
- 
+//             renameElementNameAfterDefineIndex('.form-group',':input[type="text"]');
                 controlForm.find('.btn-add:not(:last)')
                 .removeClass('btn-default').addClass('btn-danger')
                 .removeClass('btn-add').addClass('btn-remove')
@@ -149,10 +149,17 @@
         {
     		$(this).parents('.form-group:first').remove();
     		 incrementElementIndex('.form-group',':input[type="text"]');
+//     		 renameElementNameAfterDefineIndex('.form-group',':input[type="text"]');
     		e.preventDefault();
     		return false;
-    	});
+    	}).on('click', '#submitform', function(e){
+    		console.log("FORM SUBMIT ");
+    		renameElementNameAfterDefineIndex('.form-group',':input[type="text"]');
+    	})
+    	;
         //
+        
+        
         
     });
     
@@ -163,7 +170,18 @@
         	  $(element).attr("id", function(){            		  
         		  return $(element).attr("name")+formIndex
         	  })
-	
+        	 
+	           
+        });
+     	
+     });
+    }
+    
+    
+    function renameElementNameAfterDefineIndex(elementClass, controlType){
+        $(elementClass).each(function(index, element){                     	
+     	 $(this).find(controlType).each(function(index, element){     		 
+     		 $(element).prop("name", element.id);
         });
      	
      });
