@@ -31,13 +31,20 @@ public class ScheduleController {
 	@RequestMapping(method=RequestMethod.POST)
 	public ModelAndView save(HttpServletRequest request, RedirectAttributes redirectAttributes){
 		Map<String, String[]> requestValues = request.getParameterMap();
+		for (String key : requestValues.keySet()) {
+		    String[] strArr = (String[]) requestValues.get(key);
+		    for (String val : strArr) {
+		        System.out.println("Str Array= " + val);
+		    }
+		}
 		System.out.println("REQUEST KEYS "+requestValues.keySet());
-		System.out.println("REQUEST VALUES "+requestValues.values());
+		//System.out.println("REQUEST VALUES "+);
+		//requestValues.forEach((k,v)->System.out.println("Item : " + k + " Count : " + Arrays.asList(v)));
 		ModelAndView modelAndView;
 //		System.out.println("DEPT ID :"+schedule.getId());
 // 		if(schedule.getId().trim().equals("") || schedule.getId() != null){
 // 			dao.save(schedule);
-//		modelAndView = new ModelAndView("redirect:programacoes");
+		modelAndView = new ModelAndView("redirect:programacoes");
 // 		}else{
 // 			dao.save(schedule);
  			modelAndView = new ModelAndView("/programacoes/list");

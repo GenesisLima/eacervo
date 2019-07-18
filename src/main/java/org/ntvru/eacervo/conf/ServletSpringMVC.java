@@ -1,14 +1,17 @@
 package org.ntvru.eacervo.conf;
 
+import org.ntvru.eacervo.conf.security.EacervoSecurityInitializer;
+import org.springframework.core.annotation.Order;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+@Order(1)
 public class ServletSpringMVC extends
 		AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		// TODO Auto-generated method stub
-		return null;
+		return new Class[] {EacervoSecurityInitializer.class};
 	}
 
 	@Override

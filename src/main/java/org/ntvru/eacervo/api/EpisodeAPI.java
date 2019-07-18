@@ -9,7 +9,6 @@ import javax.ws.rs.Produces;
 import org.ntvru.eacervo.dao.GenericDAO;
 import org.ntvru.eacervo.models.Episode;
 import org.ntvru.eacervo.models.dto.EpisodeDTO;
-import org.ntvru.eacervo.models.dto.ProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
