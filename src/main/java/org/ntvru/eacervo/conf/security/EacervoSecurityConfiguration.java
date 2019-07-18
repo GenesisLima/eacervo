@@ -5,6 +5,9 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.DefaultSecurityFilterChain;
+import org.springframework.security.web.FilterChainProxy;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -14,7 +17,8 @@ public class EacervoSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		//.antMatchers("/messagePost*").hasRole("USER") 
-	    http.authorizeRequests().antMatchers("/eacervo*").hasAnyRole("USER", "ANONYMOUS")	    
+		//http.addFilter(new FilterChainProxy(new DefaultSecurityFilterChain(new AntPathRequestMatcher("/**"))));
+	    http.authorizeRequests().antMatchers("/*").hasRole("USER")	    
 	    .antMatchers("/programacao*").hasRole("ADMIM")
 	    .and()
 	    .formLogin();
@@ -27,4 +31,9 @@ public class EacervoSecurityConfiguration extends WebSecurityConfigurerAdapter{
          .and().withUser("user").password("tvu").authorities("ROLE_USER");
 		 
 	}
+	
+//	@Bean
+//    public FilterChainProxy springSecurityFilterChain() {
+//        return new FilterChainProxy(new DefaultSecurityFilterChain(new AntPathRequestMatcher("/**")));
+//    }
 }
