@@ -1,11 +1,13 @@
 package org.ntvru.eacervo.controller;
 
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 
-import org.ntvru.eacervo.dao.GenericDAO;
-import org.ntvru.eacervo.models.ProductGroup;
+import org.ntvru.eacervo.dao.ScheduleDAO;
+import org.ntvru.eacervo.models.Schedule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,23 +24,33 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ScheduleController {
 
 	@Autowired
-	private GenericDAO<ProductGroup> productTypeDAO;
+	private ScheduleDAO dao;
 	
 
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ModelAndView save(ProductGroup product, RedirectAttributes redirectAttributes){
+	public ModelAndView save(HttpServletRequest request, RedirectAttributes redirectAttributes){
+		Map<String, String[]> requestValues = request.getParameterMap();
+		for (String key : requestValues.keySet()) {
+		    String[] strArr = (String[]) requestValues.get(key);
+		    for (String val : strArr) {
+		        System.out.println("Str Array= " + val);
+		    }
+		}
+		System.out.println("REQUEST KEYS "+requestValues.keySet());
+		//System.out.println("REQUEST VALUES "+);
+		//requestValues.forEach((k,v)->System.out.println("Item : " + k + " Count : " + Arrays.asList(v)));
 		ModelAndView modelAndView;
-		System.out.println("DEPT ID :"+product.getId());
- 		if(product.getId()==0){
- 			productTypeDAO.save(product);
-		modelAndView = new ModelAndView("redirect:tiposprodutos");
- 		}else{
- 			productTypeDAO.save(product);
- 			modelAndView = new ModelAndView("/tiposprodutos/list");
- 		}
+//		System.out.println("DEPT ID :"+schedule.getId());
+// 		if(schedule.getId().trim().equals("") || schedule.getId() != null){
+// 			dao.save(schedule);
+		modelAndView = new ModelAndView("redirect:programacoes");
+// 		}else{
+// 			dao.save(schedule);
+ 			modelAndView = new ModelAndView("/programacoes/list");
+// 		}
 		String info = "success";
-		String mensagem = "Produto Cadastrado com sucesso!";		
+		String mensagem = "Programação efetuada com sucesso!";		
 		redirectAttributes.addFlashAttribute("info", info);
 		redirectAttributes.addFlashAttribute("mensagem", mensagem);		
 	  return modelAndView;
@@ -47,22 +59,22 @@ public class ScheduleController {
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView list(){
-		ModelAndView modelAndView = new ModelAndView("/tiposprodutos/list");	
-		modelAndView.addObject("productTypes",productTypeDAO.list());		
+		ModelAndView modelAndView = new ModelAndView("/programacoes/list");	
+		modelAndView.addObject("productTypes",dao.list());		
 		return modelAndView; 
 	}
 	@RequestMapping(value="/remove/{id}",method=RequestMethod.GET)
 	public ModelAndView remove(@PathVariable("id") int id){		
-		this.productTypeDAO.remove(id);
-		ModelAndView modelAndView = new ModelAndView("redirect:/tiposprodutos");
-		modelAndView.addObject("productTypes",productTypeDAO.list());
+		this.dao.remove(id);
+		ModelAndView modelAndView = new ModelAndView("redirect:/programacoes");
+		modelAndView.addObject("schedules",dao.list());
 		return modelAndView;
 	}
 	
-	@RequestMapping(value="/productTypesJSON", method=RequestMethod.GET)
-	public @ResponseBody List<ProductGroup> listgroupsJSON(){	
+	@RequestMapping(value="/scheduleJSON", method=RequestMethod.GET)
+	public @ResponseBody List<Schedule> listJSON(){	
 		System.out.println("REQUEST "+this.toString()+" AJAX ");
-		return productTypeDAO.list();
+		return dao.list();
 	}
 	
 }

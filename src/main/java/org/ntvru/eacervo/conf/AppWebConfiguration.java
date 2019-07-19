@@ -1,6 +1,7 @@
 package org.ntvru.eacervo.conf;
 
 import org.ntvru.eacervo.api.ProductGroupAPI;
+import org.ntvru.eacervo.conf.security.EacervoSecurityInitializer;
 import org.ntvru.eacervo.controller.HomeController;
 import org.ntvru.eacervo.dao.EmployeeDAO;
 import org.ntvru.eacervo.models.Product;
@@ -11,13 +12,15 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.resource.GzipResourceResolver;
+import org.springframework.web.servlet.resource.PathResourceResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 
 @EnableWebMvc
 @Configuration
-@ComponentScan(basePackageClasses={HomeController.class,EmployeeDAO.class, Product.class, ProductGroupAPI.class})
-public class AppWebConfiguration extends WebMvcConfigurerAdapter{
+@ComponentScan(basePackageClasses={HomeController.class,EmployeeDAO.class, Product.class, ProductGroupAPI.class, EacervoSecurityInitializer.class})
+public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 
 	@Bean
 	public InternalResourceViewResolver internalResourceViewResolver(){
@@ -34,7 +37,10 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter{
 		registry.addResourceHandler("/resources/*").addResourceLocations(
                 "/resources/");
 		registry.addResourceHandler("/js/**")
-        .addResourceLocations("/js/");
+        .addResourceLocations("/js/")
+        .resourceChain(true)
+        .addResolver(new GzipResourceResolver())
+        .addResolver(new PathResourceResolver());;
 
 	}
 	

@@ -55,7 +55,7 @@
                                 </td>
                 
                                 
-                                <td><input type="text" class="form-control" name="programDuration" id="programDuration" ></td>
+                                <td><input type="time" class="form-control" name="programduration" id="programduration" step="1"></td>
                                 <td>    <button type="button" class="btn btn-success btn-add" >
                         <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Inserir Linha  <!-- Add -->
                     </button></td>
@@ -70,12 +70,12 @@
 
           <!-- Trigger the modal with a button -->
 
- <button type="submit" class="btn btn-default">Salvar</button><br/><br/> 
+ <button type="submit" id="submitform" class="btn btn-default">Salvar</button><br/><br/> 
 </form>
   </form><!-- /end form -->
   </div>
       </div>
-      </div>
+<!--       </div> -->
 
     </div> <!-- /container -->
     
@@ -120,7 +120,9 @@
      
     $(document).ready(function()
     		{
+    	
     	var next = 1;
+    	//creates the add button
         $(document).on('click', '.btn-add', function(e)
         {
         	
@@ -133,33 +135,53 @@
              	$(this).val('')
              });
             newEntry = $(cloneEntry).appendTo(controlForm);
-            
+            adjustProgramDuration(newEntry);
             incrementElementIndex('.form-group',':input[type="text"]');
- 
+//             renameElementNameAfterDefineIndex('.form-group',':input[type="text"]');
                 controlForm.find('.btn-add:not(:last)')
                 .removeClass('btn-default').addClass('btn-danger')
                 .removeClass('btn-add').addClass('btn-remove')
                 
                 .html('<span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Remover Linha   ');
-             
+              
+              //creates the remove button
         }).on('click', '.btn-remove', function(e)
         {
     		$(this).parents('.form-group:first').remove();
     		 incrementElementIndex('.form-group',':input[type="text"]');
+//     		 renameElementNameAfterDefineIndex('.form-group',':input[type="text"]');
     		e.preventDefault();
     		return false;
-    	});
+    	}).on('click', '#submitform', function(e){
+    		console.log("FORM SUBMIT ");
+    		renameElementNameAfterDefineIndex('.form-group',':input[type="text"]');
+    	})
+    	;
+        //
+        
+        
+        
     });
     
     function incrementElementIndex(elementClass, controlType){
         $(elementClass).each(function(index, element){
             formIndex = index           	
-     	 $(this).find(controlType).each(function(index, element){ 
-     		 
+     	 $(this).find(controlType).each(function(index, element){      		 
         	  $(element).attr("id", function(){            		  
         		  return $(element).attr("name")+formIndex
         	  })
-	
+        	 
+	           
+        });
+     	
+     });
+    }
+    
+    
+    function renameElementNameAfterDefineIndex(elementClass, controlType){
+        $(elementClass).each(function(index, element){                     	
+     	 $(this).find(controlType).each(function(index, element){     		 
+     		 $(element).prop("name", element.id);
         });
      	
      });
@@ -174,7 +196,6 @@
 //     }
      var modalCaller;
     $(document).on("click", "#openModalEpisode",function(){
-
     	   modalCaller = $(this)
 
     	 //TODO refactor this approach. It is iterating over all divs.
@@ -191,6 +212,8 @@
                 	 $(modalCaller).data('programgroup',element.id)
                  }if(element.id.includes('productname')){
                 	 $(modalCaller).data('productname',element.id)
+                 }if(element.id.includes('productduration')){
+                	 $(modalCaller).data('productduration',element.id)
                  }
            
 
@@ -200,8 +223,29 @@
 
     	
     });
-    function setEpisodeValue(element){
-    	 
+    });
+    
+    function adjustProgramDuration(e){
+    	var tempo = moment("240000","hmmss");
+    	var future = moment(tempo).add(1,"h");
+    	 console.log("TEMPO "+tempo);
+    	 console.log("FUTURE "+future);
+    	
+    	 $(e).closest('.form-group').each(function(index,element){    	    		
+     		  $(element).find(':input:text').each(function(index, element){
+     			 if(element.id.includes('programduration')){
+     				console.log("ELEMENT "+element.id);
+     				console.log("FUTURE "+moment(future).format("HH:mm:ss"));
+     				console.log("Moment "+ moment(tempo).add(1,"hour").format("HH:mm:ss"));
+         			 $(element).val(moment(future).format("HH:mm:ss"));
+
+ }
+     		  })
+     		  })
+    	 }
+   
+    
+    function setEpisodeValue(element){	 
 
     	
     	table = $('#productEpisodeTable').DataTable( { retrieve: true} );
@@ -212,10 +256,11 @@
    	 $('#'+ $(modalCaller).data('productepisode')).val(row_data.name);
    	 $('#'+$(modalCaller).data('programgroup')).val(row_data.product.productGroup.initials);
    	 $('#'+$(modalCaller).data('productname')).val(row_data.product.name);
+   	$('#'+$(modalCaller).data('productduration')).val(row_data.product.duration);
    	var convertedDuration= moment().startOf('day')
     .seconds(row_data.duration)
     .format('H:mm:ss');
-   	 $('#programDuration').val(convertedDuration);
+   	 $('#programduration').val(convertedDuration);
 
    	$('#modalEpisode.in').modal('hide');
    	
@@ -248,14 +293,14 @@
     
 
 
-function action_product(data, type, full) {
+// function action_product(data, type, full) {
 
-	var  description = full.description;
-	  console.log(description)
-	 
-// 	'<a class="btn btn-mini" data-id='+ full.id +' data-description='+ full.description + '>Escolher</a>'
-	   return '<a class="btn btn-mini" data-dismiss="modal" onclick="setEpisodeValue(\''+ description +'\',\''+ full.id +'\')" data-id='+ full.id +' data-description='.concat(full.description).concat('>Escolher</a>') ;
-	}
+// 	var  description = full.description;
+// 	  console.log(description)
+	 // 	'<a class="btn btn-mini" data-id='+ full.id +' data-description='+ full.description + '>Escolher</a>'
+
+// 	   return '<a class="btn btn-mini" data-dismiss="modal" onclick="setEpisodeValue(\''+ description +'\',\''+ full.id +'\')" data-id='+ full.id +' data-description='.concat(full.description).concat('>Escolher </a>');
+// 	}
 	
 
     </script>
