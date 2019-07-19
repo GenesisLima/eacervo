@@ -16,10 +16,8 @@ public class EacervoSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		//.antMatchers("/messagePost*").hasRole("USER") 
-		//http.addFilter(new FilterChainProxy(new DefaultSecurityFilterChain(new AntPathRequestMatcher("/**"))));
-	    http.authorizeRequests().antMatchers("/*").hasRole("USER")	    
-	    .antMatchers("/programacao*").hasRole("ADMIM")
+	    http.authorizeRequests().antMatchers("/programacao*").hasRole("ROLE_ADMIM")
+	    .antMatchers("/*").hasAnyRole("ROLE_USER")	    
 	    .and()
 	    .formLogin();
 	}
@@ -32,8 +30,5 @@ public class EacervoSecurityConfiguration extends WebSecurityConfigurerAdapter{
 		 
 	}
 	
-//	@Bean
-//    public FilterChainProxy springSecurityFilterChain() {
-//        return new FilterChainProxy(new DefaultSecurityFilterChain(new AntPathRequestMatcher("/**")));
-//    }
+
 }
