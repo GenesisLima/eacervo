@@ -16,8 +16,11 @@ public class EacervoSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-	    http.authorizeRequests().antMatchers("/programacao*").hasRole("ROLE_ADMIM")
-	    .antMatchers("/*").hasAnyRole("ROLE_USER")	    
+	    //
+		http
+		.csrf().disable()
+		.authorizeRequests().antMatchers("/*").hasRole("ADMIM")
+		.antMatchers("/*").hasAnyRole("ADMIN")
 	    .and()
 	    .formLogin();
 	}

@@ -13,7 +13,7 @@
                 
         <form class="input-append" role="form" method="post" action="/eacervo/programacoes">
            <div class="form-group">
-    <label for="id">ID:</label>
+    <span><label id="labelID" >ID:</label> <label id="labelID-value">CHBL01</label>  </span> <spa style="margin-left: 70px"><label id="labelDate" >Data:</label><label id="lavelDate-value"><script type="javascript">function(){return moment()}</script></label></spa> <span  style="margin-left: 70px"> <label id="labelDuration">Duration:</label></span>
 <!--     <input type="text" class="form-control" id="id" name="id" readonly="readonly" value="0"> -->
 <!--         	<input type="button" class="add-row" value="Add Row"> -->
     
@@ -55,7 +55,7 @@
                                 </td>
                 
                                 
-                                <td><input type="time" class="form-control" name="programduration" id="programduration" step="1"></td>
+                                <td><input type="text" class="form-control" name="programduration" id="programduration"></td>
                                 <td>    <button type="button" class="btn btn-success btn-add" >
                         <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Inserir Linha  <!-- Add -->
                     </button></td>
@@ -143,8 +143,11 @@
                 .removeClass('btn-add').addClass('btn-remove')
                 
                 .html('<span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Remover Linha   ');
-              
-              //creates the remove button
+                
+              //calculates the total schedule time by gathering the amount of time for each product
+               updateScheduleTime('.form-group',':input[type="text"]');
+                
+              //creates the remove button               
         }).on('click', '.btn-remove', function(e)
         {
     		$(this).parents('.form-group:first').remove();
@@ -177,6 +180,21 @@
      });
     }
     
+    
+    function updateScheduleTime(elementClass, controlType){
+        $(elementClass).each(function(index, element){                     	
+        	 $(this).find(controlType).each(function(index, element){
+        		  if(element.id.includes('programduration')){
+        			  console.log('SCHEDULE TIME '+$(element).val());
+                  	$(element).prop('value',function(){
+                  		return 'valor atualizado contendo o tempo total de todos os programas';
+                  	})                	
+                   }
+        		
+           });
+        	
+        });
+    }
     
     function renameElementNameAfterDefineIndex(elementClass, controlType){
         $(elementClass).each(function(index, element){                     	
@@ -212,8 +230,8 @@
                 	 $(modalCaller).data('programgroup',element.id)
                  }if(element.id.includes('productname')){
                 	 $(modalCaller).data('productname',element.id)
-                 }if(element.id.includes('productduration')){
-                	 $(modalCaller).data('productduration',element.id)
+                 }if(element.id.includes('programduration')){
+                	 $(modalCaller).data('programduration',element.id)
                  }
            
 
