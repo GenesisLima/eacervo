@@ -1,7 +1,7 @@
 <!-- <?xml version="1.0" encoding="ISO-8859-1" ?> -->
 <%-- <%@ page language="java" contentType="text/html; charset=ISO-8859-1"  pageEncoding="ISO-8859-1"%> --%>
 <!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- <div class="container"> -->
 
       <!-- Static navbar -->
@@ -79,12 +79,23 @@
             <ul class="nav navbar-nav navbar-right">
               <li class="active"><a href="./">Contato <span class="sr-only">(current)</span></a></li>
               <li><a href="../navbar-static-top/">Ajuda</a></li>
-              <li><a href="../navbar-fixed-top/">Sair</a></li>
+            
+<!--               <li>Sair -->
+<!--                <form name="submitForm" action="/logout" method="post"> -->
+<!-- <a href="javascript:document.submitForm.submit()"></a> -->
+<!--                     </form></li> -->
+              <li><c:url value="/logout" var="logoutUrl" />
+<a href="${logoutUrl}">Sair</a>
+</li></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>
 
-      
+       <script>
+        function formSubmit() {
+            document.getElementById("logoutForm").submit();
+        }
+    </script>
 
 <!--     </div> /container -->

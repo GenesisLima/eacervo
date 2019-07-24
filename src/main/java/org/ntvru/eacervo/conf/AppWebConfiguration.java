@@ -1,6 +1,7 @@
 package org.ntvru.eacervo.conf;
 
 import org.ntvru.eacervo.api.ProductGroupAPI;
+import org.ntvru.eacervo.component.EAcervoDataSource;
 import org.ntvru.eacervo.conf.security.EacervoSecurityInitializer;
 import org.ntvru.eacervo.controller.HomeController;
 import org.ntvru.eacervo.dao.EmployeeDAO;
@@ -19,7 +20,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan(basePackageClasses={HomeController.class,EmployeeDAO.class, Product.class, ProductGroupAPI.class, EacervoSecurityInitializer.class})
+@ComponentScan(basePackageClasses={HomeController.class,EmployeeDAO.class, Product.class, ProductGroupAPI.class, EacervoSecurityInitializer.class,EAcervoDataSource.class})
 public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 
 	@Bean
@@ -46,13 +47,15 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 	
 	@Override
 	public void configureDefaultServletHandling(
-			DefaultServletHandlerConfigurer configurer) {
-		
+			DefaultServletHandlerConfigurer configurer) {		
 		configurer.enable();
 	}
 	
 	
-	
+	@Bean
+	public EAcervoDataSource getEacervoDataSource() {
+		return new EAcervoDataSource();
+	}
 	
 	
 }
