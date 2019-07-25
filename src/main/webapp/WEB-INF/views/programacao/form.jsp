@@ -200,7 +200,7 @@
 
     	 //TODO refactor this approach. It is iterating over all divs.
     	// var element = $(this).parent('.form-group');
-    	   modalCaller = $(this)
+    	  // modalCaller = $(this)
 
     	  $( this ).closest('.form-group').each(function(index,element){    	    		
   		  $(this).find(':input:text').each(function(index, element){  		
@@ -210,8 +210,7 @@
                 	$(modalCaller).data('productepisode',element.id)                	
                  } if(element.id.includes('programgroup')){
                 	 $(modalCaller).data('programgroup',element.id)
-                 }if(element.id.includes('productname')){
-                	 $(modalCaller).data('productname',element.id)
+                 }if(element.id.includes('productname')){  		        	
                  }if(element.id.includes('productduration')){
                 	 $(modalCaller).data('productduration',element.id)
                  }
@@ -247,6 +246,7 @@
     
     function setEpisodeValue(element){	 
 
+    	console.log("EPISODE ID "+$(element))
     	
     	table = $('#productEpisodeTable').DataTable( { retrieve: true} );
 
