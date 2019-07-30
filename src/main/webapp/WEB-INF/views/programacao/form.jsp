@@ -147,7 +147,7 @@
                 .html('<span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Remover Linha   ');
                 
               //calculates the total schedule time by gathering the amount of time for each product
-               updateScheduleTime('.form-group',':input[type="text"]');
+               //updateScheduleTime('.form-group',':input[type="text"]');
                 
               //creates the remove button               
         }).on('click', '.btn-remove', function(e)
@@ -183,20 +183,20 @@
     }
     
     
-    function updateScheduleTime(elementClass, controlType){
-        $(elementClass).each(function(index, element){                     	
-        	 $(this).find(controlType).each(function(index, element){
-        		  if(element.id.includes('programduration')){
-        			  console.log('SCHEDULE TIME '+$(element).val());
-                  	$(element).prop('value',function(){
-                  		return 'valor atualizado contendo o tempo total de todos os programas';
-                  	})                	
-                   }
+//     function updateScheduleTime(elementClass, controlType){
+//         $(elementClass).each(function(index, element){                     	
+//         	 $(this).find(controlType).each(function(index, element){
+//         		  if(element.id.includes('programduration')){
+//         			  console.log('SCHEDULE TIME '+$(element).val());
+//                   	$(element).prop('value',function(){
+//                   		return 'valor atualizado contendo o tempo total de todos os programas';
+//                   	})                	
+//                    }
         		
-           });
+//            });
         	
-        });
-    }
+//         });
+//     }
     
     function renameElementNameAfterDefineIndex(elementClass, controlType){
         $(elementClass).each(function(index, element){                     	
@@ -220,7 +220,7 @@
 
     	 //TODO refactor this approach. It is iterating over all divs.
     	// var element = $(this).parent('.form-group');
-    	   modalCaller = $(this)
+    	  // modalCaller = $(this)
 
     	  $( this ).closest('.form-group').each(function(index,element){    	    		
   		  $(this).find(':input:text').each(function(index, element){  		
@@ -230,10 +230,11 @@
                 	$(modalCaller).data('productepisode',element.id)                	
                  } if(element.id.includes('programgroup')){
                 	 $(modalCaller).data('programgroup',element.id)
-                 }if(element.id.includes('productname')){
+                 }if(element.id.includes('productname')){  
                 	 $(modalCaller).data('productname',element.id)
-                 }if(element.id.includes('programduration')){
-                	 $(modalCaller).data('programduration',element.id)
+                 }if(element.id.includes('productduration')){
+                	 $(modalCaller).data('productduration',element.id)
+
                  }
            
 
@@ -267,12 +268,14 @@
     
     function setEpisodeValue(element){	 
 
+    	console.log("EPISODE ID "+$(element))
     	
     	table = $('#productEpisodeTable').DataTable( { retrieve: true} );
-
-
-    	 var row_data = table.rows( { selected: true } ).data()[0];
-
+    	$('#productEpisodeTable tbody').on( 'click', 'tr', function () {
+  		
+  	
+    	var row_data = table.row(this).data();
+    	   
    	 $('#'+ $(modalCaller).data('productepisode')).val(row_data.name);
    	 $('#'+$(modalCaller).data('programgroup')).val(row_data.product.productGroup.initials);
    	 $('#'+$(modalCaller).data('productname')).val(row_data.product.name);
@@ -283,19 +286,19 @@
    	 $('#programduration').val(convertedDuration);
 
    	$('#modalEpisode.in').modal('hide');
-   	
+    	} );
    	
      }
     
     $('#modalEpisode').on('show.bs.modal', function (e) { 	  
 
-    	var episodeName = $('#programepisode').val();
+    	//var episodeName = $('#programepisode').val();
         $('#productEpisodeTable').DataTable( {
         	retrieve: true,
             "ajax":{url: '/eacervo/api/v1/episode/all?type=json', dataSrc:""},
              "columns":[
             	 {"data":"id"},
-            	 {"data":"name"},
+            	 {"data":"name"},            	
             	 {"defaultContent":'<a class="btn btn-mini" data-dismiss="modal" onclick="setEpisodeValue(this)" >Escolher</a>'}
             	 
              ]
@@ -313,14 +316,5 @@
     
 
 
-// function action_product(data, type, full) {
-
-// 	var  description = full.description;
-// 	  console.log(description)
-	 // 	'<a class="btn btn-mini" data-id='+ full.id +' data-description='+ full.description + '>Escolher</a>'
-
-// 	   return '<a class="btn btn-mini" data-dismiss="modal" onclick="setEpisodeValue(\''+ description +'\',\''+ full.id +'\')" data-id='+ full.id +' data-description='.concat(full.description).concat('>Escolher </a>');
-// 	}
-	
 
     </script>

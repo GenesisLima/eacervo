@@ -48,15 +48,15 @@
 <!--   </table> -->
 <!--   </div> -->
  <!-- <a id="reload" href="">Click me to refresh the table!</a> -->
-    <datatables:table id="areasTable" row="area" data="${areas}"   theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
+    <datatables:table id="episodesTable" row="episode" data="${episodes}"   theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
         
         <datatables:column title="ID" property="id"   />
-        <datatables:column title="ÁREA" property="name"/>
+        <datatables:column title="EPISODIO" property="name"/>
 <%--        	<datatables:column title="DESCRIÇÃO" property="description" />  --%>
       <datatables:column title="AÇÃO" >
        
-   <a href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-id="${area.id}" data-area="${area.name}" data-description="${area.description}" data-target="#myModal" onclick="setValues()">Editar</a>
-   <a href="/eacervo/areas/remove/${area.id}" class="btn btn-info" role="button">Remover</a>
+   <a href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-id="${episode.id}" data-area="${episode.name}" data-description="${episode.description}" data-target="#myModal" onclick="setValues()">Editar</a>
+   <a href="/eacervo/episodios/remove/${episode.id}" class="btn btn-info" role="button">Remover</a>
   
       </datatables:column>
     </datatables:table>
@@ -90,8 +90,8 @@
            </div>
 
            <div class="form-group">                     
-              <label for="area">&Aacute;rea</label>
-              <input type="text" class="form-control"  name="name" id="area"></input>             
+              <label for="episodio">Episodio</label>
+              <input type="text" class="form-control"  name="episodio" id="episodio"></input>             
            </div>
 
            <div class="form-group">
