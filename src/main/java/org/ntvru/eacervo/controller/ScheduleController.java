@@ -32,9 +32,10 @@ public class ScheduleController {
 	public ModelAndView save(HttpServletRequest request, RedirectAttributes redirectAttributes){
 		Map<String, String[]> requestValues = request.getParameterMap();
 		for (String key : requestValues.keySet()) {
+			System.out.print("KEY "+key);
 		    String[] strArr = (String[]) requestValues.get(key);
 		    for (String val : strArr) {
-		        System.out.println("Str Array= " + val);
+		        System.out.println(" VALUE " + val);
 		    }
 		}
 		System.out.println("REQUEST KEYS "+requestValues.keySet());
