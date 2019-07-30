@@ -42,15 +42,15 @@ public class EacervoSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		//super.configure(auth); 
-//		auth.inMemoryAuthentication().withUser("admin").password("secret").authorities("ROLE_ADMIN","ROLE_USER")
-//         .and().withUser("user").password("tvu").authorities("ROLE_USER");
+		auth.inMemoryAuthentication().withUser("admin").password("secret").authorities("ROLE_ADMIN","ROLE_USER")
+         .and().withUser("user").password("tvu").authorities("ROLE_USER");
 
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-    	dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-    	dataSource.setUrl("jdbc:mysql://localhost:3306/eacervo_db?useTimezone=true&serverTimezone=UTC");
-    	dataSource.setUsername("dev");
-    	dataSource.setPassword("dev");       
-		auth.jdbcAuthentication().dataSource(dataSource);
+//		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//    	dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+//    	dataSource.setUrl("jdbc:mysql://localhost:3306/eacervo_db?useTimezone=true&serverTimezone=UTC");
+//    	dataSource.setUsername("dev");
+//    	dataSource.setPassword("dev");       
+//		auth.jdbcAuthentication().dataSource(dataSource);
 		 
 	}
 	

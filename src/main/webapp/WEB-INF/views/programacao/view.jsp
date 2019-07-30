@@ -36,6 +36,7 @@
           <script  src="/eacervo/resources/js/angular-resource.min.js"></script>   
           <script src="/eacervo/resources/js/app.js" type="text/javascript" > </script>
           <script  src="/eacervo/resources/js/product_controller.js" type="text/javascript"> </script> 
+          
 <!-- JQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
@@ -55,7 +56,9 @@
 
 
 <%-- <script type="text/javascript" src="<c:url value="/resources/js/jquery.inputmask.js" />"> --%>
-<!-- <script type="text/javascript" src="/eacervo/resources/js/jquery.inputmask.js"> </script> -->
+<script type="text/javascript" src="/eacervo/resources/js/jquery.mask.js"> </script>
+<script type="text/javascript" src="/eacervo/resources/js/jquery.mask.min.js"> </script>
+
 
 
 

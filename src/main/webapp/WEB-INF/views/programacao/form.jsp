@@ -121,6 +121,8 @@
     $(document).ready(function()
     		{
     	
+    	 $('#programduration').mask('00:00:00');
+    	
     	var next = 1;
     	//creates the add button
         $(document).on('click', '.btn-add', function(e)
