@@ -3,77 +3,67 @@ package org.ntvru.eacervo.models;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.Embeddable;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
-@Entity
+@Embeddable
 @Table(name="SCHEDULE_ITEM")
 public class ScheduleItem implements Serializable {
 
 	
-	@Id
-	private long id;
-	
+//	@Id
+//	private long id;
+//	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String episodio;
-	private String tipo;
-	private String produto;
-	private String duracao;
-		
 	
-	@MapsId
-	@ManyToOne
-    @JoinColumn(name = "id")	
-    private Schedule schedule;
+	@Column(unique=true)
+	private String scheduleItemCode;
+	private String episodeName;
+	private String productType;
+	private String productName;
+	private String episodeDuration;
 	
 	@Column(columnDefinition="char(1) default 'A'")
     private String status = "A";
 
-	public String getEpisodio() {
-		return episodio;
+
+	public String getProductType() {
+		return productType;
 	}
 
-	public void setEpisodio(String episodio) {
-		this.episodio = episodio;
+	public String getEpisodeName() {
+		return episodeName;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public void setEpisodeName(String episodeName) {
+		this.episodeName = episodeName;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setProductType(String productType) {
+		this.productType = productType;
 	}
 
-	public String getProduto() {
-		return produto;
+	public String getProductName() {
+		return productName;
 	}
 
-	public void setProduto(String produto) {
-		this.produto = produto;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
-	public String getDuracao() {
-		return duracao;
+	public String getEpisodeDuration() {
+		return episodeDuration;
 	}
 
-	public void setDuracao(String duracao) {
-		this.duracao = duracao;
-	}
-
-	public Schedule getSchedule() {
-		return schedule;
-	}
-
-	public void setSchedule(Schedule schedule) {
-		this.schedule = schedule;
+	public void setEpisodeDuration(String episodeDuration) {
+		this.episodeDuration = episodeDuration;
 	}
 
 	public String getStatus() {
@@ -83,22 +73,20 @@ public class ScheduleItem implements Serializable {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
-	
 
-	public long getId() {
-		return id;
+	public String getScheduleItemCode() {
+		return scheduleItemCode;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setScheduleItemCode(String scheduleItemCode) {
+		this.scheduleItemCode = scheduleItemCode;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((schedule == null) ? 0 : schedule.hashCode());
+		result = prime * result + ((scheduleItemCode == null) ? 0 : scheduleItemCode.hashCode());
 		return result;
 	}
 
@@ -111,13 +99,22 @@ public class ScheduleItem implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		ScheduleItem other = (ScheduleItem) obj;
-		if (schedule == null) {
-			if (other.schedule != null)
+		if (scheduleItemCode == null) {
+			if (other.scheduleItemCode != null)
 				return false;
-		} else if (!schedule.equals(other.schedule))
+		} else if (!scheduleItemCode.equals(other.scheduleItemCode))
 			return false;
 		return true;
 	}
+
+	
+
+	
+	
+	
+
+
+	
 	
 	
 	

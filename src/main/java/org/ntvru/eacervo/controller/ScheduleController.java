@@ -1,5 +1,8 @@
 package org.ntvru.eacervo.controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +11,7 @@ import javax.transaction.Transactional;
 
 import org.ntvru.eacervo.dao.ScheduleDAO;
 import org.ntvru.eacervo.models.Schedule;
+import org.ntvru.eacervo.models.ScheduleItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,25 +34,19 @@ public class ScheduleController {
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public ModelAndView save(HttpServletRequest request, RedirectAttributes redirectAttributes){
-		Map<String, String[]> requestValues = request.getParameterMap();
-		for (String key : requestValues.keySet()) {
-			System.out.print("KEY "+key);
-		    String[] strArr = (String[]) requestValues.get(key);
-		    for (String val : strArr) {
-		        System.out.println(" VALUE " + val);
-		    }
-		}
-		System.out.println("REQUEST KEYS "+requestValues.keySet());
+	     normalizeRequestParameters(request);
 		//System.out.println("REQUEST VALUES "+);
 		//requestValues.forEach((k,v)->System.out.println("Item : " + k + " Count : " + Arrays.asList(v)));
 		ModelAndView modelAndView;
 //		System.out.println("DEPT ID :"+schedule.getId());
 // 		if(schedule.getId().trim().equals("") || schedule.getId() != null){
 // 			dao.save(schedule);
-		modelAndView = new ModelAndView("redirect:programacoes");
+		modelAndView = new ModelAndView("redirect:programacao");
+
+		//modelAndView = new ModelAndView("redirect:programacoes");
 // 		}else{
 // 			dao.save(schedule);
- 			modelAndView = new ModelAndView("/programacoes/list");
+ 			//modelAndView = new ModelAndView("/programacoes/list");
 // 		}
 		String info = "success";
 		String mensagem = "Programação efetuada com sucesso!";		
@@ -78,4 +76,53 @@ public class ScheduleController {
 		return dao.list();
 	}
 	
+	private void normalizeRequestParameters(HttpServletRequest request) {
+		Map<String, String[]> requestValues = request.getParameterMap();
+		Schedule schedule = new Schedule();			
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		schedule.setDate(LocalDate.now());		
+		   Iterator entryIter = requestValues.keySet().iterator();
+		   ScheduleItem scheduleItem = null;
+		   while (entryIter.hasNext()) {
+			  String entry = (String)entryIter.next();
+		      if(entry.contains("productepisode")) {
+		    	  if(scheduleItem==null) {
+		    		  scheduleItem = new ScheduleItem();
+		    		  scheduleItem.setEpisodeName(requestValues.get(entry)[0]);
+			  System.out.println( "(" + requestValues.get(entry)[0] + ")" );
+		    	  }
+		      }
+		      if(entry.contains("productname")) { 
+		    	  if(scheduleItem!=null) {
+		    		  scheduleItem.setProductName(requestValues.get(entry)[0]);
+				  System.out.println( "(" + requestValues.get(entry)[0] + ")" );
+		    	  }
+			      }
+		      if(entry.contains("programgroup")) { 
+		    	  if(scheduleItem!=null) {
+		    		  scheduleItem.setProductType(requestValues.get(entry)[0]);
+				  System.out.println( "(" + requestValues.get(entry)[0] + ")" );
+		    	  }
+			      }
+		      if(entry.contains("programduration")) { 
+		    	  if(scheduleItem!=null) {
+			    	  scheduleItem.setEpisodeDuration(requestValues.get(entry)[0]);
+				  System.out.println( "(" + requestValues.get(entry)[0] + ")" );
+		    	  }
+			      }
+		      if(entry.contains("scheduleid")) { 
+		    	  if(scheduleItem!=null) {
+		    	  scheduleItem.setScheduleItemCode(requestValues.get(entry)[0]);
+				  System.out.println( "(" + requestValues.get(entry)[0] + ")" );
+				  schedule.setScheduleItems(scheduleItem);
+				  System.out.println("SIZE "+schedule.getScheduleItems().size());				  
+				  scheduleItem = null;
+		    	  }
+			      }
+		   }
+
+		 
+		 dao.save(schedule);
+		
+	}
 }

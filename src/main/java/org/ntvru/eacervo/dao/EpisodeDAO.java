@@ -18,7 +18,6 @@ public class EpisodeDAO extends GenericDAO<Episode> {
 	 * e.fk_episode_product = p.product_id inner join productgroup g on p.fk_product_prod_group = g.product_group_id;
 	 */
 	public List<Episode> getEpisodesWithProductAndProductGroupByName(String name){
-//		 String query = "select new org.ntvru.eacervo.models.dto.EpisodeDTO(e.id, e.name, e.exhibitionDate, e.duration, p.name) from Episode e join e.product p where e.name ="+name+" and e.status='A' and p.status='A'";	
 		 String query = "select e.id, e.name, e.exhibitionDate, e.duration, p.name from Episode e join e.product p where e.name ="+name+" and e.status='A' and p.status='A'";	
 
 			return manager.createQuery(query, daoU.getEntityClass()).getResultList();

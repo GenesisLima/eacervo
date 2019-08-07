@@ -13,7 +13,7 @@
                 
         <form class="input-append" role="form" method="post" action="/eacervo/programacoes">
            <div class="form-group">
-    <span><label id="labelID" >ID:</label> <label id="labelID-value">CHBL01</label>  </span> <spa style="margin-left: 70px"><label id="labelDate" >Data:</label><label id="lavelDate-value"><script type="javascript">function(){return moment()}</script></label></spa> <span  style="margin-left: 70px"> <label id="labelDuration">Duration:</label></span>
+   <!-- <span><label id="labelID" >ID:</label> <label id="labelID-value"></label>  </span> <spa style="margin-left: 70px"><label id="labelDate" >Data:</label><label id="lavelDate-value"><script type="javascript">function(){return moment()}</script></label></spa> <span  style="margin-left: 70px"> <label id="labelDuration">Duration:</label></span> --> 
 <!--     <input type="text" class="form-control" id="id" name="id" readonly="readonly" value="0"> -->
 <!--         	<input type="button" class="add-row" value="Add Row"> -->
     
@@ -22,18 +22,21 @@
           <table >
         <thead>
             <tr>
+               
                 <th>Episódio</th>
 <!--                 <th>Tipo</th> -->
                 <th>Tipo</th>
                 <th>Produto</th>                
                 <th>Duracao</th>
+                 <th>Código</th>
             </tr>
         </thead>
         <tbody>	
             <tr>
-            <td><div class="input-group"><input type="text" class="form-control" name="productepisode" id="productepisode" > <input type="hidden"  >
+            <td><div class="input-group"><input type="text" class="form-control" name="productepisode" id="productepisode" > 
+<!--             <input type="hidden"  > -->
                                 <span class="input-group-btn">
-                                              <a  class="btn btn-default" role="button" data-productepisode="" data-programgroup=""  data-productname=""  data-toggle="modal" id="openModalEpisode" ><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
+                                              <a  class="btn btn-default" role="button" data-productepisode="" data-programgroup=""  data-productname="" data-scheduleid="" data-toggle="modal" id="openModalEpisode" ><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
                                 
                                 </span></div></td>
 <!--             <td>               -->
@@ -56,6 +59,8 @@
                 
                                 
                                 <td><input type="text" class="form-control" name="programduration" id="programduration"></td>
+                                <td><div class="input-group"><input type="text" class="form-control" name="scheduleid" id="scheduleid" readonly></div></td>
+                                
                                 <td>    <button type="button" class="btn btn-success btn-add" >
                         <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Inserir Linha  <!-- Add -->
                     </button></td>
@@ -182,21 +187,7 @@
      });
     }
     
-    
-//     function updateScheduleTime(elementClass, controlType){
-//         $(elementClass).each(function(index, element){                     	
-//         	 $(this).find(controlType).each(function(index, element){
-//         		  if(element.id.includes('programduration')){
-//         			  console.log('SCHEDULE TIME '+$(element).val());
-//                   	$(element).prop('value',function(){
-//                   		return 'valor atualizado contendo o tempo total de todos os programas';
-//                   	})                	
-//                    }
-        		
-//            });
-        	
-//         });
-//     }
+
     
     function renameElementNameAfterDefineIndex(elementClass, controlType){
         $(elementClass).each(function(index, element){                     	
@@ -214,6 +205,7 @@
 //   		  })
 //   	})
 //     }
+
      var modalCaller;
     $(document).on("click", "#openModalEpisode",function(){
     	   modalCaller = $(this)
@@ -226,7 +218,9 @@
   		  $(this).find(':input:text').each(function(index, element){  		
   		  $(element).prop('id',element.id); 
   	
-  		         if(element.id.includes('productepisode')){
+  		         if(element.id.includes('scheduleid')){
+        	       $(modalCaller).data('scheduleid',element.id)                   
+  		         } if(element.id.includes('productepisode')){
                 	$(modalCaller).data('productepisode',element.id)                	
                  } if(element.id.includes('programgroup')){
                 	 $(modalCaller).data('programgroup',element.id)
@@ -248,16 +242,10 @@
     
     function adjustProgramDuration(e){
     	var tempo = moment("240000","hmmss");
-    	var future = moment(tempo).add(1,"h");
-    	 console.log("TEMPO "+tempo);
-    	 console.log("FUTURE "+future);
-    	
+    	var future = moment(tempo).add(1,"h");    	
     	 $(e).closest('.form-group').each(function(index,element){    	    		
      		  $(element).find(':input:text').each(function(index, element){
-     			 if(element.id.includes('programduration')){
-     				console.log("ELEMENT "+element.id);
-     				console.log("FUTURE "+moment(future).format("HH:mm:ss"));
-     				console.log("Moment "+ moment(tempo).add(1,"hour").format("HH:mm:ss"));
+     			 if(element.id.includes('programduration')){     				
          			 $(element).val(moment(future).format("HH:mm:ss"));
 
  }
@@ -280,7 +268,9 @@
    	 $('#'+$(modalCaller).data('programgroup')).val(row_data.product.productGroup.initials);
    	 $('#'+$(modalCaller).data('productname')).val(row_data.product.name);
    	$('#'+$(modalCaller).data('productduration')).val(row_data.product.duration);
-   	var convertedDuration= moment().startOf('day')
+   	console.log("SETTING SCHEDULE ID "+row_data.product.productGroup.initials+row_data.id+row_data.product.id);
+	$('#'+$(modalCaller).data('scheduleid')).val(row_data.product.productGroup.initials+row_data.id+row_data.product.id);
+   	var convertedDuration = moment().startOf('day')
     .seconds(row_data.duration)
     .format('H:mm:ss');
    	 $('#programduration').val(convertedDuration);
@@ -288,11 +278,11 @@
    	$('#modalEpisode.in').modal('hide');
     	} );
    	
+    	//$("#labelID-value").html(row_data.product.productGroup.initials+)
+    	
      }
     
-    $('#modalEpisode').on('show.bs.modal', function (e) { 	  
-
-    	//var episodeName = $('#programepisode').val();
+    $('#modalEpisode').on('show.bs.modal', function (e) {
         $('#productEpisodeTable').DataTable( {
         	retrieve: true,
             "ajax":{url: '/eacervo/api/v1/episode/all?type=json', dataSrc:""},
@@ -307,9 +297,6 @@
       
       var modal = $(this);
 
-      	  
-
-    
 });
 
     
