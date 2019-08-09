@@ -109,4 +109,9 @@ public class HomeController {
 	public String getOrigemRegisterPage(){
 		return "origens/view";
 	}
+	
+	@RequestMapping("/insercao")
+	public String getInsercaoRegisterPage(){
+		return "insercoes/view";
+	}
 }

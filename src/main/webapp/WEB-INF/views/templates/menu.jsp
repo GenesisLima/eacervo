@@ -33,6 +33,7 @@
                   <li><a href="tema">Tema</a></li>
                    <li><a href="temporada">Temporada</a></li>
                    <li><a href="episodio">Epis&oacute;dio</a></li>
+                   <li><a href="insercao">Inser&ccedil;&atilde;o</a></li>                   
                    <li><a href="bloco">Bloco</a></li>
                    <li><a href="funcao">Fun&ccedil;&atilde;o</a></li>
                   <li><a href="procedimento">Procedimento</a></li>
@@ -54,6 +55,7 @@
                 	<li><a href="temas">Temas</a></li>
                 	<li><a href="temporadas">Temporadas</a></li>
                 	<li><a href="episodios">Epis&oacute;dios</a></li>
+                	<li><a href="episodio">Inser&ccedil;&tilde;es</a></li>                	
                    <li><a href="blocos">Blocos</a></li>
                 	<li><a href="funcoes">Fun&ccedil;&otilde;es</a></li>
                 	<li><a href="procedimentos">Procedimentos</a></li>
