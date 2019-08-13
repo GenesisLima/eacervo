@@ -1,5 +1,6 @@
 package org.ntvru.eacervo.controller;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
@@ -84,8 +85,8 @@ public class ScheduleController {
 	private Schedule scheduleViewToModelConverter(HttpServletRequest request) {
 		Map<String, String[]> requestValues = request.getParameterMap();
 		Schedule schedule = new Schedule();			
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		schedule.setDate(LocalDate.now());
+		
+		schedule.setExhibitionDate(Date.valueOf(LocalDate.now()));
 		 
 		
 		   Iterator entryIter = requestValues.keySet().iterator();
@@ -115,6 +116,7 @@ public class ScheduleController {
 			    	  scheduleItem.setEpisodeDuration(requestValues.get(entry)[0]);
 		    	  }
 			      }
+		      
 		      if(entry.contains("scheduleid")) { 
 		    	  if(scheduleItem!=null) {
 		    		

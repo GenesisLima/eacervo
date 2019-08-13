@@ -12,11 +12,9 @@
   
                 
         <form class="input-append" role="form" method="post" action="/eacervo/programacoes">
-           <div class="form-group">
-   <!-- <span><label id="labelID" >ID:</label> <label id="labelID-value"></label>  </span> <spa style="margin-left: 70px"><label id="labelDate" >Data:</label><label id="lavelDate-value"><script type="javascript">function(){return moment()}</script></label></spa> <span  style="margin-left: 70px"> <label id="labelDuration">Duration:</label></span> --> 
-<!--     <input type="text" class="form-control" id="id" name="id" readonly="readonly" value="0"> -->
-<!--         	<input type="button" class="add-row" value="Add Row"> -->
-    
+           <div class="form-inline">
+<label id="labelDate" >Data de Exibição:</label><label id="labelDate-value"></label>
+<input type="date" class="form-control" name="exhibitionDate" id="exhibitionDate" />
   </div>
            <div class="form-group">
           <table >

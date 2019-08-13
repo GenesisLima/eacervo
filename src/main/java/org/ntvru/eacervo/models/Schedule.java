@@ -1,6 +1,7 @@
 package org.ntvru.eacervo.models;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ public class Schedule implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="schedule_id")
 	private int id;
-	private LocalDate date;
+	private Date exhibitionDate;
 	
 //	@OneToMany(cascade=CascadeType.PERSIST)
 //	@ElementCollection
@@ -45,13 +46,14 @@ public class Schedule implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
-	public LocalDate getDate() {
-		return date;
-	}
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
 	
+	
+	public Date getExhibitionDate() {
+		return exhibitionDate;
+	}
+	public void setExhibitionDate(Date exhibitionDate) {
+		this.exhibitionDate = exhibitionDate;
+	}
 	public List<ScheduleItem> getScheduleItems() {
 		return scheduleItems;
 	}
@@ -91,7 +93,7 @@ public class Schedule implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return "Schedule [id=" + id + ", date=" + date + "]";
+		return "Schedule [id=" + id + ", date=" + exhibitionDate + "]";
 	}
 	
 	
