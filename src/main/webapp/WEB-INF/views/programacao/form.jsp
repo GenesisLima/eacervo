@@ -37,7 +37,7 @@
 <!--             <input type="hidden"  > -->
                                 <span class="input-group-btn">
                                               <a  class="btn btn-default" role="button" data-productepisode="" data-programgroup=""  data-productname="" data-scheduleid="" data-toggle="modal" id="openModalEpisode" ><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
-                                
+                          
                                 </span></div></td>
 <!--             <td>               -->
                

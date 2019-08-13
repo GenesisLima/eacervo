@@ -61,8 +61,7 @@ public abstract class GenericDAO<T> {
 			
 			String columns = "";
 			//String dtoPackage = daoU.getEntityClass().getPackage()+".dto";
-
-			
+		
 			for(String attribute : attributes) {
 				if(attribute.equalsIgnoreCase(attributes[attributes.length -1])) {										
                   columns += "t."+attribute+" as "+attribute+" ";

@@ -5,14 +5,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,13 +24,15 @@ public class Schedule implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="schecule_id")
+	@Column(name="schedule_id")
 	private int id;
 	private LocalDate date;
 	
 //	@OneToMany(cascade=CascadeType.PERSIST)
-	@ElementCollection
-	@CollectionTable(name="SCHEDULE_ITEM",joinColumns=@JoinColumn(name="schecule_id"))
+//	@ElementCollection
+//	@CollectionTable(name="SCHEDULE_ITEM",joinColumns=@JoinColumn(name="schecule_id"))
+	@ManyToMany
+	@JoinTable(name="SCHEDULE_SCHEDULE_ITEM")
 	private List<ScheduleItem> scheduleItems = new ArrayList<>();
 	
 	@Column(columnDefinition="char(1) default 'A'")

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 
 import org.ntvru.eacervo.dao.ScheduleDAO;
+import org.ntvru.eacervo.dao.ScheduleItemDAO;
 import org.ntvru.eacervo.models.Schedule;
 import org.ntvru.eacervo.models.ScheduleItem;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +31,15 @@ public class ScheduleController {
 	@Autowired
 	private ScheduleDAO dao;
 	
+	@Autowired
+	private ScheduleItemDAO scheduleItemDAO;
+	
+	
 
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public ModelAndView save(HttpServletRequest request, RedirectAttributes redirectAttributes){
-	     normalizeRequestParameters(request);
+		dao.save(scheduleViewToModelConverter(request));
 		//System.out.println("REQUEST VALUES "+);
 		//requestValues.forEach((k,v)->System.out.println("Item : " + k + " Count : " + Arrays.asList(v)));
 		ModelAndView modelAndView;
@@ -76,53 +81,56 @@ public class ScheduleController {
 		return dao.list();
 	}
 	
-	private void normalizeRequestParameters(HttpServletRequest request) {
+	private Schedule scheduleViewToModelConverter(HttpServletRequest request) {
 		Map<String, String[]> requestValues = request.getParameterMap();
 		Schedule schedule = new Schedule();			
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		schedule.setDate(LocalDate.now());		
+		schedule.setDate(LocalDate.now());
+		 
+		
 		   Iterator entryIter = requestValues.keySet().iterator();
 		   ScheduleItem scheduleItem = null;
 		   while (entryIter.hasNext()) {
 			  String entry = (String)entryIter.next();
+			  
+			  
 		      if(entry.contains("productepisode")) {
 		    	  if(scheduleItem==null) {
 		    		  scheduleItem = new ScheduleItem();
 		    		  scheduleItem.setEpisodeName(requestValues.get(entry)[0]);
-			  System.out.println( "(" + requestValues.get(entry)[0] + ")" );
 		    	  }
 		      }
 		      if(entry.contains("productname")) { 
 		    	  if(scheduleItem!=null) {
 		    		  scheduleItem.setProductName(requestValues.get(entry)[0]);
-				  System.out.println( "(" + requestValues.get(entry)[0] + ")" );
 		    	  }
 			      }
 		      if(entry.contains("programgroup")) { 
 		    	  if(scheduleItem!=null) {
 		    		  scheduleItem.setProductType(requestValues.get(entry)[0]);
-				  System.out.println( "(" + requestValues.get(entry)[0] + ")" );
 		    	  }
 			      }
 		      if(entry.contains("programduration")) { 
 		    	  if(scheduleItem!=null) {
 			    	  scheduleItem.setEpisodeDuration(requestValues.get(entry)[0]);
-				  System.out.println( "(" + requestValues.get(entry)[0] + ")" );
 		    	  }
 			      }
 		      if(entry.contains("scheduleid")) { 
 		    	  if(scheduleItem!=null) {
-		    	  scheduleItem.setScheduleItemCode(requestValues.get(entry)[0]);
-				  System.out.println( "(" + requestValues.get(entry)[0] + ")" );
-				  schedule.setScheduleItems(scheduleItem);
-				  System.out.println("SIZE "+schedule.getScheduleItems().size());				  
+		    		
+		    		scheduleItem.setScheduleItemCode(requestValues.get(entry)[0]);
+		    		scheduleItemDAO.save(scheduleItem);
+		    		schedule.setScheduleItems(scheduleItem);
+		
 				  scheduleItem = null;
 		    	  }
 			      }
 		   }
 
 		 
-		 dao.save(schedule);
+		return schedule;
 		
 	}
+	
+	
 }

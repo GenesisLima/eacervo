@@ -1,16 +1,15 @@
 package org.ntvru.eacervo.models;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-@Embeddable
+@Entity
 @Table(name="SCHEDULE_ITEM")
 public class ScheduleItem implements Serializable {
 
@@ -23,12 +22,16 @@ public class ScheduleItem implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	@Column(unique=true)
+	@Id
+	@Column(name="schedule_item_id")
 	private String scheduleItemCode;
 	private String episodeName;
 	private String productType;
 	private String productName;
 	private String episodeDuration;
+	
+	@ManyToMany(mappedBy="scheduleItems")
+	private List<Schedule> schedules;
 	
 	@Column(columnDefinition="char(1) default 'A'")
     private String status = "A";
@@ -80,6 +83,15 @@ public class ScheduleItem implements Serializable {
 
 	public void setScheduleItemCode(String scheduleItemCode) {
 		this.scheduleItemCode = scheduleItemCode;
+	}
+	
+	
+	public List<Schedule> getSchedules() {
+		return schedules;
+	}
+
+	public void setSchedules(List<Schedule> schedules) {
+		this.schedules = schedules;
 	}
 
 	@Override
