@@ -1,0 +1,3 @@
+insert into productgroup(name,initials) values ('Programa','PGM'),('Programete','PMT');
+insert into product(name,fk_product_prod_group) values ('Opinião Pernambuco',1);
+insert into episode(name,duration,fk_episode_product) values ('Debate Reitores 2019',1000,1),('Universidade Pública',2000,1);

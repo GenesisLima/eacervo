@@ -28,7 +28,7 @@ public class ScheduleItem implements Serializable {
 	private String episodeName;
 	private String productType;
 	private String productName;
-	private String episodeDuration;
+	private int episodeDuration;
 	
 	@ManyToMany(mappedBy="scheduleItems")
 	private List<Schedule> schedules;
@@ -61,11 +61,11 @@ public class ScheduleItem implements Serializable {
 		this.productName = productName;
 	}
 
-	public String getEpisodeDuration() {
+	public int getEpisodeDuration() {
 		return episodeDuration;
 	}
 
-	public void setEpisodeDuration(String episodeDuration) {
+	public void setEpisodeDuration(int episodeDuration) {
 		this.episodeDuration = episodeDuration;
 	}
 
@@ -119,18 +119,6 @@ public class ScheduleItem implements Serializable {
 		return true;
 	}
 
-	
-
-	
-	
-	
-
-
-	
-	
-	
-	
-	
 	
 	
 }

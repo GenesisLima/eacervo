@@ -112,8 +112,9 @@ public class ScheduleController {
 		    	  }
 			      }
 		      if(entry.contains("programduration")) { 
+		    	  System.out.println("DURATION "+requestValues.get(entry)[0]);
 		    	  if(scheduleItem!=null) {
-			    	  scheduleItem.setEpisodeDuration(requestValues.get(entry)[0]);
+			    	  scheduleItem.setEpisodeDuration(Integer.parseInt(requestValues.get(entry)[0]));
 		    	  }
 			      }
 		      

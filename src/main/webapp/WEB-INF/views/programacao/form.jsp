@@ -34,7 +34,7 @@
             <td><div class="input-group"><input type="text" class="form-control" name="productepisode" id="productepisode" > 
 <!--             <input type="hidden"  > -->
                                 <span class="input-group-btn">
-                                              <a  class="btn btn-default" role="button" data-productepisode="" data-programgroup=""  data-productname="" data-scheduleid="" data-toggle="modal" id="openModalEpisode" ><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
+                                              <a  class="btn btn-default" role="button" data-productepisode="" data-programgroup=""  data-productname="" data-programduration="" data-scheduleid="" data-toggle="modal" id="openModalEpisode" ><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
                           
                                 </span></div></td>
 <!--             <td>               -->
@@ -119,10 +119,13 @@
     
     
     <script type="text/javascript">
-
+   
      
+    
+   
     $(document).ready(function()
     		{
+    	
     	
     	 $('#programduration').mask('00:00:00');
     	
@@ -140,14 +143,13 @@
              	$(this).val('')
              });
             newEntry = $(cloneEntry).appendTo(controlForm);
-            adjustProgramDuration(newEntry);
+           // adjustProgramDuration(newEntry);
             incrementElementIndex('.form-group',':input[type="text"]');
 //             renameElementNameAfterDefineIndex('.form-group',':input[type="text"]');
                 controlForm.find('.btn-add:not(:last)')
                 .removeClass('btn-default').addClass('btn-danger')
-                .removeClass('btn-add').addClass('btn-remove')
-                
-                .html('<span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Remover Linha   ');
+                .removeClass('btn-add').addClass('btn-remove')                
+                .html('<span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Remover Linha.');
                 
               //calculates the total schedule time by gathering the amount of time for each product
                //updateScheduleTime('.form-group',':input[type="text"]');
@@ -163,10 +165,11 @@
     	}).on('click', '#submitform', function(e){
     		console.log("FORM SUBMIT ");
     		renameElementNameAfterDefineIndex('.form-group',':input[type="text"]');
+    		adjustProgramDuration('.form-group',':input[type="text"]');
     	})
     	;
         //
-        
+     
         
         
     });
@@ -224,8 +227,8 @@
                 	 $(modalCaller).data('programgroup',element.id)
                  }if(element.id.includes('productname')){  
                 	 $(modalCaller).data('productname',element.id)
-                 }if(element.id.includes('productduration')){
-                	 $(modalCaller).data('productduration',element.id)
+                 }if(element.id.includes('programduration')){
+                	 $(modalCaller).data('programduration',element.id)
 
                  }
            
@@ -238,24 +241,46 @@
     });
     });
     
-    function adjustProgramDuration(e){
-    	var tempo = moment("240000","hmmss");
-    	var future = moment(tempo).add(1,"h");    	
-    	 $(e).closest('.form-group').each(function(index,element){    	    		
-     		  $(element).find(':input:text').each(function(index, element){
-     			 if(element.id.includes('programduration')){     				
-         			 $(element).val(moment(future).format("HH:mm:ss"));
+    function adjustProgramDuration(elementClass, controlType){
+        $(elementClass).each(function(index, element){                     	
+        	 $(this).find(controlType).each(function(index, element){     		 
+        		 if(element.id.includes('programduration')){
+        			// alert("ADJUST VALUE "+element.value);
+	          		//alert("ADJUST VAL "+$(element).val());
+
+	 //alert("ADJUST 1 "+moment.duration($(element).val()).asSeconds());
+	 var seconds = moment.duration($(element).val()).asSeconds();
+	 $(element).val(seconds); 
+        		 }
+           });
+        	
+        });
+    	
+    	
+    	
+    	 	    		
+     		 
+     			 
+//      				var convertedDuration = moment().startOf('day')
+//      			    .seconds($(element).val())
+//      			    .format('H:mm:ss');
+//      				$(element).val(convertedDuration);
+//      				console.log("CONVERTED "+convertedDuration);
+         			 //$(element).val(moment(future).format("HH:mm:ss"));
+         			          			 
 
  }
-     		  })
-     		  })
-    	 }
+//      		  })
+//      		  })
+//     	 }
    
+  
+    
     
     function setEpisodeValue(element){	 
 
-    	console.log("EPISODE ID "+$(element))
-    	
+    	console.log("EPISODE ID "+$(element));
+    
     	table = $('#productEpisodeTable').DataTable( { retrieve: true} );
     	$('#productEpisodeTable tbody').on( 'click', 'tr', function () {
   		
@@ -265,13 +290,20 @@
    	 $('#'+ $(modalCaller).data('productepisode')).val(row_data.name);
    	 $('#'+$(modalCaller).data('programgroup')).val(row_data.product.productGroup.initials);
    	 $('#'+$(modalCaller).data('productname')).val(row_data.product.name);
-   	$('#'+$(modalCaller).data('productduration')).val(row_data.product.duration);
-   	console.log("SETTING SCHEDULE ID "+row_data.product.productGroup.initials+row_data.id+row_data.product.id);
+//    	 console.log("DURATION "+row_data.product.duration);
+//    	$('#'+$(modalCaller).data('programduration')).val(row_data.product.duration);
+//    	console.log("C  "+convertTimeToSeconds($('#'+$(modalCaller).data('programduration')).val()));
+//    	console.log("SETTING SCHEDULE ID "+row_data.product.productGroup.initials+row_data.id+row_data.product.id);
 	$('#'+$(modalCaller).data('scheduleid')).val(row_data.product.productGroup.initials+row_data.id+row_data.product.id);
-   	var convertedDuration = moment().startOf('day')
+   	
+	//adjustProgramDuration($(element));
+	
+	var convertedDuration = moment().startOf('day')
     .seconds(row_data.duration)
     .format('H:mm:ss');
-   	 $('#programduration').val(convertedDuration);
+	console.log("CONVERT DURATION "+moment.duration(convertedDuration).asSeconds());
+	$('#'+$(modalCaller).data('programduration')).val(convertedDuration);
+//    	 $('#programduration').val(convertedDuration);
 
    	$('#modalEpisode.in').modal('hide');
     	} );
