@@ -244,11 +244,7 @@
     function adjustProgramDuration(elementClass, controlType){
         $(elementClass).each(function(index, element){                     	
         	 $(this).find(controlType).each(function(index, element){     		 
-        		 if(element.id.includes('programduration')){
-        			// alert("ADJUST VALUE "+element.value);
-	          		//alert("ADJUST VAL "+$(element).val());
-
-	 //alert("ADJUST 1 "+moment.duration($(element).val()).asSeconds());
+        		 if(element.id.includes('programduration')){        		
 	 var seconds = moment.duration($(element).val()).asSeconds();
 	 $(element).val(seconds); 
         		 }
