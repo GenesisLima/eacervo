@@ -24,15 +24,15 @@ public class Product implements Serializable {
 	
 	private String name;
 	
-	@ManyToOne
-	@JoinColumn(name="fk_product_topic")
-	private Topic topic;
+//	@ManyToOne
+//	@JoinColumn(name="fk_product_topic")
+//	private Topic topic;
 	
-	private String obtainment;
-	
-	private String partner;
-	
-	private BigInteger productionCost;
+//	private String obtainment;
+//	
+//	private String partner;
+//	
+//	private BigInteger productionCost;
 	
 	@ManyToOne
 	@JoinColumn(name="fk_product_prod_group")
@@ -42,8 +42,11 @@ public class Product implements Serializable {
 //	@JoinColumn(name="fk_product_prod_type")
 //	private ProductType productType;
 	
-	@Transient
-	private Team team;
+//	@Transient
+//	private Team team;
+	
+	private String description;
+	
 	
 	
 	@Column(columnDefinition="char(1) default 'A'")
@@ -73,45 +76,45 @@ public class Product implements Serializable {
 		this.name = name;
 	}
 
-	public Topic getTopic() {
-		return topic;
-	}
+//	public Topic getTopic() {
+//		return topic;
+//	}
+//
+//	public void setTopic(Topic topic) {
+//		this.topic = topic;
+//	}
 
-	public void setTopic(Topic topic) {
-		this.topic = topic;
-	}
+//	public String getObtainment() {
+//		return obtainment;
+//	}
+//
+//	public void setObtainment(String obtainment) {
+//		this.obtainment = obtainment;
+//	}
+//
+//	public String getPartner() {
+//		return partner;
+//	}
+//
+//	public void setPartner(String partner) {
+//		this.partner = partner;
+//	}
 
-	public String getObtainment() {
-		return obtainment;
-	}
+//	public BigInteger getProductionCost() {
+//		return productionCost;
+//	}
+//
+//	public void setProductionCost(BigInteger productionCost) {
+//		this.productionCost = productionCost;
+//	}
 
-	public void setObtainment(String obtainment) {
-		this.obtainment = obtainment;
-	}
-
-	public String getPartner() {
-		return partner;
-	}
-
-	public void setPartner(String partner) {
-		this.partner = partner;
-	}
-
-	public BigInteger getProductionCost() {
-		return productionCost;
-	}
-
-	public void setProductionCost(BigInteger productionCost) {
-		this.productionCost = productionCost;
-	}
-
-	public Team getTeam() {
-		return team;
-	}
-
-	public void setTeam(Team team) {
-		this.team = team;
-	}
+//	public Team getTeam() {
+//		return team;
+//	}
+//
+//	public void setTeam(Team team) {
+//		this.team = team;
+//	}
 	
 	
 
@@ -123,6 +126,9 @@ public class Product implements Serializable {
 		this.productGroup = productGroup;
 	}
 
+	
+	
+	
 //	public ProductType getProductType() {
 //		return productType;
 //	}
@@ -130,6 +136,14 @@ public class Product implements Serializable {
 //	public void setProductType(ProductType productType) {
 //		this.productType = productType;
 //	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 	@Override
 	public int hashCode() {

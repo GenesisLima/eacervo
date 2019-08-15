@@ -114,4 +114,9 @@ public class HomeController {
 	public String getInsercaoRegisterPage(){
 		return "insercoes/view";
 	}
+	
+	@RequestMapping("/operacao")
+	public String getOperacaoRegisterPage(){
+		return "operacoes/view";
+	}
 }

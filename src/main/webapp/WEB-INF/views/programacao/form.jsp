@@ -286,25 +286,18 @@
    	 $('#'+ $(modalCaller).data('productepisode')).val(row_data.name);
    	 $('#'+$(modalCaller).data('programgroup')).val(row_data.product.productGroup.initials);
    	 $('#'+$(modalCaller).data('productname')).val(row_data.product.name);
-//    	 console.log("DURATION "+row_data.product.duration);
-//    	$('#'+$(modalCaller).data('programduration')).val(row_data.product.duration);
-//    	console.log("C  "+convertTimeToSeconds($('#'+$(modalCaller).data('programduration')).val()));
-//    	console.log("SETTING SCHEDULE ID "+row_data.product.productGroup.initials+row_data.id+row_data.product.id);
+
 	$('#'+$(modalCaller).data('scheduleid')).val(row_data.product.productGroup.initials+row_data.id+row_data.product.id);
    	
-	//adjustProgramDuration($(element));
 	
 	var convertedDuration = moment().startOf('day')
     .seconds(row_data.duration)
     .format('H:mm:ss');
-	console.log("CONVERT DURATION "+moment.duration(convertedDuration).asSeconds());
 	$('#'+$(modalCaller).data('programduration')).val(convertedDuration);
-//    	 $('#programduration').val(convertedDuration);
 
    	$('#modalEpisode.in').modal('hide');
     	} );
    	
-    	//$("#labelID-value").html(row_data.product.productGroup.initials+)
     	
      }
     

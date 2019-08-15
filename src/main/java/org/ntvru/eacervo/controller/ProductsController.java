@@ -30,9 +30,9 @@ public class ProductsController {
 //	private GenericDAO<ProductType> productTypeDAO;
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ModelAndView save(Product product, @RequestParam(value="productGroupId") int productGroup, @RequestParam(value="productTypeId") int productType,RedirectAttributes redirectAttributes){
+	public ModelAndView save(Product product, @RequestParam(value="productGroupId") int productGroup, RedirectAttributes redirectAttributes){
 		ModelAndView modelAndView;
-		System.out.println("DEPT ID :"+product.getId());
+		System.out.println("PRODUCT ID :"+product.getId());
  		if(product.getId()==0){
  			product.setProductGroup(productGroupDAO.getById(productGroup));
 // 			product.setProductType(productTypeDAO.getById(productType));
