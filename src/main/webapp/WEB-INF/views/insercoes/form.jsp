@@ -1,7 +1,7 @@
 <div class="container">
 
-          <jsp:include page="../templates/menu.jsp" ></jsp:include>
-    
+      <jsp:include page="../templates/menu.jsp" ></jsp:include>
+     
 
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
@@ -11,20 +11,24 @@
   <div class="panel-body">
         <form role="form" method="post" action="/eacervo/insercoes">
            <div class="form-group">
-    <label for="schedule_id">ID:</label>
-    <input type="text" class="form-control" id="schedule_id" name="schedule_id" readonly="readonly" value="0">
+    <label for="insertion_id">ID:</label>
+    <input type="text" class="form-control" id="insertion_id" name="insertion_id" readonly="readonly" value="0">
   </div>
+        
            <div class="form-group">
-              <label for="episodeName">Episódio:</label>
-              <div class="input-group">
-              <input type="text" class="form-control" id="episodeName" name="episodeName">
+            <label for="episode">Episódio:</label>
+            <div class="input-group">                            
+              <input type="text" class="form-control" id="episode" name="episode" readonly="readonly" >
+              <input type="hidden" id="episodeId" name="episodeId" value="1"/>
               <span class="input-group-btn">
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search" data-productepisode="" data-programgroup=""  data-productname="" data-scheduleid="" data-toggle="modal" id="openModalEpisode"></span>&nbsp;</button>
-              </span>
-              </div>
-           </div>
-              <div class="form-group">
-              <label for="name">Grupo:</label>
+              <a  class="btn btn-default" role="button" data-toggle="modal"  data-target="#modalEpisode" data-episodeName="" data-episodeId=""><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
+            </span>
+            </div>
+
+             </div>
+             
+                <div class="form-group">
+              <label for="name">Nome:</label>
               <div class="input-group">
               <input type="text" class="form-control" id="name" name="name">
               <span class="input-group-btn">
@@ -32,97 +36,118 @@
               </span>
               </div>
            </div>
-           <div class="form-group">
+             
+               <div class="form-group">
               <label for="description">Descri&ccedil;&atilde;o:</label>
-              <textarea type="text" class="form-control" id="description" name="description"></textarea>
+              <textarea  class="form-control" id="description" name="description"></textarea>
            </div>
-
           <!-- Trigger the modal with a button -->
 
  <button type="submit" class="btn btn-default">Salvar</button><br/><br/> 
-</form>
 
-
+  </form><!-- /end form -->
+  </div>
       </div>
-      
-              <!-- Modal episódio-->
-<div id="modalEpisode" class="modal fade" role="dialog" >
+      </div>
 
+    </div> <!-- /container -->
+    <!-- /Begin modal Episode-->
+ <div id="modalEpisode" class="modal fade" role="dialog" >
   <div class="modal-dialog">
- <form role="form" class="episode">
+ <form role="form" class="group">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Buscar Episodio</h4>
+        <h4 class="modal-title">Buscar Episódio</h4>
       </div>
       <div class="modal-body">
-    <table id="productEpisodeTable">
+    <table id="episodeTable">
       <thead>
         <tr>
             <th>ID</th>
-            <th>NAME</th>
-            <th>AÇÃO</th>
+            <th>NOME</th>             
+            <th>AÃ‡ÃƒO</th>
             
         </tr>
     </thead>   
-    </table>
-      
-      
-
+    </table> 
   </form><!-- /end form-->
       </div>
       <div class="modal-footer">
 <!--         <button id="submit" class="btn btn-default" data-dismiss="modal">Salvar</button> -->
-        <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+        <a href="#" class="btn btn-default" data-dismiss="modal">Fechar</a>
       </div>
     
     </div>
 
-    </div> <!-- /container -->
-    <script>
+  </div>
+</div>
     
-    $(document).on("click", "#openModalEpisode",function(e){
- 	   modalCaller = $(this)
-
- 	 //TODO refactor this approach. It is iterating over all divs.
- 	// var element = $(this).parent('.form-group');
- 	  // modalCaller = $(this)
-
- 		 var button = $(e.relatedTarget) // Button that triggered the modal
-   	
-   	  var name = button.data('episodeName')
-   	  
-   	  // Extract info from data-* attributes
-   	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-   	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-   	 
-   	// modal.find('#nome').val(document.getElementById("tema_name").value)        	 
-   	  //modalCaller.find('#area').val(recipient)
-   	  modalCaller.find('#episodeName').val(episodeName)
-   	  //modalCaller.find('#description').val(desc)
-
- 	$("#modalEpisode").modal();
-
- 	
- });
-
     
-    $('#modalEpisode').on('show.bs.modal', function (e) {
-    	console.log("RUN MODAL")
-        $('#productEpisodeTable').DataTable( {
-        	retrieve: true,
-            "ajax":{url: '/eacervo/api/v1/episode/all?type=json', dataSrc:""},
-             "columns":[
-            	 {"data":"id"},
-            	 {"data":"name"},            	
-            	 {"defaultContent":'<a class="btn btn-mini" data-dismiss="modal" onclick="setEpisodeValue(this)" >Escolher</a>'}
-            	 
-             ]
-            
-        } );
+       <script type="text/javascript">
+       
+       $('#modalEpisode').on('show.bs.modal', function (e) {
+           $('#episodeTable').DataTable( {
+        	   language:{
+        		   "search":"Buscar ",
+        		   "zeroRecords": "Nenhum registro disponível.",
+                   "lengthMenu": "Mostrando _MENU_ registros",        		         		   
+        		   "infoEmpty": "Mostrando _START_ de _END_ do total de  _TOTAL_ registros",
+                   "infoFiltered": "(filtered from _MAX_ total records)",
+                   paginate:{
+                	   next: "próximo",
+                	      previous: "anterior"
+                   }
+        	   },
+        	   
+        	   /*oLanguage: {
+                   "sSearch": "Buscar:",
+                   "sLoadingRecords": "Aguarde - carregando...",
+                   "sZeroRecords": "Nenhum registro disponÃ­vel.",
+                   "sLengthMenu": "Mostrando _MENU_ registros",
+                   "info": "Mostrando _START_ de _END_ do _TOTAL_ registros"
+                 
+               },*/
+               
+           	retrieve: true,
+               "ajax":{url: '/eacervo/api/v1/episode/all?type=json', dataSrc:""},
+                "columns":[
+               	 {"data":"id"},
+               	 {"data":"name"},               
+               	 {"defaultContent":'<a class="btn btn-mini" data-dismiss="modal" onclick="setEpisodeValue(this)" >Escolher</a>'}
+               	 
+                ]
+               
+           } );
+         
+         var modal = $(this);
+
+   });
+       
+
+       function setEpisodeValue(element){
+    	   
+    	   table = $('#episodeTable').DataTable( { retrieve: true} );
+       	$('#episodeTable tbody').on( 'click', 'tr', function () {
+      	   var row_data = table.row(this).data();
+             console.log("ROW DATA "+row_data)
+       		$("#episodeName").val(row_data.id);
+             $("#episodeId").val(row_data.name);
+       		
+       		
+     	   
+
+       	});
+    	   
+        	$('#modalEpisode.in').modal('hide');
       
-      var modal = $(this);
-
-});
-    </script>
+        }
+  
+    
+  
+       
+       
+       
+      
+</script>

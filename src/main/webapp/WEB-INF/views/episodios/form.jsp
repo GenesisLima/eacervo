@@ -12,7 +12,7 @@
         <form role="form" method="post" action="/eacervo/episodios">
            <div class="form-group">
     <label for="episode_id">ID:</label>
-    <input type="text" class="form-control" id="episode_id" name="episode_id" readonly="readonly" >
+    <input type="text" class="form-control" id="id" name="episode_id" readonly="readonly" >
   </div>
            <div class="form-group">
               <label for="name">Nome:</label>
