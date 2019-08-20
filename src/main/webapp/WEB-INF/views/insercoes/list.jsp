@@ -31,7 +31,7 @@
         <tr>
             <th>ID</th>
             <th>NOME</th>
-<!--            <th>GRUPO</th>                          -->
+           <th>DURAÇÃO</th>                         
             <th>AÇÃO</th>
             
         </tr>
@@ -57,40 +57,7 @@
         <h4 class="modal-title">Produto</h4>
       </div>
       <div class="modal-body">
-<!--         <p>Fun&ccedil;&atilde;o</p> -->
-        
-<!--         <div class="form-group"> -->
-<!--               <label for="id">ID:</label> -->
-<!--               <div class="input-group"> -->
-<!--               <input type="text" class="form-control" id="id" name="id" > -->
-<!--               <span class="input-group-btn"> -->
-<!--                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>&nbsp;</button> -->
-<!--               </span> -->
-<!--               </div> -->
-<!--            </div> -->
-
-<!--            <div class="form-group">                      -->
-<!--               <label for="name">Produto</label> -->
-<!--               <input type="text" class="form-control"  name="name" id="name"></input>              -->
-<!--            </div> -->
-           
-<!--            <div class="form-group">                      -->
-<!--               <label for="description">Descrição</label> -->
-<!--               <input type="text" class="form-control"  name="description" id="description"></input>              -->
-<!--            </div> -->
-
-<!--            <div class="form-group"> -->
-<!--               <label for="obtainment">Obten&ccedil;&atilde;o:</label> -->
-<!--               <textarea type="text"  class="form-control" name="obtainment" id="obtainment"></textarea> -->
-<!--            </div> -->
-<!--                <div class="form-group"> -->
-<!--               <label for="partner">Parceiro:</label> -->
-<!--               <textarea type="text"  class="form-control" name="partner" id="partner"></textarea> -->
-<!--            </div> -->
-<!--            <div class="form-group"> -->
-<!--               <label for="productionCost">Custo de Produção:</label> -->
-<!--               <textarea type="text"  class="form-control" name="productionCost" id="productionCost"></textarea> -->
-<!--            </div> -->
+<
   </form><!-- /end form-->
       </div>
       <div class="modal-footer">

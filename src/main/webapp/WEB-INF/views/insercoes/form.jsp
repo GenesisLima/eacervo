@@ -16,9 +16,9 @@
   </div>
         
            <div class="form-group">
-            <label for="episode">Episódio:</label>
+            <label for="episodeName">Episódio:</label>
             <div class="input-group">                            
-              <input type="text" class="form-control" id="episode" name="episode" readonly="readonly" >
+              <input type="text" class="form-control" id="episodeName" name="episodeName" readonly="readonly" >
               <input type="hidden" id="episodeId" name="episodeId" value="1"/>
               <span class="input-group-btn">
               <a  class="btn btn-default" role="button" data-toggle="modal"  data-target="#modalEpisode" data-episodeName="" data-episodeId=""><span class="glyphicon glyphicon-search"></span>&nbsp;</a>
@@ -28,9 +28,9 @@
              </div>
              
                 <div class="form-group">
-              <label for="name">Nome:</label>
+              <label for="name">Produto:</label>
               <div class="input-group">
-              <input type="text" class="form-control" id="name" name="name">
+              <input type="text" class="form-control" id="productName" name="productName">
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>&nbsp;</button>
               </span>
@@ -81,8 +81,6 @@
     
     </div>
 
-  </div>
-</div>
     
     
        <script type="text/javascript">
@@ -96,19 +94,12 @@
         		   "infoEmpty": "Mostrando _START_ de _END_ do total de  _TOTAL_ registros",
                    "infoFiltered": "(filtered from _MAX_ total records)",
                    paginate:{
-                	   next: "próximo",
-                	      previous: "anterior"
+                	next: "próximo",
+                	previous: "anterior"
                    }
         	   },
         	   
-        	   /*oLanguage: {
-                   "sSearch": "Buscar:",
-                   "sLoadingRecords": "Aguarde - carregando...",
-                   "sZeroRecords": "Nenhum registro disponÃ­vel.",
-                   "sLengthMenu": "Mostrando _MENU_ registros",
-                   "info": "Mostrando _START_ de _END_ do _TOTAL_ registros"
-                 
-               },*/
+       
                
            	retrieve: true,
                "ajax":{url: '/eacervo/api/v1/episode/all?type=json', dataSrc:""},
@@ -132,8 +123,9 @@
        	$('#episodeTable tbody').on( 'click', 'tr', function () {
       	   var row_data = table.row(this).data();
              console.log("ROW DATA "+row_data)
-       		$("#episodeName").val(row_data.id);
-             $("#episodeId").val(row_data.name);
+       		$("#episodeId").val(row_data.id);
+             $("#episodeName").val(row_data.name);
+           	 $("#productName").val(row_data.product.productGroup.name);
        		
        		
      	   

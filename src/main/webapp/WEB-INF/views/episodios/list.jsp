@@ -23,31 +23,7 @@
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
       
-<!--        <div class="table-responsive">           -->
-<!--   <table class="table" id="table"> -->
-<!--     <thead> -->
-<!--       <tr> -->
-<!--         <th>#</th> -->
-<!--         <th>Tema</th> -->
-<!--         <th>Descri&ccedil;&atilde;o</th> -->
-      
-<!--       </tr> -->
-<!--     </thead> -->
-<!--     <tbody> -->
-<%--      <c:forEach items="${temas}" var="tema" varStatus="status"> --%>
-<!--       <tr> -->
-<%--     <td>${tema.id}</td>              --%>
-<%--     <td >${tema.name}</td>   --%>
-<%--     <td >${tema.description}</td>     --%>
-<%--     <td><a href="#" class="btn btn-info" role="button" data-toggle="modal" data-id="${tema.id}" data-name="${tema.name}" data-description="${tema.description}" data-target="#myModal">Editar</a> --%>
-<%--     <a href="/eacervo/temas/remove/${tema.id}" class="btn btn-info" role="button">Remover</a></td> --%>
-    
-<!--       </tr> -->
-<%--        </c:forEach> --%>
-<!--     </tbody> -->
-<!--   </table> -->
-<!--   </div> -->
- <!-- <a id="reload" href="">Click me to refresh the table!</a> -->
+
     <datatables:table id="episodesTable" row="episode" data="${episodes}"   theme="bootstrap3" cssClass="table table-striped"  paginationType="full_numbers" displayLength="5">
         
         <datatables:column title="ID" property="id"   />

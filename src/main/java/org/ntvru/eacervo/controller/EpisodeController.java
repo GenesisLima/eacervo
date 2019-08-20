@@ -4,11 +4,13 @@ import javax.transaction.Transactional;
 
 import org.ntvru.eacervo.dao.EpisodeDAO;
 import org.ntvru.eacervo.models.Episode;
+import org.ntvru.eacervo.models.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -24,14 +26,14 @@ public class EpisodeController {
 	
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ModelAndView save(Episode episode, RedirectAttributes redirectAttributes){
+	public ModelAndView save(Episode episode,@RequestParam(value="productId") int productId, @RequestParam(value="productName") String productName, RedirectAttributes redirectAttributes){
 		ModelAndView modelAndView;
 		System.out.println("Episode ID :"+episode.getId());
  		if(episode.getId()==0){
- 			episodeDAO.save(episode);
+ 			setEpisodeProduct(episode, productId, productName);
 		modelAndView = new ModelAndView("redirect:episodios");
  		}else{
- 			episodeDAO.save(episode);
+ 			setEpisodeProduct(episode, productId, productName);
  			modelAndView = new ModelAndView("/episodes/list");
  		}
 		String info = "success";
@@ -39,6 +41,18 @@ public class EpisodeController {
 		redirectAttributes.addFlashAttribute("info", info);
 		redirectAttributes.addFlashAttribute("mensagem", mensagem);		
 	  return modelAndView;
+	}
+
+
+	private void setEpisodeProduct(Episode episode, int productId, String productName) {
+		if(productId !=0 && (!productName.equalsIgnoreCase("") || productName!=null)) {
+			Product product  = new Product();
+			product.setId(productId);
+			product.setName(productName);
+			episode.setProduct(product);
+			episodeDAO.save(episode);
+
+		}
 	}
 	
 	
@@ -56,5 +70,6 @@ public class EpisodeController {
 		modelAndView.addObject("episodes",episodeDAO.list());
 		return modelAndView;
 	}
+
 	
 }

@@ -1,7 +1,5 @@
 package org.ntvru.eacervo.controller;
 
-import java.sql.Date;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import javax.servlet.http.HttpServletRequest;

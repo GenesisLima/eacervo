@@ -61,7 +61,7 @@
                 	<li><a href="temas">Temas</a></li>
                 	<li><a href="temporadas">Temporadas</a></li>
                 	<li><a href="episodios">Epis&oacute;dios</a></li>
-                	<li><a href="episodio">Inser&ccedil;&tilde;es</a></li>                	
+                	<li><a href="insercoes">Inser&ccedil;&tilde;es</a></li>                	
                    <li><a href="blocos">Blocos</a></li>
                 	<li><a href="funcoes">Fun&ccedil;&otilde;es</a></li>
                 	<li><a href="procedimentos">Procedimentos</a></li>

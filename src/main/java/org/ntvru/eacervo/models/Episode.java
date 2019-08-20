@@ -36,36 +36,39 @@ public class Episode implements Serializable {
 	private String name;
 	private String description;
 	
-	@Transient
-	@ElementCollection
-	@CollectionTable(name="BLOCK",joinColumns=@JoinColumn(name="episode_id"))
-	@JsonIgnore
-	private List<Block> blocks;
+//	@Transient
+//	@ElementCollection
+//	@CollectionTable(name="BLOCK",joinColumns=@JoinColumn(name="episode_id"))
+//	@JsonIgnore
+//	private List<Block> blocks;
 	
 	
 	
-	public List<Block> getBlocks() {
-		return blocks;
-	}
-	public void setBlocks(List<Block> blocks) {
-		this.blocks = blocks;
-	}
+//	public List<Block> getBlocks() {
+//		return blocks;
+//	}
+//	public void setBlocks(List<Block> blocks) {
+//		this.blocks = blocks;
+//	}
 	@Column(columnDefinition="char(1) default 'A'")
     private String status = "A";
 	
 	
-	@OneToOne
-	@JoinColumn(name="fk_episode_director")
-	private Director director; 
+//	@OneToOne
+//	@JoinColumn(name="fk_episode_director")
+//	private Director director; 
 	
 	private int duration;
-	private Date exhibitionDate;
-	@ManyToOne
-	@JoinColumn(name="fk_episode_season")
-	private Season season;
+	
+//	private Date exhibitionDate;
+//	@ManyToOne
+//	@JoinColumn(name="fk_episode_season")
+//	private Season season;
+	
 	@ManyToOne
 	@JoinColumn(name="fk_episode_product")
 	private Product product;
+	
 	public int getId() {
 		return id;
 	}
@@ -84,30 +87,30 @@ public class Episode implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Director getDirector() {
-		return director;
-	}
-	public void setDirector(Director director) {
-		this.director = director;
-	}
+//	public Director getDirector() {
+//		return director;
+//	}
+//	public void setDirector(Director director) {
+//		this.director = director;
+//	}
 	public int getDuration() {
 		return duration;
 	}
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
-	public Date getExhibitionDate() {
-		return exhibitionDate;
-	}
-	public void setExhibitionDate(Date exhibitionDate) {
-		this.exhibitionDate = exhibitionDate;
-	}
-	public Season getSeason() {
-		return season;
-	}
-	public void setSeason(Season season) {
-		this.season = season;
-	}
+//	public Date getExhibitionDate() {
+//		return exhibitionDate;
+//	}
+//	public void setExhibitionDate(Date exhibitionDate) {
+//		this.exhibitionDate = exhibitionDate;
+//	}
+//	public Season getSeason() {
+//		return season;
+//	}
+//	public void setSeason(Season season) {
+//		this.season = season;
+//	}
 	public Product getProduct() {
 		return product;
 	}
@@ -127,17 +130,8 @@ public class Episode implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((description == null) ? 0 : description.hashCode());
-		result = prime * result
-				+ ((director == null) ? 0 : director.hashCode());
-		result = prime * result + duration;
-		result = prime * result
-				+ ((exhibitionDate == null) ? 0 : exhibitionDate.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((product == null) ? 0 : product.hashCode());
-		result = prime * result + ((season == null) ? 0 : season.hashCode());
 		return result;
 	}
 	@Override
@@ -149,23 +143,6 @@ public class Episode implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Episode other = (Episode) obj;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (director == null) {
-			if (other.director != null)
-				return false;
-		} else if (!director.equals(other.director))
-			return false;
-		if (duration != other.duration)
-			return false;
-		if (exhibitionDate == null) {
-			if (other.exhibitionDate != null)
-				return false;
-		} else if (!exhibitionDate.equals(other.exhibitionDate))
-			return false;
 		if (id != other.id)
 			return false;
 		if (name == null) {
@@ -173,29 +150,16 @@ public class Episode implements Serializable {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (product == null) {
-			if (other.product != null)
-				return false;
-		} else if (!product.equals(other.product))
-			return false;
-		if (season == null) {
-			if (other.season != null)
-				return false;
-		} else if (!season.equals(other.season))
-			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "Episode [id=" + id + ", name=" + name + ", description="
-				+ description + ", director=" + director + ", duration="
-				+ duration + ", exhibitionDate=" + exhibitionDate + ", season="
-				+ season + ", product=" + product + "]";
+		return "Episode [id=" + id + ", name=" + name + ", description=" + description + ", status=" + status
+				+ ", duration=" + duration + ", product=" + product + "]";
 	}
+
 	
-	
-	
-	
+		
 	
 	
 }
