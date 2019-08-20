@@ -25,5 +25,5 @@ blog/bin/
 
 *.class
 /target/
-sql_test
-refactorings
+/sql_test
+/refactorings
