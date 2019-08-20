@@ -67,7 +67,7 @@
         <tr>
             <th>ID</th>
             <th>NOME</th>             
-            <th>AÇÃO</th>
+            <th>AǇÃO</th>
             
         </tr>
     </thead>   

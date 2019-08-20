@@ -93,7 +93,7 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Buscar Episodio</h4>
       </div>
-      </div>
+<!--       </div> -->
       <div class="modal-body">
     <table id="productEpisodeTable">
       <thead>
@@ -105,7 +105,7 @@
         </tr>
     </thead>   
     </table>
-     </div> 
+<!--      </div>  -->
       
 
   </form><!-- /end form-->
