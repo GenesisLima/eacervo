@@ -16,7 +16,7 @@
         <h1>N&uacute;cleo de TV e R&aacute;dio Universit&aacute;ria.</h1>
         <p>Sistema de gerenciamento de programa&ccedil;&atilde;o da TV Universit&aacute;ria.</p>
         <p>
-          <a class="btn btn-lg btn-primary" href="#" role="button">Cadastro Assistido</a>
+          <a class="btn btn-lg btn-primary" href="#" role="button">Cadastro Assistido (Em Construção)</a>
         </p>
       </div>
 

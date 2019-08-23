@@ -1,9 +1,8 @@
 package org.ntvru.eacervo.conf.security;
 
-import org.ntvru.eacervo.component.EAcervoDataSource;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -20,7 +19,7 @@ public class EacervoSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-	    http.authorizeRequests().antMatchers("/*").hasRole("ADMIM")
+	    http.authorizeRequests().antMatchers("/*").hasRole("ADMIN")
 	    .antMatchers("/*").hasAnyRole("USER")
 	    .anyRequest()
 	    .authenticated()
@@ -28,6 +27,8 @@ public class EacervoSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	    .formLogin()
 	    .loginPage("/login")
 	    .permitAll()
+	    .and()
+		.exceptionHandling().accessDeniedPage("/login/access_denied")
 		.and()
 		.logout()
 		.logoutSuccessUrl("/login?logout")
@@ -54,6 +55,10 @@ public class EacervoSecurityConfiguration extends WebSecurityConfigurerAdapter{
 		 
 	}
 	
-
+	@Override
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 
 }

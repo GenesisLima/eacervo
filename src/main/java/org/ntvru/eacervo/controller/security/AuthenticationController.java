@@ -20,6 +20,10 @@ public class AuthenticationController {
 		
 		return "/usuarios/login";
 	}
+	@RequestMapping("/access_denied")
+	public String accessDenied() {
+		return "usuarios/access_denied";
+	}
 	
 
 	
