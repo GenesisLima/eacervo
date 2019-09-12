@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="SCHEDULE_ITEM")
 public class ScheduleItem implements Serializable {
@@ -29,7 +31,7 @@ public class ScheduleItem implements Serializable {
 	private String productType;
 	private String productName;
 	private int episodeDuration;
-	
+	@JsonIgnore
 	@ManyToMany(mappedBy="scheduleItems")
 	private List<Schedule> schedules;
 	

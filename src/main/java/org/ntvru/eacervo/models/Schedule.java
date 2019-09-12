@@ -2,12 +2,13 @@ package org.ntvru.eacervo.models;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.LinkedHashSet;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,9 +33,9 @@ public class Schedule implements Serializable{
 //	@OneToMany(cascade=CascadeType.PERSIST)
 //	@ElementCollection
 //	@CollectionTable(name="SCHEDULE_ITEM",joinColumns=@JoinColumn(name="schecule_id"))
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinTable(name="SCHEDULE_SCHEDULE_ITEM")
-	private List<ScheduleItem> scheduleItems = new ArrayList<>();
+	private Collection<ScheduleItem> scheduleItems = new LinkedHashSet<>();
 	
 	@Column(columnDefinition="char(1) default 'A'")
     private String status = "A";
@@ -54,7 +55,7 @@ public class Schedule implements Serializable{
 	public void setExhibitionDate(Date exhibitionDate) {
 		this.exhibitionDate = exhibitionDate;
 	}
-	public List<ScheduleItem> getScheduleItems() {
+	public Collection<ScheduleItem> getScheduleItems() {
 		return scheduleItems;
 	}
 	

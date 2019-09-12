@@ -98,7 +98,7 @@
              </sec:authorize>
             <ul class="nav navbar-nav navbar-right">
 <!--               <li class="active"><a href="./">Contato <span class="sr-only">(current)</span></a></li> -->
-              <li class="active"><a href="/">Programa&ccedil;&atilde;o </a></li>
+              <li class="active"><a href="/">Programa&ccedil;&atilde;o</a></li>
 
               <li><a href="../navbar-static-top/">Ajuda</a></li>
         

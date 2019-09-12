@@ -16,8 +16,8 @@ public class DAOUtility<T> {
 
 	
 	public <T> void reflect(T t){
-		Type type = t.getClass().getGenericSuperclass();
-		clazz = t.getClass();
+		 Type type = t.getClass().getGenericSuperclass();
+		 clazz = t.getClass();
 		 ParameterizedType pt = (ParameterizedType) type;
 		 
 		 this.entityClass = ((Class)pt.getActualTypeArguments()[0]);

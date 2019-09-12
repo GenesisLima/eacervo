@@ -1,5 +1,10 @@
 package org.ntvru.eacervo.dao;
 
+import java.util.Collection;
+import java.util.List;
+
+import javax.persistence.TypedQuery;
+
 import org.ntvru.eacervo.models.ScheduleItem;
 import org.springframework.stereotype.Repository;
 @Repository
@@ -16,5 +21,12 @@ public class ScheduleItemDAO extends GenericDAO<ScheduleItem> {
 	public ScheduleItem getById(String scheduleItemCode) {
 	
 		return manager.createQuery("select s from SCHEDULE_ITEM s where s.id="+scheduleItemCode+" and s.status='A'", ScheduleItem.class).getSingleResult();
+	}
+	
+	public Collection<ScheduleItem> listAll(){
+		 TypedQuery<ScheduleItem> query = manager.createQuery("select si from Schedule s join s.scheduleItems si",ScheduleItem.class);
+		 Collection<ScheduleItem> resultList = query.getResultList();
+		  System.out.println("name "+resultList.stream().findAny().get());
+		return resultList;
 	}
 }

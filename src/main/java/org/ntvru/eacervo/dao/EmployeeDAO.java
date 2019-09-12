@@ -1,7 +1,5 @@
 package org.ntvru.eacervo.dao;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -10,7 +8,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class EmployeeDAO extends GenericDAO<Employee>{
-     @PersistenceContext
+    
+	@PersistenceContext
 	private EntityManager manager;
      
      public EmployeeDAO(){

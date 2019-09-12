@@ -11,4 +11,6 @@ public class ScheduleDAO extends GenericDAO<Schedule> {
 		super.daoU = new DAOUtility<Schedule>();
 		super.daoU.reflect(this);
 	}
+	
+	
 }

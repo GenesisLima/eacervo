@@ -20,13 +20,47 @@
      
       <!-- Main component for a primary view or call to action -->
       <div class="jumbotron">
-
+<div class="panel panel-default">
+ <div class="panel-heading">Programação</div>
+  <div class="panel-body">
+   <form role="form" class="group">
+  <table id="scheduleTable">
+      <thead>
+        <tr>
+        <th>Código</th>        
+        <th>Episódio</th>
+        <th>Tipo</th>
+        <th>Produto</th>                
+        <th>Duracao</th>
+        <th>Ação</th>            
+        </tr>
+    </thead>   
+    </table> 
+   </form>
+  </div>
+  </div>
       </div>
 
 
     </div> <!-- /container -->
         <script type="text/javascript">
+        $(document).ready(function()
+        		{
+         table =  $('#scheduleTable').DataTable( {
+            	retrieve: true,            	
+                "ajax":{url: '/eacervo/api/v1/schedule?type=json', dataSrc:""},
+                 "columns":[
+                	 {"data":"id"},
+                	 {"data":"name"}, 
+                	 //{"data":"group"},
+                	 {"defaultContent":'<a  href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-target="modalProduct" onclick="setProductValues(this)" >Editar</a> <a href="/eacervo/tiposprodutos/remove/${productType.id}" class="btn btn-info" role="button">Remover</a>'}
+                	 
+                 ]              
+            } );
+         
+          //var modal = $(this);
 
+    });
 </script>
 </body>
 </html>

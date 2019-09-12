@@ -84,7 +84,13 @@ public abstract class GenericDAO<T> {
 		}
 			
 		
-		
+		public Tuple getEntityByAttribute(String columnName, Object param) {
+			
+			String query = "select t from "+daoU.getClassName()+" t where t.status='A' and t."+columnName+"=:"+columnName;
+			return manager.createQuery(query,Tuple.class)					
+					.setParameter(columnName, param).getSingleResult();
+			
+		}
 		
 		
 	
