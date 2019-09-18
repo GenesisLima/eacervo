@@ -9,11 +9,11 @@ import java.util.stream.Collectors;
 import javax.persistence.Tuple;
 import javax.ws.rs.Produces;
 
+import org.apache.log4j.Logger;
 import org.ntvru.eacervo.dao.ScheduleDAO;
 import org.ntvru.eacervo.dao.ScheduleItemDAO;
 import org.ntvru.eacervo.models.Schedule;
 import org.ntvru.eacervo.models.ScheduleItem;
-import org.ntvru.eacervo.models.dto.ProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +32,8 @@ public class ScheduleAPI {
 	private ScheduleDAO scheduleDAO;
 	
 	private List<ScheduleItem> scheduleItems;
+	
+	private final static Logger LOGGER = Logger.getLogger(ScheduleAPI.class.getName());
 	
 	@RequestMapping(method=RequestMethod.GET)
 	@Produces("application/json")
@@ -61,20 +63,22 @@ public class ScheduleAPI {
 	
 	@RequestMapping(value="item",method=RequestMethod.GET)
 	@Produces("application/json")
-	public @ResponseBody Schedule getScheduleByDateJSON(@RequestParam("type") String type, @RequestParam("data") String data) throws IOException{
-		System.out.println("TYPE "+type);
-		System.out.println("DATA "+data.toString());
+	public @ResponseBody List<Schedule> getScheduleByDateJSON(@RequestParam("type") String type, @RequestParam("data") String data) throws IOException{
+//		System.out.println("TYPE "+type);
+//		System.out.println("DATA "+data.toString());
 		//TODO trocar String pelo atributo(Generics)
 		Schedule schedule = null;
-
+		List<Schedule> schedules = new ArrayList<>();
 		if(type.trim().equalsIgnoreCase("json")) {			
 	    Tuple tuple = scheduleDAO.getEntityByAttribute("exhibitionDate", Date.valueOf(data));
 	    schedule = (Schedule) tuple.get(0);
 		System.out.println("TUPLA "+scheduleDAO.getEntityByAttribute("exhibitionDate", Date.valueOf(data)).get(0));
+		
+		schedules.add(schedule);
 //        schedule.setId(tuple.get(0));
 // 		schedule.setExhibitionDate(tuple.get(1, Date.class));
 		}
-		return schedule;
+		return schedules;
 	}
 	
 	

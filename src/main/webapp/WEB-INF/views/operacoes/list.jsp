@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="datatables" uri="http://github.com/dandelion/datatables" %>
+<%-- <%@ taglib prefix="datatables" uri="http://github.com/dandelion/datatables" %> --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -48,12 +48,51 @@
         		{
          table =  $('#scheduleTable').DataTable( {
             	retrieve: true,            	
-                "ajax":{url: '/eacervo/api/v1/schedule?type=json', dataSrc:""},
+                "ajax":{url: '/eacervo/api/v1/schedule/item?type=json&data=2019-08-20', dataSrc:""},
                  "columns":[
-                	 {"data":"id"},
-                	 {"data":"name"}, 
+                	 {data:"scheduleItems",
+                      render:function(data,type,row){
+                    	  var result ='';
+                    	  data.forEach(function(item){
+                    		  result = item.scheduleItemCode
+                    	  });
+                    	   return result;
+                       }}, 
+                       {data:"scheduleItems",
+                           render:function(data,type,row){
+                         	  var result ='';
+                         	  data.forEach(function(item){
+                         		  result = item.episodeName
+                         	  });
+                         	   return result;
+                            }},
+                            {data:"scheduleItems",
+                                render:function(data,type,row){
+                              	  var result ='';
+                              	  data.forEach(function(item){
+                              		  result = item.productType
+                              	  });
+                              	   return result;
+                                 }},
+                                 {data:"scheduleItems",
+                                     render:function(data,type,row){
+                                     	  var result ='';
+                                     	  data.forEach(function(item){
+                                     		  result = item.productName
+                                     	  });
+                                     	   return result;
+                                        }},
+                                        {data:"scheduleItems",
+                                            render:function(data,type,row){
+                                            	  var result ='';
+                                            	  data.forEach(function(item){
+                                            		  result = item.episodeDuration
+                                            	  });
+                                            	   return result;
+                                               }},
+                	 
                 	 //{"data":"group"},
-                	 {"defaultContent":'<a  href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-target="modalProduct" onclick="setProductValues(this)" >Editar</a> <a href="/eacervo/tiposprodutos/remove/${productType.id}" class="btn btn-info" role="button">Remover</a>'}
+                	 {"defaultContent":'<a  href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-target="modalSchedule" onclick="setProductValues(this)" >Reportar</a>'}
                 	 
                  ]              
             } );
