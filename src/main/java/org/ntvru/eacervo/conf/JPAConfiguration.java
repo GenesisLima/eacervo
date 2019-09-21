@@ -26,7 +26,7 @@ public class JPAConfiguration {
 	       public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
 	    	    LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 	    	    em.setDataSource(dataSource());
-	    	    em.setPackagesToScan(new String[]{"org.ntvru.eacervo.models"});	    	    
+	    	    em.setPackagesToScan(new String[]{"org.ntvru.eacervo.models","org.ntvru.eacervo.security.models"});	    	    
 	    	    JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 	    	    em.setJpaVendorAdapter(vendorAdapter);	    	    
 	    	    em.setJpaProperties(additionalProperties());

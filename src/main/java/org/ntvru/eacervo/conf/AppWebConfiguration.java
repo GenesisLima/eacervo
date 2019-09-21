@@ -6,6 +6,10 @@ import org.ntvru.eacervo.controller.HomeController;
 import org.ntvru.eacervo.dao.EmployeeDAO;
 import org.ntvru.eacervo.models.Product;
 import org.ntvru.eacervo.security.conf.EacervoSecurityInitializer;
+import org.ntvru.eacervo.security.controller.AuthenticationController;
+import org.ntvru.eacervo.security.dao.UserDAO;
+import org.ntvru.eacervo.security.models.User;
+import org.ntvru.eacervo.security.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +29,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 		  prePostEnabled = true, 
 		  securedEnabled = true, 
 		  jsr250Enabled = true)
-@ComponentScan(basePackageClasses={HomeController.class,EmployeeDAO.class, Product.class, ProductGroupAPI.class, EacervoSecurityInitializer.class,EAcervoDataSource.class})
+@ComponentScan(basePackageClasses={HomeController.class,AuthenticationController.class,EmployeeDAO.class, ProductGroupAPI.class, UserDAO.class,EAcervoDataSource.class,UserService.class})
 public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 
 	@Bean
