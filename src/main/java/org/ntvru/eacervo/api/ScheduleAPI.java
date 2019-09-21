@@ -9,11 +9,11 @@ import java.util.stream.Collectors;
 import javax.persistence.Tuple;
 import javax.ws.rs.Produces;
 
-import org.apache.log4j.Logger;
 import org.ntvru.eacervo.dao.ScheduleDAO;
 import org.ntvru.eacervo.dao.ScheduleItemDAO;
 import org.ntvru.eacervo.models.Schedule;
 import org.ntvru.eacervo.models.ScheduleItem;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +33,7 @@ public class ScheduleAPI {
 	
 	private List<ScheduleItem> scheduleItems;
 	
-	private final static Logger LOGGER = Logger.getLogger(ScheduleAPI.class.getName());
+//	private final static Logger LOGGER = org.slf4j.Logger.getLogger(ScheduleAPI.class.getName());
 	
 	@RequestMapping(method=RequestMethod.GET)
 	@Produces("application/json")

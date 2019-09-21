@@ -1,4 +1,4 @@
-package org.ntvru.eacervo.conf.security;
+package org.ntvru.eacervo.security.conf;
 
 import org.springframework.core.annotation.Order;
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;

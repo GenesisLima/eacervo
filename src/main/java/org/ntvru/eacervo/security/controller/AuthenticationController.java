@@ -1,4 +1,4 @@
-package org.ntvru.eacervo.controller.security;
+package org.ntvru.eacervo.security.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

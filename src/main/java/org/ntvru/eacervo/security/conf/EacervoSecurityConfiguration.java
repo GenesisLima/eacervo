@@ -1,4 +1,4 @@
-package org.ntvru.eacervo.conf.security;
+package org.ntvru.eacervo.security.conf;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

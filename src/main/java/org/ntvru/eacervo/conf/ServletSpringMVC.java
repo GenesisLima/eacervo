@@ -1,7 +1,7 @@
 package org.ntvru.eacervo.conf;
 
-import org.ntvru.eacervo.conf.security.EacervoSecurityConfiguration;
-import org.ntvru.eacervo.conf.security.EacervoSecurityInitializer;
+import org.ntvru.eacervo.security.conf.EacervoSecurityConfiguration;
+import org.ntvru.eacervo.security.conf.EacervoSecurityInitializer;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

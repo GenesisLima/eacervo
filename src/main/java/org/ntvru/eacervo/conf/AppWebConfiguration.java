@@ -2,10 +2,10 @@ package org.ntvru.eacervo.conf;
 
 import org.ntvru.eacervo.api.ProductGroupAPI;
 import org.ntvru.eacervo.component.EAcervoDataSource;
-import org.ntvru.eacervo.conf.security.EacervoSecurityInitializer;
 import org.ntvru.eacervo.controller.HomeController;
 import org.ntvru.eacervo.dao.EmployeeDAO;
 import org.ntvru.eacervo.models.Product;
+import org.ntvru.eacervo.security.conf.EacervoSecurityInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
