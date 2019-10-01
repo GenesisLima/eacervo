@@ -44,10 +44,14 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/resources/*").addResourceLocations(
-                "/resources/");
-		registry.addResourceHandler("/js/**")
-        .addResourceLocations("/js/")
+		registry.addResourceHandler("/resources/*").addResourceLocations("/resources/");
+
+		
+		
+		registry.addResourceHandler("/js/**","/css/**")
+		
+        .addResourceLocations("/js/bootstrap/**")
+        .addResourceLocations("/css/bootstrap/**")
         .resourceChain(true)
         .addResolver(new GzipResourceResolver())
         .addResolver(new PathResourceResolver());;

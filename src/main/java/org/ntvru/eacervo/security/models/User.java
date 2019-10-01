@@ -17,10 +17,11 @@ public class User implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id
 	
+	@Id	
 	private String username;
 	private String password;
+	private String name;
 	@Column(name="enabled")
 	private int status;
 	
@@ -39,6 +40,14 @@ public class User implements Serializable {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public int getStatus() {
 		return status;

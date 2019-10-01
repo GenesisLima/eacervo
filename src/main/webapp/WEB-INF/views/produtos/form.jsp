@@ -93,7 +93,7 @@
             <th>ID</th>
             <th>GRUPO</th>
             <th>NOME</th>             
-            <th>AÇÃO</th>
+            <th>Aï¿½ï¿½O</th>
             
         </tr>
     </thead>   
@@ -117,7 +117,7 @@
        $('#modalGroup').on('show.bs.modal', function (e) {
            $('#productGroupTable').DataTable( {
            	retrieve: true,
-               "ajax":{url: '/eacervo/api/v1/productgroup/all?type=json', dataSrc:""},
+               "ajax":{url: '/eacervo/api/v1/productgroup?type=json', dataSrc:""},
                 "columns":[
                	 {"data":"id"},
                	 {"data":"name"},

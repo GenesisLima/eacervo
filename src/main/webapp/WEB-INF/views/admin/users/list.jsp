@@ -8,9 +8,7 @@
 
 <head>
 
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
 
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> -->
 <jsp:include page="../../templates/head.jsp" ></jsp:include>
 
 </head>
@@ -26,12 +24,12 @@
  <div class="panel-heading">Usuários Cadastrados</div>
   <div class="panel-body">
    <form role="form" class="group">
-  <table id="productTable">
+  <table id="usersTable">
       <thead>
         <tr>
             <th>LOGIN</th>
-<!--             <th>NOME</th> -->
-<!--            <th>GRUPO</th>                          -->
+            <th>NOME</th>
+            <th>STATUS</th>                                     
             <th>AÇÃO</th>
             
         </tr>
@@ -47,51 +45,48 @@
       
 
 <!-- Modal -->
-<div id="modalUser" class="modal fade" role="dialog">
+<div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
- <form role="form" class="usuarios">
+ <form role="form" class="episode">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Usuário</h4>
+        <h4 class="modal-title">&Aacute;rea</h4>
       </div>
       <div class="modal-body">
 <!--         <p>Fun&ccedil;&atilde;o</p> -->
         
-<!--         <div class="form-group"> -->
-<!--               <label for="id">ID:</label> -->
-<!--               <div class="input-group"> -->
-<!--               <input type="text" class="form-control" id="id" name="id" > -->
-<!--               <span class="input-group-btn"> -->
-<!--                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>&nbsp;</button> -->
-<!--               </span> -->
-<!--               </div> -->
-<!--            </div> -->
+        <div class="form-group">
+              <label for="id">ID:</label>
+              <div class="input-group">
+              <input type="text" class="form-control" id="id" name="id" >
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>&nbsp;</button>
+              </span>
+              </div>
+           </div>
 
-<!--            <div class="form-group">                      -->
-<!--               <label for="name">Produto</label> -->
-<!--               <input type="text" class="form-control"  name="name" id="name"></input>              -->
-<!--            </div> -->
-           
-<!--            <div class="form-group">                      -->
-<!--               <label for="description">Descrição</label> -->
-<!--               <input type="text" class="form-control"  name="description" id="description"></input>              -->
-<!--            </div> -->
+           <div class="form-group">                     
+              <label for="name">Episodio</label>
+              <input type="text" class="form-control"  name="name" id="name"></input>             
+           </div>
 
-<!--            <div class="form-group"> -->
-<!--               <label for="obtainment">Obten&ccedil;&atilde;o:</label> -->
-<!--               <textarea type="text"  class="form-control" name="obtainment" id="obtainment"></textarea> -->
-<!--            </div> -->
-<!--                <div class="form-group"> -->
-<!--               <label for="partner">Parceiro:</label> -->
-<!--               <textarea type="text"  class="form-control" name="partner" id="partner"></textarea> -->
-<!--            </div> -->
-<!--            <div class="form-group"> -->
-<!--               <label for="productionCost">Custo de Produção:</label> -->
-<!--               <textarea type="text"  class="form-control" name="productionCost" id="productionCost"></textarea> -->
-<!--            </div> -->
+           <div class="form-group">
+              <label for="description">Descri&ccedil;&atilde;o:</label>
+              <textarea type="text"  class="form-control" name="description" id="description"></textarea>
+           </div>
   </form><!-- /end form-->
+      </div>
+      <div class="modal-footer">
+        <button id="submit" class="btn btn-default" data-dismiss="modal" onclick="refreshModal()">Salvar</button>
+        <a href="#" class="btn btn-default" data-dismiss="modal" onclick="refreshModal()">Close</a>
+      </div>
+    
+    </div>
+
+  </div>
+</div><br/><br/><!-- /end modal -->
       </div>
       <div class="modal-footer">
         <button id="submit" class="btn btn-default" data-dismiss="modal" onclick="refreshModal()">Salvar</button>
@@ -108,14 +103,18 @@
         
         $(document).ready(function()
         		{
-         table =  $('#productTable').DataTable( {
+         table =  $('#usersTable').DataTable( {
             	retrieve: true,            	
-                "ajax":{url: '/eacervo/api/v1/product?type=json', dataSrc:""},
+                "ajax":{url: '/eacervo/admin/users/api/v1/list', dataSrc:""},
                  "columns":[
-                	 {"data":"id"},
-                	 {"data":"name"}, 
-                	 //{"data":"group"},
-                	 {"defaultContent":'<a  href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-target="modalProduct" onclick="setProductValues(this)" >Editar</a> <a href="/eacervo/tiposprodutos/remove/${productType.id}" class="btn btn-info" role="button">Remover</a>'}
+                	 {"data":"username"},
+                	 {data:"name"},
+                	 {data:"status",
+                	   render:function(data){
+                   	  var result =  (data == 1) ? 'habilitado' : 'desabilitado';
+                	   return result;
+                   }},                 	 
+                	 {"defaultContent":'<a  href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-target="myModal" onclick="setUserValues(this)" >Editar</a> <a href="/eacervo/admin/users/remove/${user.id}" class="btn btn-info" role="button">Remover</a>'}
                 	 
                  ]              
             } );
@@ -125,12 +124,11 @@
     });
         
         
-       function setUserValues(){
+       function setUserValues(v){
     	   console.log('Set User values');    	   
     	   console.log('Table: '+table.row(this).data());
-        $('#modalUser').on('show.bs.modal', function (e) {
-        	console.log('Modal Opened');   
- 
+        $('#myModal').on('show.bs.modal', function (e) {
+        	console.log('Modal Opened');    
         	})
         	
        }

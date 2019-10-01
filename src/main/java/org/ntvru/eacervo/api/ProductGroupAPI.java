@@ -20,7 +20,7 @@ public class ProductGroupAPI {
 	@Autowired
 	private GenericDAO<ProductGroup> productGroupDAO;
 	
-	@RequestMapping(value="/all",method=RequestMethod.GET)
+	@RequestMapping(method=RequestMethod.GET)
 	@Produces("application/json")
 	public @ResponseBody List<ProductGroup> listgroupsJSON(@RequestParam("type") String type){	
 		if(type.trim().equalsIgnoreCase("json"));		

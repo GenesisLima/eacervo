@@ -24,15 +24,14 @@ public abstract class SecurityGenericDAO<T> {
 
 	 @SuppressWarnings("unchecked")
 	 public List<T> list() {
-		 String query = "select s from "+daoU.getClassName()+" s where s.status=1";	
+		 String query = "select s from "+daoU.getClassName()+" s";	
 
 			return manager.createQuery(query, daoU.getEntityClass()).getResultList();
 		}
 
 
 		public void remove(int id) {
-			manager.createQuery("update "+daoU.getClassName()+" a set a.status='D' where a.id="+id).executeUpdate();
-			
+			manager.createQuery("update "+daoU.getClassName()+" a set a.status='0' where a.id="+id).executeUpdate();			
 		}
 		
 		
@@ -40,13 +39,13 @@ public abstract class SecurityGenericDAO<T> {
 		@SuppressWarnings("unchecked")
 		public T getById(int id) {
 			
-			return (T) manager.createQuery("select a from "+daoU.getClassName()+" a where a.status='A' and a.id="+id, daoU.getEntityClass()).getSingleResult();
+			return (T) manager.createQuery("select a from "+daoU.getClassName()+" a where a.id="+id, daoU.getEntityClass()).getSingleResult();
 		}
 
 
 		@SuppressWarnings("unchecked")
 		public List<T> getEntitiesByNames(String name){
-			String query = "select t from "+daoU.getClassName()+" t where t.status='A' and t.name LIKE :name";	
+			String query = "select t from "+daoU.getClassName()+" t where t.name LIKE :name";	
 
 			return manager.createQuery(query, daoU.getEntityClass()).setParameter("name", "%" + name + "%").getResultList();
 
@@ -71,7 +70,7 @@ public abstract class SecurityGenericDAO<T> {
 			//String query = "select new "+dtoPackage.replace("package", "")+".ProductDTO"+"("+columns+") from "+daoU.getClassName()+" t where t.status='A'";
 			
 			
-			String query = "select "+columns+" from "+daoU.getClassName()+" t where t.status='A'";
+			String query = "select "+columns+" from "+daoU.getClassName()+" t ";
 
 			
 			
@@ -83,7 +82,7 @@ public abstract class SecurityGenericDAO<T> {
 		
 		public Tuple getEntityByAttribute(String columnName, Object param) {
 			
-			String query = "select t from "+daoU.getClassName()+" t where t.status='A' and t."+columnName+"=:"+columnName;
+			String query = "select t from "+daoU.getClassName()+" t where  t."+columnName+"=:"+columnName;
 			return manager.createQuery(query,Tuple.class)					
 					.setParameter(columnName, param).getSingleResult();
 			

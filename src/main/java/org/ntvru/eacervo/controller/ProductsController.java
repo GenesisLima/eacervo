@@ -7,6 +7,7 @@ import org.ntvru.eacervo.models.Product;
 import org.ntvru.eacervo.models.ProductGroup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,15 +31,16 @@ public class ProductsController {
 //	private GenericDAO<ProductType> productTypeDAO;
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ModelAndView save(Product product, @RequestParam(value="productGroupId") int productGroup, RedirectAttributes redirectAttributes){
+	public ModelAndView save(Product product, @RequestParam("productGroupId") int productGroupId, RedirectAttributes redirectAttributes){
 		ModelAndView modelAndView;
 		System.out.println("PRODUCT ID :"+product.getId());
  		if(product.getId()==0){
- 			product.setProductGroup(productGroupDAO.getById(productGroup));
+ 			product.setProductGroup(productGroupDAO.getById(productGroupId));
 // 			product.setProductType(productTypeDAO.getById(productType));
  			productDAO.save(product);
 		modelAndView = new ModelAndView("redirect:produtos");
  		}else{
+ 			product.setProductGroup(productGroupDAO.getById(productGroupId));
  			productDAO.save(product);
  			modelAndView = new ModelAndView("/produtos/list");
  		}
@@ -55,6 +57,14 @@ public class ProductsController {
 		ModelAndView modelAndView = new ModelAndView("/produtos/list");	
 		modelAndView.addObject("products",productDAO.list());		
 		return modelAndView; 
+	}
+	
+	@RequestMapping(value="/remove/{id}",method=RequestMethod.GET)
+	public ModelAndView remove(@PathVariable("id") int id){		
+		this.productDAO.remove(id);
+		ModelAndView modelAndView = new ModelAndView("redirect:/produtos");
+		modelAndView.addObject("products",productGroupDAO.list());
+		return modelAndView;
 	}
 	
 }

@@ -26,19 +26,31 @@ public class ProductAPI {
 	@Produces("application/json")
 	public @ResponseBody List<ProductDTO> listgroupsJSON(@RequestParam("type") String type){		
 		if(type.trim().equalsIgnoreCase("json"));	
-		return convertTupleListToProduct(dao.getEntitiesByAttributes("id","name"));
+		return convertListToProducts(dao.list());
 	}
 		
 	
 	
-	private List<ProductDTO> convertTupleListToProduct(List<Tuple> tupleList) {
-		List<ProductDTO> products = new ArrayList<ProductDTO>();
-		for(Tuple t: dao.getEntitiesByAttributes("id","name")) {
-			 ProductDTO product = new ProductDTO((Integer)t.get("id"),(String) t.get("name"));
-			 products.add(product);;
+//	private List<ProductDTO> convertTupleListToProductWithIdAndName(List<Tuple> tupleList) {
+//		List<ProductDTO> products = new ArrayList<ProductDTO>();
+//		for(Tuple t: dao.getEntitiesByAttributes("id","name")) {
+//			 ProductDTO product = new ProductDTO((Integer)t.get("id"),(String) t.get("name"));
+//			 products.add(product);;
+//		}	
+//		return products;
+//	}
+	
+	
+	private List<ProductDTO> convertListToProducts(List<Product> products) {
+		List<ProductDTO> productList = new ArrayList<ProductDTO>();
+		 System.out.println("PRODUCT LIST "+dao.list());
+
+		for(Product product: dao.list()) {
+			 ProductDTO productDTO = new ProductDTO(product.getId(),product.getName(),product.getProductGroup().getId(),product.getProductGroup().getName(),product.getDescription());
+			 System.out.println("PRODUCT DTO "+productDTO);
+
+			 productList.add(productDTO);
 		}	
-		return products;
+		return productList;
 	}
-	
-	
 }
