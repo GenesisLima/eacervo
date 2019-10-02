@@ -45,7 +45,7 @@
       
 
 <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="modalUser" class="modal fade" role="dialog">
   <div class="modal-dialog">
  <form role="form" class="episode">
     <!-- Modal content-->
@@ -57,25 +57,29 @@
       <div class="modal-body">
 <!--         <p>Fun&ccedil;&atilde;o</p> -->
         
-        <div class="form-group">
-              <label for="id">ID:</label>
-              <div class="input-group">
-              <input type="text" class="form-control" id="id" name="id" >
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>&nbsp;</button>
-              </span>
-              </div>
-           </div>
+<!--         <div class="form-group"> -->
+<!--               <label for="id">ID:</label> -->
+<!--               <div class="input-group"> -->
+<!--               <input type="text" class="form-control" id="id" name="id" > -->
+<!--               <span class="input-group-btn"> -->
+<!--                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>&nbsp;</button> -->
+<!--               </span> -->
+<!--               </div> -->
+<!--            </div> -->
 
            <div class="form-group">                     
-              <label for="name">Episodio</label>
+              <label for="name">Nome:</label>
               <input type="text" class="form-control"  name="name" id="name"></input>             
+           </div>
+            <div class="form-group">                     
+              <label for="name">Usuário:</label>
+              <input type="text" class="form-control"  name="username" id="username"></input>             
            </div>
 
            <div class="form-group">
-              <label for="description">Descri&ccedil;&atilde;o:</label>
-              <textarea type="text"  class="form-control" name="description" id="description"></textarea>
-           </div>
+              <label for="status">Status:</label>
+              <input type="radio" name="status" id="enabled" value="1"> Habilitado</input>
+              <input type="radio" name="status" id="disabled" value="0"> Desabilitado</input>        
   </form><!-- /end form-->
       </div>
       <div class="modal-footer">
@@ -114,25 +118,57 @@
                    	  var result =  (data == 1) ? 'habilitado' : 'desabilitado';
                 	   return result;
                    }},                 	 
-                	 {"defaultContent":'<a  href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-target="myModal" onclick="setUserValues(this)" >Editar</a> <a href="/eacervo/admin/users/remove/${user.id}" class="btn btn-info" role="button">Remover</a>'}
+                	 {render:function(data, type, full, meta){
+                		// var status =  (full.status == 1) ? 'habilitado' : 'desabilitado';
+                		 return '<a  href="#" id="editButton" class="btn btn-info" role="button" data-status="'+full.status+'" data-name="'+full.name+'" data-login="'+full.username+'" data-toggle="modal" data-target="#modalUser"  >Editar</a> <a href="/eacervo/admin/users/remove/${user.id}" class="btn btn-info" role="button">Remover</a>'
+                	 
+                   }
+                	 }
                 	 
                  ]              
             } );
          
           //var modal = $(this);
+//          function setUserValues(v){
+//       	   console.log('Set User values');    	   
+//       	   console.log('Table: '+table.row(this).data());
+             $('#modalUser').on('show.bs.modal', function (e) {
+             	console.log('Modal Opened');   
+             	var button = $(e.relatedTarget)
+           	  console.log('Botao: '+button.data('status'))
+           	 
+           	  $()
+           	  // Button that triggered the modal
+           	  var recipient = button.data('id')      	
+           	  var name = button.data('name')      	 
+           	  var productGroupId= button.data('product')
+           	  var productGroupName= button.data('product-name')
+               var description= button.data('description')
 
+           	  
+           	  // Extract info from data-* attributes
+           	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+           	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+               var modal = $(this);
+            	  modal.find('#id').val(button.data('id'));
+            	  //var status = ? true : false;
+            	  console.log("STATUS "+status);
+            	  if((button.data('status') == 1)){
+            	  modal.find("#enabled").attr("checked",true);
+            	  modal.find("#disabled").attr("checked",false);
+            	  }else{
+            		  modal.find("#enabled").attr("checked",false);
+                	  modal.find("#disabled").attr("checked",true);
+            	  }
+
+             	})
+          	
+        // }
+         
     });
         
         
-       function setUserValues(v){
-    	   console.log('Set User values');    	   
-    	   console.log('Table: '+table.row(this).data());
-        $('#myModal').on('show.bs.modal', function (e) {
-        	console.log('Modal Opened');    
-        	})
-        	
-       }
-       
+
        
  $(function() {
 //twitter bootstrap script
@@ -153,14 +189,14 @@
  });
  });
         
-       
+ function refreshModal(){ 
+    
+    $("#modalUser").on('hidden.bs.modal', function (e) {
+    	window.location.reload();
+    });
+   }
         
-       function refreshModal(){ 
-        
-        $("#myModal").on('hidden.bs.modal', function (e) {
-        	window.location.reload();
-        });
-       }
+   
         
         $("#search").keyup(function(e){
         	if(e.which == 13){        		

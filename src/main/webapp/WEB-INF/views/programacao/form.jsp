@@ -127,7 +127,7 @@
     $(document).ready(function()
     		{
     	
-    	
+    	 //setCurrentDate("exhibitionDate");
     	 $('#programduration').mask('00:00:00');
     	
     	var next = 1;
@@ -321,7 +321,11 @@
 
     
     
+    function setCurrentDate(elementId){
+    	var today = moment().format('YYYY-MM-DD');
+    	$("#"+elementId).val(today);
 
+    }
 
 
     </script>

@@ -30,7 +30,7 @@
 								<li><a href="grupoproduto"> Grupo de Produto</a></li>
 								<li><a href="produto">Produto</a></li>
 								<li><a href="episodio">Epis&oacute;dio</a></li>
-								<li><a href="insercao">Inser&ccedil;&atilde;o</a></li>
+<!-- 								<li><a href="insercao">Inser&ccedil;&atilde;o</a></li> -->
 								<li><a href=veiculacao>Veicula&ccedil;&atilde;o</a></li>
 								<li><a href="temporada">Temporada</a></li>
 						</ul>
@@ -58,44 +58,68 @@
               
               <li class="dropdown"><a href="#" class="dropdown-toglle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Listar <span class="caret"></span></a>
                  <ul class="dropdown-menu">
-                 	<li><a href="servidores">Servidores</a></li>
+              <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Programa&ccedil;&atilde;o</a>
+                <ul class="dropdown-menu">  
+<!--                  	<li><a href="servidores">Servidores</a></li> -->
 <!--                  	 <li><a href="tiposprodutos"> Tipo de Produto</a></li> -->
                     <li><a href="gruposprodutos"> Grupo de Produtos</a></li>
                  	<li><a href="produtos">Produtos</a></li>
-                 	<li><a href="origens">Origens dos Produtos</a></li>
-                	<li><a href="solicitantes">Solicitantes</a></li>
-                	<li><a href="departamentos">Departamentos</a></li>
-                	<li><a href="temas">Temas</a></li>
+<!--                  	<li><a href="origens">Origens dos Produtos</a></li> -->
+<!--                 	<li><a href="solicitantes">Solicitantes</a></li> -->
+<!--                 	<li><a href="departamentos">Departamentos</a></li> -->
+<!--                 	<li><a href="temas">Temas</a></li> -->
                 	<li><a href="temporadas">Temporadas</a></li>
                 	<li><a href="episodios">Epis&oacute;dios</a></li>
-                	<li><a href="insercoes">Inser&ccedil;&tilde;es</a></li>                	
-                   <li><a href="blocos">Blocos</a></li>
-                	<li><a href="funcoes">Fun&ccedil;&otilde;es</a></li>
-                	<li><a href="procedimentos">Procedimentos</a></li>
-                	<li><a href="tiposMidias">Tipo de M&iacute;dias</a></li>
+<!--                 	<li><a href="insercoes">Inser&ccedil;&tilde;es</a></li>                	 -->
+<!--                    <li><a href="blocos">Blocos</a></li> -->
+<!--                 	<li><a href="funcoes">Fun&ccedil;&otilde;es</a></li> -->
+<!--                 	<li><a href="procedimentos">Procedimentos</a></li> -->
+<!--                 	<li><a href="tiposMidias">Tipo de M&iacute;dias</a></li> -->
                 	<li><a href="veiculacoes">Veicula&ccedil;&otilde;es</a></li>
                  </ul>
-
+                  </ul>
+                      </li>
               </li><!-- /.li dropdown-->
                </sec:authorize>
+               
+               
+               
                <sec:authorize  access="hasRole('ROLE_ADMIN')">
 
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">A&ccedil;&otilde;es <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="temas/wizard/equipe">Montar Equipe</a></li>
 <%--                   <sec:authorize url="programacao" access="isAuthenticated()" access="hasRole('ADMIN')"> --%>
                   <li><a href="programacao">Montar Programa&ccedil;&atilde;o</a></li>
+                  <li><a href="/eacervo/operacao">Listar Proramação</a></li>
+                  
 <%--                   </sec:authorize> --%>
-                  <li><a href="#">Something else here</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li class="dropdown-header">Nav header</li>
-                  <li><a href="#">Separated link</a></li>
-                  <li><a href="#">One more separated link</a></li>
+<!--                   <li><a href="#">Something else here</a></li> -->
+<!--                   <li role="separator" class="divider"></li> -->
+<!--                   <li class="dropdown-header">Nav header</li> -->
+<!--                   <li><a href="#">Separated link</a></li> -->
+<!--                   <li><a href="#">One more separated link</a></li> -->
                 </ul>
               </li>
+              
+                            <li class="dropdown"><a href="#" class="dropdown-toglle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administra&ccedil;&atilde;o <span class="caret"></span></a>
+                 <ul class="dropdown-menu">
+<!--               <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuários</a></li> -->
+<!--                 <ul class="dropdown-menu">   -->
+<!--                  	<li><a href="servidores">Servidores</a></li> -->
+<!--                  	 <li><a href="tiposprodutos"> Tipo de Produto</a></li> -->
+                    <li><a href="/eacervo/admin/users"> Usuários</a></li>
+<!--                  	<li><a href="produtos">Produtos</a></li> -->
+
+<!--                  </ul> -->
+                  </ul>
+                      </li>
+              
             </ul>
              </sec:authorize>
+             
+             
+             
             <ul class="nav navbar-nav navbar-right">
 <!--               <li class="active"><a href="./">Contato <span class="sr-only">(current)</span></a></li> -->
               <li class="active"><a href="/">Programa&ccedil;&atilde;o</a></li>

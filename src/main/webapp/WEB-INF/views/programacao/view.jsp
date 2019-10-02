@@ -31,11 +31,14 @@
 <!-- AngularJS -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script> -->
           <script src="/eacervo/resources/js/angular.min.js"></script>  
+          <script src="/eacervo/resources/js/angular-ui.min.js"></script>          
           <script src="/eacervo/resources/js/angular-animate.min.js"></script> 
           <script src="/eacervo/resources/js/angular-route.min.js"></script>
           <script  src="/eacervo/resources/js/angular-resource.min.js"></script>   
           <script src="/eacervo/resources/js/app.js" type="text/javascript" > </script>
-          <script  src="/eacervo/resources/js/product_controller.js" type="text/javascript"> </script> 
+          <script  src="/eacervo/resources/js/product_controller.js" type="text/javascript"> </script>
+          <script  src="/eacervo/resources/js/productgroup_controller.js" type="text/javascript"> </script> 
+           
           
 <!-- JQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
