@@ -3,6 +3,7 @@ package org.ntvru.eacervo.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Tuple;
 
@@ -87,8 +88,13 @@ public abstract class GenericDAO<T> {
 		public Tuple getEntityByAttribute(String columnName, Object param) {
 			
 			String query = "select t from "+daoU.getClassName()+" t where t.status='A' and t."+columnName+"=:"+columnName;
+			try {
 			return manager.createQuery(query,Tuple.class)					
 					.setParameter(columnName, param).getSingleResult();
+			}catch(NoResultException e) {
+				return null;
+			}
+			
 			
 		}
 		

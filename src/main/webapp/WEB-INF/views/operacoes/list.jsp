@@ -8,10 +8,7 @@
 
 <head>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"> </script>
 
 <jsp:include page="../templates/head.jsp" ></jsp:include>
 
@@ -58,59 +55,9 @@
         	//Init date picker with current date
              setCurrentDate("exhibitionDate");
 
-        	 
-         table =  $('#scheduleTable').DataTable( {
-            	retrieve: true,            	
-                "ajax":{url: '/eacervo/api/v1/schedule/item?type=json', dataSrc:""},
-                 "columns":[
-                	 {data:"scheduleItems",
-                      render:function(data,type,row){
-                    	  var result ='';
-                    	  data.forEach(function(item){
-                    		  result = item.scheduleItemCode
-                    	  });
-                    	   return result;
-                       }}, 
-                       {data:"scheduleItems",
-                           render:function(data,type,row){
-                         	  var result ='';
-                         	  data.forEach(function(item){
-                         		  result = item.episodeName
-                         	  });
-                         	   return result;
-                            }},
-                            {data:"scheduleItems",
-                                render:function(data,type,row){
-                              	  var result ='';
-                              	  data.forEach(function(item){
-                              		  result = item.productType
-                              	  });
-                              	   return result;
-                                 }},
-                                 {data:"scheduleItems",
-                                     render:function(data,type,row){
-                                     	  var result ='';
-                                     	  data.forEach(function(item){
-                                     		  result = item.productName
-                                     	  });
-                                     	   return result;
-                                        }},
-                                        {data:"scheduleItems",
-                                            render:function(data,type,row){                                            
-                                            	  var result ='';
-                                            	  data.forEach(function(item){
-                                            		  result = moment().startOf('day')
-                                                      .seconds(item.episodeDuration)
-                                                      .format('H:mm:ss');
-                                            	  });
-                                            	   return result;
-                                               }},
-                	 
-                	 //{"data":"group"},
-                	 {"defaultContent":'<a  href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-target="modalSchedule" onclick="setProductValues(this)" >Reportar</a>'}
-                	 
-                 ]              
-            } );
+        	// fillTable("2019-08-20");
+        	 fillTable($('#exhibitionDate').val());
+
          
           //var modal = $(this);
 
@@ -119,8 +66,100 @@
     function setCurrentDate(elementId){
     	var today = moment().format('YYYY-MM-DD');
     	$("#"+elementId).val(today);
+    	
 
     }
+    
+    function fillTable(data, redirectIfAjaxReturnEmpty){
+    	
+    	
+        table =  $('#scheduleTable').DataTable( {
+        	retrieve: true,            	
+            "ajax":{url: '/eacervo/api/v1/schedule/item?type=json&data='+data, dataSrc:""},
+            error: function (xhr, textStatus, error){
+               // if (typeof console == "object") {
+                    console.log("ERRO "+xhr.status + "," + xhr.responseText + "," + textStatus + "," + error); 
+               // }
+            },  
+              "columns":[
+            	 {data:"scheduleItems",            
+                  render:function(data,type,row){
+                	  var result ='';
+                	  data.forEach(function(item){
+                		  result = item.scheduleItemCode
+                	  });
+                	   return result;
+                   }}, 
+                   {data:"scheduleItems",
+                       render:function(data,type,row){
+                     	  var result ='';
+                     	  data.forEach(function(item){
+                     		  result = item.episodeName
+                     	  });
+                     	   return result;
+                        }},
+                        {data:"scheduleItems",
+                            render:function(data,type,row){
+                          	  var result ='';
+                          	  data.forEach(function(item){
+                          		  result = item.productType
+                          	  });
+                          	   return result;
+                             }},
+                             {data:"scheduleItems",
+                                 render:function(data,type,row){
+                                 	  var result ='';
+                                 	  data.forEach(function(item){
+                                 		  result = item.productName
+                                 	  });
+                                 	   return result;
+                                    }},
+                                    {data:"scheduleItems",
+                                        render:function(data,type,row){                                            
+                                        	  var result ='';
+                                        	  data.forEach(function(item){
+                                        		  result = moment().startOf('day')
+                                                  .seconds(item.episodeDuration)
+                                                  .format('H:mm:ss');
+                                        	  });
+                                        	   return result;
+                                           }},
+            	 
+            	 //{"data":"group"},
+            	 {"defaultContent":'<a  href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-target="modalSchedule" onclick="setProductValues(this)" >Reportar</a>'}
+            	 
+             ]
+//              fnDrawCallback: function () {
+//              	var rows = this.fnGetData();
+//              	if ( rows.length === 0 ) {
+//              		$.ajax({
+//                  		"datatype":'json',
+//                  		"type":'GET',
+//                  		 "url":"/api/v1/schedule/nodata"
+// //                  		  data: {
+// //                  			 "sEcho": 1,
+// //                  		    "iTotalRecords": "0",
+// //                  		    "iTotalDisplayRecords": "0",
+// //                  		    "aaData": []
+// //                  		  }
+//                  			 }
+//                  			 ) 
+//              	}
+//              	},
+        } );
+    }
+    
+    function redirectIfAjaxReturnEmpty(sSource, oSettings){
+      	 oSettings.jqXHR = $.ajax(
+      			 {
+      		"datatype":'json',
+      		"type":'GET',
+      		 "url":"/eacervo/api/v1/schedule/nodata"
+      		 //"data":aoData,
+      		 //"success":fnCallback
+      			 }
+      			 )
+       }
 </script>
 </body>
 </html>

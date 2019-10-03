@@ -69,17 +69,28 @@ public class ScheduleAPI {
 		//TODO trocar String pelo atributo(Generics)
 		Schedule schedule = null;
 		List<Schedule> schedules = new ArrayList<>();
-		if(type.trim().equalsIgnoreCase("json")) {			
+		if(type.trim().equalsIgnoreCase("json")) {
+			if(scheduleDAO.getEntityByAttribute("exhibitionDate", Date.valueOf(data))==null) {
+				return schedules;
+			}
 	    Tuple tuple = scheduleDAO.getEntityByAttribute("exhibitionDate", Date.valueOf(data));
+	    
 	    schedule = (Schedule) tuple.get(0);
 		System.out.println("TUPLA "+scheduleDAO.getEntityByAttribute("exhibitionDate", Date.valueOf(data)).get(0));
 		
 		schedules.add(schedule);
+		
 //        schedule.setId(tuple.get(0));
 // 		schedule.setExhibitionDate(tuple.get(1, Date.class));
 		}
 		return schedules;
 	}
 	
+	
+	  @RequestMapping("/nodata")
+      public @ResponseBody String nodata() {
+    	  return "'sEcho': 1, 'iTotalRecords': '0', 'iTotalDisplayRecords': '0','aaData': '[]' ";
+    		
+      }
 	
 }

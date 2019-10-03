@@ -98,9 +98,6 @@
                 	previous: "anterior"
                    }
         	   },
-        	   
-       
-               
            	retrieve: true,
                "ajax":{url: '/eacervo/api/v1/episode/all?type=json', dataSrc:""},
                 "columns":[

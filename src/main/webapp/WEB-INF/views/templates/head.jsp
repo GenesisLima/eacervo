@@ -12,6 +12,13 @@
 
 
 
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"> </script>
+
+
 <script src="/eacervo/resources/js/dropdownmenu.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/pt-br.js" crossorigin="anonymous"></script> -->
 
@@ -24,4 +31,5 @@
 <link rel="stylesheet" href="/eacervo/resources/css/bootstrap/bootstrap.min.css" >
 
 <link rel="stylesheet" href="/eacervo/resources/css/bootstrap/bootstrap-theme.min.css" >
+
 

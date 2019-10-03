@@ -30,7 +30,7 @@
 								<li><a href="grupoproduto"> Grupo de Produto</a></li>
 								<li><a href="produto">Produto</a></li>
 								<li><a href="episodio">Epis&oacute;dio</a></li>
-<!-- 								<li><a href="insercao">Inser&ccedil;&atilde;o</a></li> -->
+								<li><a href="insercao">Inser&ccedil;&atilde;o</a></li>
 								<li><a href=veiculacao>Veicula&ccedil;&atilde;o</a></li>
 								<li><a href="temporada">Temporada</a></li>
 						</ul>
