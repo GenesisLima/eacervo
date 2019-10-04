@@ -44,19 +44,43 @@
     </table> 
    </form>
   </div>
-  </div>
+  </div> <!-- /container -->
+  <!-- Modal -->
+<div id="modalReport" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+ <form role="form" class="report">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Reportar Incidente</h4>
       </div>
-
-
-    </div> <!-- /container -->
+      <div class="modal-body">
+           <div class="form-group">                     
+              <label for="name">Descrição:</label>
+              <textarea class="form-control"  rows="4" cols="50" name="report" id="report"></textarea> 
+              <input type="hidden" id="scheduleId" name="scheduleId"></input>            
+           </div>
+          
+    
+  </form><!-- /end form-->
+      </div>
+      <div class="modal-footer">
+        <button id="submit" class="btn btn-default" data-dismiss="modal">Salvar</button>
+        <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+      </div>
+    
+    </div><!-- /end modal -->
+  
+  
         <script type="text/javascript">
         $(document).ready(function()
         		{
         	//Init date picker with current date
              setCurrentDate("exhibitionDate");
 
-        	// fillTable("2019-08-20");
-        	 fillTable($('#exhibitionDate').val());
+        	 fillTable("2019-08-20");
+        	// fillTable($('#exhibitionDate').val());
 
          
           //var modal = $(this);
@@ -72,6 +96,7 @@
     
     function fillTable(data, redirectIfAjaxReturnEmpty){
     	
+    	 var scheduleId; 
     	
         table =  $('#scheduleTable').DataTable( {
         	retrieve: true,            	
@@ -86,7 +111,7 @@
                   render:function(data,type,row){
                 	  var result ='';
                 	  data.forEach(function(item){
-                		  result = item.scheduleItemCode
+                		  result = item.scheduleItemCode                		 
                 	  });
                 	   return result;
                    }}, 
@@ -125,41 +150,49 @@
                                         	   return result;
                                            }},
             	 
-            	 //{"data":"group"},
-            	 {"defaultContent":'<a  href="#" id="editButton" class="btn btn-info" role="button" data-toggle="modal" data-target="modalSchedule" onclick="setProductValues(this)" >Reportar</a>'}
+            	 {render:function(data, type, full, meta){            		
+            		 return '<a  href="#" id="editButton" class="btn btn-info" role="button" data-schedule-id='+full.id+' data-toggle="modal" data-target="#modalReport">Reportar</a>'            	 
+               }}
             	 
              ]
-//              fnDrawCallback: function () {
-//              	var rows = this.fnGetData();
-//              	if ( rows.length === 0 ) {
-//              		$.ajax({
-//                  		"datatype":'json',
-//                  		"type":'GET',
-//                  		 "url":"/api/v1/schedule/nodata"
-// //                  		  data: {
-// //                  			 "sEcho": 1,
-// //                  		    "iTotalRecords": "0",
-// //                  		    "iTotalDisplayRecords": "0",
-// //                  		    "aaData": []
-// //                  		  }
-//                  			 }
-//                  			 ) 
-//              	}
-//              	},
+
         } );
     }
+
     
-    function redirectIfAjaxReturnEmpty(sSource, oSettings){
-      	 oSettings.jqXHR = $.ajax(
-      			 {
-      		"datatype":'json',
-      		"type":'GET',
-      		 "url":"/eacervo/api/v1/schedule/nodata"
-      		 //"data":aoData,
-      		 //"success":fnCallback
-      			 }
-      			 )
-       }
+ 
+    $('#modalReport').on('show.bs.modal', function (e) {
+    	var modal = $(this);
+    	var button = $(e.relatedTarget);
+    	modal.find("#scheduleId").val(button.data("schedule-id"));
+    	console.log("HIDDEN VALUE "+modal.find("#scheduleId").val());
+     	
+    })
+    
+     //Sends the modal form data that contains the report
+     $("button#submit").click(function(){
+         $.ajax({
+     type: "POST",
+ url: "/eacervo/operacoes/incidente",
+ data: $('form.report').serialize(),
+         success: function(msg){
+        	 console.log("REPORT RETURNS THE FOLLOWING MESSAGE: "+msg);
+                 $("#thanks").html(msg)
+        $("#form-content").modal('hide'); 
+         }
+       }).done(function(data){
+    	   console.log("DADOS DO FORMULÁRIO "+$('form.report').serialize())
+       }).fail(function(jqXHR, textStatus, errorThrown){
+    	  // window.location.replace("/eacervo/"+jqXHR);
+    	      	   console.log("DADOS DO FORMULÁRIO "+$('form.report').serialize())
+
+    	   console.log("JQXHR "+JSON.stringify(jqXHR));
+    	   console.log("textStatus "+textStatus);
+    	   console.log("errorThrown "+errorThrown);
+
+       });
+ });
+    
 </script>
 </body>
 </html>
