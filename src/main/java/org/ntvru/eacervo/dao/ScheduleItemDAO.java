@@ -20,7 +20,8 @@ public class ScheduleItemDAO extends GenericDAO<ScheduleItem> {
 
 	public ScheduleItem getById(String scheduleItemCode) {
 	
-		return manager.createQuery("select s from SCHEDULE_ITEM s where s.id="+scheduleItemCode+" and s.status='A'", ScheduleItem.class).getSingleResult();
+		return manager.createQuery("select s from ScheduleItem s where s.scheduleItemCode=:scheduleItemCode and s.status='A'", ScheduleItem.class)
+				.setParameter("scheduleItemCode", scheduleItemCode).getSingleResult();
 	}
 	
 	public Collection<ScheduleItem> listAll(){

@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
@@ -28,6 +29,9 @@ public class OperationReport implements Serializable {
     //@JoinColumn(name = "schedule_id")       
     private Schedule schedule;
 	
+	@ManyToOne
+	@JoinColumn(name = "schedule_item_id")  
+	private ScheduleItem scheduleItem;
 	
 	private String report;
 
@@ -61,8 +65,17 @@ public class OperationReport implements Serializable {
 		this.report = report;
 	}
 
-	
-	
 
+	public ScheduleItem getScheduleItem() {
+		return scheduleItem;
+	}
+
+
+	public void setScheduleItem(ScheduleItem scheduleItem) {
+		this.scheduleItem = scheduleItem;
+	}
+
+
+	
 	
 }
