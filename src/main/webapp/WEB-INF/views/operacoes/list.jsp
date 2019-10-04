@@ -60,6 +60,8 @@
               <label for="name">Descrição:</label>
               <textarea class="form-control"  rows="4" cols="50" name="report" id="report"></textarea> 
               <input type="hidden" id="scheduleId" name="scheduleId"></input>            
+              <input type="hidden" id="scheduleItemId" name="scheduleItemId"></input>            
+              
            </div>
           
     
@@ -96,7 +98,7 @@
     
     function fillTable(data, redirectIfAjaxReturnEmpty){
     	
-    	 var scheduleId; 
+    	 var scheduleItemId; 
     	
         table =  $('#scheduleTable').DataTable( {
         	retrieve: true,            	
@@ -111,7 +113,8 @@
                   render:function(data,type,row){
                 	  var result ='';
                 	  data.forEach(function(item){
-                		  result = item.scheduleItemCode                		 
+                		  result = item.scheduleItemCode
+                		  scheduleItemId = result;
                 	  });
                 	   return result;
                    }}, 
@@ -151,7 +154,7 @@
                                            }},
             	 
             	 {render:function(data, type, full, meta){            		
-            		 return '<a  href="#" id="editButton" class="btn btn-info" role="button" data-schedule-id='+full.id+' data-toggle="modal" data-target="#modalReport">Reportar</a>'            	 
+            		 return '<a  href="#" id="editButton" class="btn btn-info" role="button" data-schedule-id='+full.id+' data-item-id='+scheduleItemId+' data-toggle="modal" data-target="#modalReport">Reportar</a>'            	 
                }}
             	 
              ]
@@ -165,6 +168,7 @@
     	var modal = $(this);
     	var button = $(e.relatedTarget);
     	modal.find("#scheduleId").val(button.data("schedule-id"));
+    	modal.find("#scheduleItemId").val(button.data("item-id"));
     	console.log("HIDDEN VALUE "+modal.find("#scheduleId").val());
      	
     })
