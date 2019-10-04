@@ -45,6 +45,7 @@ public class OperationController {
 		operationReport.setSchedule(schedule);
 		operationReport.setScheduleItem(scheduleItem);
 		operationReport.setReport(report);
+		System.out.println("TIME IS "+Time.valueOf(LocalTime.now()).toString());
 		dao.save(operationReport);
 		
 		
