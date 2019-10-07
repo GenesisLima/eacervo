@@ -24,10 +24,12 @@
      
       <!-- Main component for a primary view or call to action -->
       <div class="jumbotron">
-         <form role="form" class="group">
+         <form role="form" class="group" id="operations" method="get" action="/eacervo/operacoes">
               <div class="form-inline">
-<label id="labelDate" >Data de Exibição:</label><label id="labelDate-value"></label>
-<input  type="date" class="form-control" name="exhibitionDate" id="exhibitionDate" />
+<!--               <label id="labelDate-value"></label> -->
+<label id="labelDate" >Data de Exibição:</label>
+<%-- <h1>${empty data?'data is empty or null.':'data is NOT empty or null. The value is: '}${data}</h1> --%>
+<input  type="date" class="form-control" name="exhibitionDate" id="exhibitionDate" value="${data}"/>
   </div>
 <div class="panel panel-default">
  <div class="panel-heading">Programação</div>
@@ -82,15 +84,26 @@
         $(document).ready(function()
         		{
         	//Init date picker with current date
+        	if($("#exhibitionDate").val() == ""){
              setCurrentDate("exhibitionDate");
+        	}
 
-        	 fillTable("2019-08-20");
-        	// fillTable($('#exhibitionDate').val());
+        	// fillTable("2019-08-20");
+        	
+        	fillTable($('#exhibitionDate').val());
 
          
           //var modal = $(this);
+          
+        
 
     });
+        
+        
+   	 $( "#exhibitionDate" ).change(function() {
+		  $( "#operations" ).submit();
+		}); 
+        
         
     function setCurrentDate(elementId){
     	var today = moment().format('YYYY-MM-DD');

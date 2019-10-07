@@ -1,14 +1,18 @@
 package org.ntvru.eacervo.controller;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.Tuple;
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
+import javax.ws.rs.Produces;
 
 import org.ntvru.eacervo.dao.ScheduleDAO;
 import org.ntvru.eacervo.dao.ScheduleItemDAO;
@@ -19,6 +23,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -65,6 +70,7 @@ public class ScheduleController {
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView list(){
 		ModelAndView modelAndView = new ModelAndView("/programacoes/list");	
+		System.out.println("LISTA");
 		modelAndView.addObject("productTypes",dao.list());		
 		return modelAndView; 
 	}
@@ -134,6 +140,7 @@ public class ScheduleController {
 		return schedule;
 		
 	}
+	
 	
 	
 }

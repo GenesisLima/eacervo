@@ -87,10 +87,5 @@ public class ScheduleAPI {
 	}
 	
 	
-	  @RequestMapping("/nodata")
-      public @ResponseBody String nodata() {
-    	  return "'sEcho': 1, 'iTotalRecords': '0', 'iTotalDisplayRecords': '0','aaData': '[]' ";
-    		
-      }
-	
+	 
 }
